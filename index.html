@@ -1261,11 +1261,11 @@ p{margin:0;text-wrap:pretty;}
         <p>Расскажу о формате, отвечу на вопросы, помогу понять — мой подход вам подходит или нет. Без обязательств, без продажи. Если не моё — порекомендую коллегу.</p>
         <p style="margin-top:24px;font-size:14px;letter-spacing:.04em;"><strong style="color:var(--cream);">Telegram</strong> <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;">@alina_ecosin</a> &nbsp;·&nbsp; <strong style="color:var(--cream);">WhatsApp</strong> <a href="https://wa.me/79373614477" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;">+7 937 361 44 77</a></p>
       </div>
-      <form class="cta-form" onsubmit="event.preventDefault();">
-        <div><label for="name">Как вас зовут</label><input id="name" type="text" placeholder="Имя" /></div>
-        <div><label for="tg">Telegram или телефон</label><input id="tg" type="text" placeholder="@username или +7 …" /></div>
+      <form class="cta-form" id="cta-form">
+        <div><label for="name">Как вас зовут</label><input id="name" name="name" type="text" placeholder="Имя" required /></div>
+        <div><label for="tg">Telegram или телефон</label><input id="tg" name="tg" type="text" placeholder="@username или +7 …" required /></div>
         <div><label for="topic">С чем хотите разобраться</label>
-          <select id="topic">
+          <select id="topic" name="topic">
             <option>Усталость и упадок сил</option>
             <option>Тяга к сладкому, переедание</option>
             <option>Гормоны, цикл, ПМС</option>
@@ -1275,8 +1275,8 @@ p{margin:0;text-wrap:pretty;}
             <option>Просто хочу спросить</option>
           </select>
         </div>
-        <button type="submit">Записаться на созвон →</button>
-        <small>Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Я отвечаю в течение 24 часов.</small>
+        <button type="submit" id="cta-submit">Записаться на созвон →</button>
+        <small id="cta-status">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Я отвечаю в течение 24 часов.</small>
       </form>
     </div>
   </div>
@@ -1510,6 +1510,68 @@ p{margin:0;text-wrap:pretty;}
 </section>
 <script src="https://alinaecosin.store/shop/widget.js"></script>
 <!-- /Магазин Ecosin -->
+
+<!-- ===== Отправка формы в Telegram ===== -->
+<script>
+(function () {
+  // ── ВСТАВЬТЕ СВОИ ДАННЫЕ ─────────────────────────────
+  var TG_BOT_TOKEN = "8995487859:AAG9b1aoMwMWuOMWsDEoFep5FqflgiEOKv0";   // токен от @BotFather
+  var TG_CHAT_ID   = "322770539";     // chat_id Алины
+  // ─────────────────────────────────────────────────────
+
+  var form   = document.getElementById("cta-form");
+  var status = document.getElementById("cta-status");
+  var btn    = document.getElementById("cta-submit");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var name  = (document.getElementById("name").value || "").trim();
+    var tg    = (document.getElementById("tg").value || "").trim();
+    var topic = document.getElementById("topic").value || "";
+
+    if (!name || !tg) {
+      status.textContent = "Пожалуйста, заполните имя и контакт.";
+      return;
+    }
+
+    var text =
+      "🌿 Заявка с сайта\n\n" +
+      "👤 Имя: " + name + "\n" +
+      "📱 Контакт: " + tg + "\n" +
+      "🎯 Тема: " + topic;
+
+    btn.disabled = true;
+    status.textContent = "Отправляю…";
+
+    fetch("https://api.telegram.org/bot" + TG_BOT_TOKEN + "/sendMessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: text,
+        disable_web_page_preview: true
+      })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data && data.ok) {
+        form.reset();
+        status.textContent = "✅ Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
+      } else {
+        status.textContent = "Не удалось отправить. Напишите, пожалуйста, в Telegram @alina_ecosin.";
+        btn.disabled = false;
+      }
+    })
+    .catch(function () {
+      status.textContent = "Не удалось отправить. Напишите, пожалуйста, в Telegram @alina_ecosin.";
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+<!-- /Отправка формы в Telegram -->
 
 </body>
 </html>
