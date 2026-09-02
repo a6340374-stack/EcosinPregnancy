@@ -28,8 +28,8 @@
 <meta property="og:description" content="Возвращаю женщинам энергию, стабильный вес и баланс гормонов через питание. Подготовка и ведение беременности, халяль-подход. Онлайн и в Уфе." />
 <meta property="og:url" content="https://alinaecosin.ru/" />
 <meta property="og:image" content="https://alinaecosin.ru/og-image.jpg" />
-<meta property="og:image:width" content="640" />
-<meta property="og:image:height" content="360" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Нутрициолог Алина Сингизова" />
 
 <!-- ─────────────── Twitter Card ─────────────── -->
@@ -826,6 +826,9 @@ p{margin:0;text-wrap:pretty;}
 }
 .halal-pill .dot{width:6px;height:6px;background:var(--olive);border-radius:50%;}
 
+/* honeypot: поле-ловушка для спам-ботов, людям не показываем */
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+
 /* Small bits */
 .arrow{display:inline-block;transition:transform .25s;}
 .btn:hover .arrow{transform: translateX(3px);}
@@ -1276,6 +1279,7 @@ p{margin:0;text-wrap:pretty;}
             <option>Просто хочу спросить</option>
           </select>
         </div>
+        <div class="hp-field" aria-hidden="true"><label for="company">Компания</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off" /></div>
         <button type="submit" id="cta-submit">Записаться на созвон →</button>
         <small id="cta-status">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Я отвечаю в течение 24 часов.</small>
       </form>
@@ -1505,63 +1509,95 @@ p{margin:0;text-wrap:pretty;}
   ]
 }
 </script>
-<!-- ===== Отправка формы в Telegram ===== -->
+<!-- ===== Отправка заявки ===== -->
 <script>
 (function () {
-  // ── ВСТАВЬТЕ СВОИ ДАННЫЕ ─────────────────────────────
-  var TG_BOT_TOKEN = "8995487859:AAG9b1aoMwMWuOMWsDEoFep5FqflgiEOKv0";   // токен от @BotFather
-  var TG_CHAT_ID   = "322770539";     // chat_id Алины
-  // ─────────────────────────────────────────────────────
+  // Приёмник заявок на стороне сервера. Секретов в браузере нет: токен бота
+  // живёт в .env «Диспетчерской», а не в этом файле.
+  // Пока адрес пуст — форма доводит человека до мессенджера с готовым текстом.
+  var LEAD_ENDPOINT = "";
+  var TG_LINK  = "https://t.me/alina_ecosin";
+  var WA_PHONE = "79373614477";
 
   var form   = document.getElementById("cta-form");
   var status = document.getElementById("cta-status");
   var btn    = document.getElementById("cta-submit");
   if (!form) return;
 
+  function field(id) {
+    var el = document.getElementById(id);
+    return el ? (el.value || "").trim() : "";
+  }
+
+  function letterText(d) {
+    return "Здравствуйте! Заявка с сайта.\n\n" +
+           "Имя: " + d.name + "\n" +
+           "Контакт: " + d.contact + "\n" +
+           "Тема: " + d.topic;
+  }
+
+  // Запасной путь: открыть мессенджер с уже написанным сообщением.
+  function offerMessengers(d) {
+    var text = encodeURIComponent(letterText(d));
+    var st = ' style="color:var(--cream);text-decoration:underline;"';
+    status.innerHTML =
+      "Остался один шаг — отправьте заявку в мессенджер: " +
+      '<a href="https://wa.me/' + WA_PHONE + "?text=" + text + '" target="_blank" rel="noopener"' + st + ">WhatsApp</a>" +
+      " · " +
+      '<a href="' + TG_LINK + '" target="_blank" rel="noopener" id="cta-tg"' + st + ">Telegram</a>";
+
+    // Для Telegram текст заранее не подставить — кладём его в буфер обмена.
+    var tg = document.getElementById("cta-tg");
+    if (tg && navigator.clipboard) {
+      tg.addEventListener("click", function () {
+        navigator.clipboard.writeText(letterText(d)).catch(function () {});
+      });
+    }
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var name  = (document.getElementById("name").value || "").trim();
-    var tg    = (document.getElementById("tg").value || "").trim();
-    var topic = document.getElementById("topic").value || "";
+    var d = {
+      name:    field("name"),
+      contact: field("tg"),
+      topic:   field("topic"),
+      hp:      field("company")
+    };
 
-    if (!name || !tg) {
+    if (!d.name || !d.contact) {
       status.textContent = "Пожалуйста, заполните имя и контакт.";
       return;
     }
+    if (d.hp) return; // молча игнорируем бота
 
-    var text =
-      "🌿 Заявка с сайта\n\n" +
-      "👤 Имя: " + name + "\n" +
-      "📱 Контакт: " + tg + "\n" +
-      "🎯 Тема: " + topic;
+    if (!LEAD_ENDPOINT) {
+      offerMessengers(d);
+      return;
+    }
 
     btn.disabled = true;
     status.textContent = "Отправляю…";
 
-    fetch("https://api.telegram.org/bot" + TG_BOT_TOKEN + "/sendMessage", {
+    fetch(LEAD_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: TG_CHAT_ID,
-        text: text,
-        disable_web_page_preview: true
+      body: JSON.stringify(d)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.ok) {
+          form.reset();
+          status.textContent = "\u2705 Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
+        } else {
+          btn.disabled = false;
+          offerMessengers(d);
+        }
       })
-    })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      if (data && data.ok) {
-        form.reset();
-        status.textContent = "✅ Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
-      } else {
-        status.textContent = "Не удалось отправить. Напишите, пожалуйста, в Telegram @alina_ecosin.";
+      .catch(function () {
         btn.disabled = false;
-      }
-    })
-    .catch(function () {
-      status.textContent = "Не удалось отправить. Напишите, пожалуйста, в Telegram @alina_ecosin.";
-      btn.disabled = false;
-    });
+        offerMessengers(d);
+      });
   });
 })();
 </script>
