@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ─────────────── Primary SEO ─────────────── -->
+<title>Магазин Ecosin — липосомальные добавки и магний | Алина Сингизова</title>
+<meta name="description" content="Магазин нутрициолога Алины Сингизовой: липосомальные формы витаминов и магний, отобранные для практики. Доставка по России, помощь с подбором." />
+<meta name="keywords" content="магазин Ecosin, липосомальные витамины, магний купить, добавки нутрициолога, Алина Сингизова, БАД Уфа" />
+<meta name="author" content="Алина Сингизова" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href="https://alinaecosin.ru/shop.html" />
+<meta name="theme-color" content="#1f4a2c" />
+
+<!-- ─────────────── Open Graph ─────────────── -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Ecosin · Алина Сингизова" />
+<meta property="og:title" content="Магазин Ecosin — липосомальные добавки и магний" />
+<meta property="og:description" content="Отобранные для практики липосомальные формы и магний. Доставка по России, помощь с подбором." />
+<meta property="og:url" content="https://alinaecosin.ru/shop.html" />
+<meta property="og:image" content="https://alinaecosin.ru/og-image.jpg" />
+
+<!-- ─────────────── Icons ─────────────── -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%231f4a2c'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Georgia,serif'%20font-size='20'%20fill='%23f5ede0'%20text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* shop.css (встроен) — та же система, что в landing.css */
+:root{
+  --cream:        #f5ede0;
+  --cream-warm:   #ede2cf;
+  --paper:        #faf6ed;
+  --sand:         #d8c6a3;
+  --sand-deep:    #b9a682;
+  --forest:       #1f4a2c;
+  --forest-deep:  #0f2c1a;
+  --forest-soft:  #2f5d3b;
+  --olive:        #6f7e4a;
+  --olive-soft:   #93a072;
+  --terra:        #b86b4a;
+  --ink:          #2a2418;
+  --ink-soft:     #4d4538;
+  --rule:         rgba(42,36,24,0.18);
+
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --body:    "Onest", "Helvetica Neue", system-ui, sans-serif;
+
+  --max: 1280px;
+  --pad-x: clamp(20px, 4vw, 64px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;margin:0;text-wrap:balance;line-height:1.05;}
+p{margin:0;text-wrap:pretty;}
+
+.wrap{max-width: var(--max); margin: 0 auto; padding-inline: var(--pad-x);}
+.eyebrow{
+  font-family: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--forest);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor;display:inline-block;}
+.quiet{color:var(--ink-soft);}
+
+/* ───────────────────────── NAV ───────────────────────── */
+.nav{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(250,246,237,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner{display:flex;align-items:center;gap:32px;padding-block:18px;}
+.brand{display:flex;align-items:baseline;gap:10px;}
+.brand-mark{
+  font-family:var(--display);font-size:26px;letter-spacing:.06em;color:var(--forest);
+  font-weight:500;
+}
+.brand-sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+.nav-links{display:flex;gap:30px;margin-left:auto;font-size:14px;color:var(--ink-soft);}
+.nav-links a{transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a[aria-current="page"]{color:var(--forest);}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px; font-weight:500;
+  transition: all .25s ease;
+}
+.btn-primary{background:var(--forest);color:var(--cream);}
+.btn-primary:hover{background:var(--forest-deep);}
+.btn-cream{background:var(--cream);color:var(--forest);}
+.btn-cream:hover{background:var(--paper);}
+.arrow{display:inline-block;transition:transform .25s;}
+.btn:hover .arrow{transform: translateX(3px);}
+
+/* ───────────────────────── SHOP HERO ───────────────────────── */
+.shop-hero{
+  background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  padding-top: clamp(48px, 6vw, 80px);
+  padding-bottom: clamp(48px, 6vw, 76px);
+}
+.shop-hero-grid{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items:end;
+}
+.shop-hero h1{
+  margin-top: 22px;
+  font-size: clamp(40px, 5.2vw, 68px);
+  color: var(--forest-deep);
+  letter-spacing: -0.015em;
+}
+.shop-hero h1 em{font-style:italic;color:var(--olive);font-weight:400;}
+.shop-lede{
+  font-size: clamp(15px, 1.1vw, 17px);
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+.shop-notes{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin-top: 22px;
+}
+.shop-note{
+  border:1px solid var(--rule);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  background: rgba(250,246,237,0.6);
+}
+
+/* ───────────────────────── WIDGET MOUNT ───────────────────────── */
+.shop-body{padding-block: clamp(40px, 5vw, 64px) clamp(64px, 8vw, 110px);}
+#ecosin-shop{min-height: 320px;}
+.shop-fallback{
+  border:1px dashed var(--rule);
+  border-radius: 14px;
+  padding: 28px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  text-align:center;
+}
+.shop-fallback a{color:var(--forest);text-decoration:underline;}
+
+/* ───────────────────────── HELP STRIP ───────────────────────── */
+.shop-help{
+  background: var(--forest);
+  color: var(--cream);
+  padding-block: clamp(48px, 6vw, 76px);
+}
+.shop-help-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap: 32px; flex-wrap:wrap;
+}
+.shop-help h2{font-size: clamp(28px, 3.2vw, 42px);color:var(--cream);max-width:20ch;}
+.shop-help h2 em{font-style:italic;color:var(--olive-soft);font-weight:400;}
+.shop-help p{margin-top:14px;color: rgba(245,237,224,0.72);font-size:15px;max-width:46ch;}
+
+/* ───────────────────────── FOOTER ───────────────────────── */
+.foot{
+  background: var(--forest-deep);
+  color: var(--cream);
+  padding-block: 72px 36px;
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(245,237,224,0.16);
+}
+.foot h4{
+  font-family: var(--body);
+  font-weight:500;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--olive-soft);
+  margin-bottom: 18px;
+}
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;}
+.foot ul a{color: rgba(245,237,224,0.75);transition:color .2s;}
+.foot ul a:hover{color: var(--cream);}
+.foot-brand .brand-mark{color: var(--cream);font-size: 30px;}
+.foot-brand p{margin-top:16px;color: rgba(245,237,224,0.6);font-size:14px;max-width:36ch;line-height:1.55;}
+.foot-bottom{
+  padding-top: 28px;
+  display:flex;justify-content:space-between;
+  font-size:12px;color: rgba(245,237,224,0.5);letter-spacing:.05em;
+}
+.foot-legal{
+  padding-top: 14px;
+  font-size:12px;color: rgba(245,237,224,0.4);letter-spacing:.04em;line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .shop-hero-grid{grid-template-columns: 1fr; gap: 28px;}
+  .foot-grid{grid-template-columns: 1fr;}
+  .nav-links{display:none;}
+  .foot-bottom{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Основная навигация">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Ecosin — нутрициолог Алина Сингизова, на главную">
+      <span class="brand-mark">Ecosin</span>
+      <span class="brand-sub">нутрициология</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#pains">Узнайте себя</a>
+      <a href="index.html#method">Метод</a>
+      <a href="index.html#story">Обо мне</a>
+      <a href="index.html#services">Услуги</a>
+      <a href="shop.html" aria-current="page">Магазин</a>
+      <a href="index.html#faq">Вопросы</a>
+    </div>
+    <a href="index.html#cta" class="btn btn-primary">Записаться <span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<main id="content">
+
+  <section class="shop-hero">
+    <div class="wrap shop-hero-grid">
+      <div>
+        <span class="eyebrow">Магазин Ecosin</span>
+        <h1>То, что я <em>сама даю</em> своим клиенткам.</h1>
+      </div>
+      <div>
+        <p class="shop-lede">Здесь только те формы, которые я использую в практике: липосомальные витамины и магний. Без «полки на всякий случай» — если добавки нет в моей работе, её нет и здесь.</p>
+        <div class="shop-notes">
+          <span class="shop-note">Доставка по России</span>
+          <span class="shop-note">Бесплатно от 5 000 ₽</span>
+          <span class="shop-note">Помогу с подбором</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shop-body">
+    <div class="wrap">
+      <!-- Магазин Ecosin (виджет диспетчерской) -->
+      <div id="ecosin-shop"></div>
+      <noscript>
+        <div class="shop-fallback">
+          Для просмотра каталога нужен включённый JavaScript.
+          Напишите мне в <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a> — оформлю заказ вручную.
+        </div>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="shop-help">
+    <div class="wrap shop-help-inner">
+      <div>
+        <h2>Не знаете, <em>что именно</em> вам нужно?</h2>
+        <p>Добавки без понимания дефицитов — трата денег. Напишите, расскажу, что имеет смысл в вашей ситуации, а что можно спокойно не покупать.</p>
+      </div>
+      <a href="index.html#cta" class="btn btn-cream">Задать вопрос <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-mark">Ecosin</span>
+        <p>Авторская практика нутрициолога Алины Сингизовой. Природа и наука в одном подходе. С уважением к халяль.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="index.html#pains">Узнайте себя</a></li>
+          <li><a href="index.html#method">Метод Ecosin</a></li>
+          <li><a href="index.html#story">Обо мне</a></li>
+          <li><a href="index.html#services">Услуги</a></li>
+          <li><a href="shop.html">Магазин</a></li>
+          <li><a href="index.html#faq">Вопросы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a></li>
+          <li><a href="https://t.me/info_ecosin_rb" target="_blank" rel="noopener">Канал t.me/info_ecosin_rb</a></li>
+          <li><a href="https://wa.me/79373614477" target="_blank" rel="noopener">WhatsApp +7 937 361 44 77</a></li>
+          <li><a href="tel:+79373614477">Телефон +7 937 361 44 77</a></li>
+          <li><a href="https://instagram.com/alina_ecosin" target="_blank" rel="noopener nofollow">Instagram* @alina_ecosin</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <ul>
+          <li><a href="index.html">Согласие на обработку данных</a></li>
+          <li><a href="index.html">Публичная оферта</a></li>
+          <li><a href="index.html">Дисклеймер</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024–2026 Ecosin · Алина Сингизова</span>
+      <span>Не является заменой медицинской помощи. Уфа · онлайн</span>
+    </div>
+    <div class="foot-legal">
+      <span>Самозанятый (плательщик налога на профессиональный доход) Сингизова Алина Азатовна · ИНН 026703299726</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://alinaecosin.store/shop/widget.js"></script>
+
+</body>
+</html>
