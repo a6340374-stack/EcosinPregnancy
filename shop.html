@@ -232,7 +232,558 @@ p{margin:0;text-wrap:pretty;}
   .nav-links{display:none;}
   .foot-bottom{flex-direction:column;gap:8px;}
 }
+
+/* ── Статический каталог ──────────────────────────────────────────
+   Виден поисковым роботам и посетителям без JavaScript. Когда
+   widget.js загружается, он подменяет содержимое #ecosin-shop
+   интерактивным каталогом с корзиной. Разметка генерируется
+   скриптом tools/build_shop.py из того же API, что и виджет. */
+.sp-grid{
+  list-style:none;margin:0;padding:0;
+  display:grid;gap:22px;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+.sp-card{
+  display:flex;flex-direction:column;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  overflow:hidden;
+}
+.sp-img{
+  width:100%;height:auto;aspect-ratio:1200/630;
+  object-fit:cover;background:var(--cream);
+  display:block;
+}
+.sp-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.sp-name{
+  font-family:var(--display);font-size:20px;font-weight:500;
+  line-height:1.2;margin:0;color:var(--forest-deep);
+}
+.sp-unit{margin:0;font-size:13px;color:var(--ink-soft);letter-spacing:.02em;}
+.sp-desc{margin:0;font-size:14px;line-height:1.5;color:var(--ink-soft);flex:1;}
+.sp-price{margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.sp-now{font-size:19px;font-weight:600;color:var(--forest);}
+.sp-old{font-size:14px;color:var(--sand-deep);}
+.sp-stock{margin:0;font-size:13px;color:var(--olive);}
+.sp-stock[data-order]{color:var(--sand-deep);}
+.shop-static-note{
+  margin:26px 0 0;font-size:14px;line-height:1.6;color:var(--ink-soft);
+}
+.shop-static-note a{color:var(--forest);}
 </style>
+
+<!-- Разметка каталога для поиска. Генерируется tools/build_shop.py -->
+<!-- SHOP:JSONLD:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Магазин Ecosin — липосомальные добавки и магний",
+  "numberOfItems": 20,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Vitamin D3",
+        "description": "Система комплексной защиты и укрепления иммунитета. Поддерживает работу иммунной, гормональной и нервной систем. Активные компоненты • Витамин D3 (холекальциферол) • Дигидрокверцетин • Масло льна Способ применения Принимать утром во время еды самостоятельно или растворив в воде от 1 до 10 капель. 1 капля — 500 МЕ, 10 капель — 5000 МЕ. Состав Растительный глицерин, льняное масло (нерафинированное, холодного отжима), натуральный соевый лецитин (не ГМО), дигидрокверцетин (92%), масляная форма холекальциферола, натуральный ароматизатор апельсин (CO2-экстракт). Пищевая ценность На 100 г: белки 2,0 г, жиры 81,0 г, углеводы 0,9 г, калорийность 740 ккал.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2340,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/vitamin-d3-c50b09ffa913.png",
+        "sku": "202150001",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Iron",
+        "description": "Липосомальное железо с биодоступностью до 100%, обогащённое комплексом ко-факторов для поддержки в рамках протокола борьбы с железодефицитной анемией. Активные компоненты • Железо (бисглицинат железа) • Клеточный сок пихты сибирской • Экстракт граната • Селен (селенометионин) • Медь (бисглицинат меди) • Йод (калия йодид) • Кобальт (хелатный комплекс) Способ применения Утром, за 10 минут до еды; 1 пипетка (1 мл) сублингвально или растворив в 100 мл воды. Минимальный курс: 2–3 месяца. Состав Вода, бисглицинат железа, бисглицинат меди, калия йодид, хелатный комплекс кобальта, селенометионин, растительный глицерин, концентрированный клеточный сок пихты сибирской, натуральный соевый лецитин (не ГМО), масляный СО2-экстракт граната. Пищевая ценность На 100 г: белки 2,0 г, жиры 56,0 г, углеводы 0,9 г, калорийность 720 ккал.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2340,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/iron-5a17916c3157.png",
+        "sku": "202150003",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Astaxanthin",
+        "description": "Мощнейший природный антиоксидант. Борется с окислительным стрессом и блокирует действие свободных радикалов. Активные компоненты • Астаксантин 6 мг на 1 мл (300% от АУП) • Масло чёрного тмина • Масло макадамии • Масло сладкого миндаля • Масло семян расторопши • Горчичное масло • Масло льна Способ применения Утром, за 10 минут до еды. Взрослым 1 пипетка (1 мл) 1 раз в день, можно запивать напитком или смешивать с водой. Минимальный курс: 2–3 месяца. Состав Растительный пищевой глицерин, натуральный соевый лецитин (не ГМО), масло чёрного тмина, масло макадамии, масло сладкого миндаля, масло семян расторопши, горчичное масло, природный астаксантин AstaReal® (микроводоросли Haematococcus pluvialis, Япония). Пищевая ценность На 100 г: белки 2,0 г, жиры 56,0 г, углеводы 0,9 г, калорийность 720 ккал.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2510,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/astaxanthin-f68b2af4af18.png",
+        "sku": "202150007",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Vitamin K2",
+        "description": "Нормализация костного метаболизма, защита от тяжёлых хронических заболеваний и поддержка здорового гомеостаза. Активные компоненты • Менахинон-7 (витамин K2) • Фосфолипиды • Масло льна • Масло виноградных косточек Способ применения 1 раз в день во время еды, 1 пипетка (1 мл) сублингвально или растворив в 100 мл воды. Минимальный курс: 2–3 месяца. Состав Растительный глицерин, натуральная форма витамина K2 MenaQ7® Natural (МК-7), масло виноградной косточки холодного отжима, натуральный соевый лецитин (не ГМО), льняное масло холодного отжима. Пищевая ценность На 100 г: белки 2,0 г, жиры 81,0 г, углеводы 0,9 г, калорийность 740 ккал.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2680,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/vitamin-k2-307ad64fca52.png",
+        "sku": "202350009",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Vitamin E",
+        "description": "Инновационный комплекс токотриенолов и токоферолов (все 8 природных изомеров) с биодоступностью до 100% для комплексной поддержки здоровья организма. Активные компоненты • Витамин E из рисового масла (токоферолы и токотриенолы) • СО2-экстракт облепихи • СО2-экстракт зародышей пшеницы Способ применения Взрослым 1 мл (200 МЕ) один раз в день во время еды. Можно принимать самостоятельно или смешивать с водой. Минимальный курс: 2–3 месяца, повтор 2–4 раза в год. Состав Растительный глицерин, натуральный концентрат смеси токотриенолов и токоферолов из рисового масла, натуральный соевый лецитин (не ГМО), СО2-экстракт облепихи, СО2-экстракт зародышей пшеницы. Пищевая ценность На 1 мл: витамин E 200 МЕ (134 мг), комплекс токоферолов 64 мг, комплекс токотриенолов 43 мг.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2350,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/vitamin-e-a955cd042120.png",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Coenzyme Q10",
+        "description": "Поддержка энергетического метаболизма клеток — бустер красоты и энергии. Коэнзим Q10 на 95% связан с выработкой АТФ. Активные компоненты • Коэнзим Q10 • Витамин E • Масло зародышей пшеницы • Масло виноградных косточек • Экстракт моркови • Экстракт перца Способ применения В первой половине дня после приёма пищи. Взрослым 1 пипетка (1 мл) 1 раз в день. Минимальный курс: 2–3 месяца. Состав Растительный глицерин, масло виноградной косточки, натуральный соевый лецитин (не ГМО), коэнзим Q10, масло зародышей пшеницы, CO2-экстракт зародышей пшеницы, CO2-экстракт моркови, СО2-экстракт перца (пиперин). Пищевая ценность На 100 г: белки 1,7 г, жиры 65,0 г, углеводы 0,1 г, калорийность 780 ккал.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2680,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/coenzyme-q10-531fe79dafce.png",
+        "sku": "202150008",
+        "size": "50 мл"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Magnesium + Vitamin B6",
+        "description": "Липосомальный магний в двух формах с витамином B6 для комплексной поддержки нервной, гормональной и иммунной систем. Максимальное усвоение благодаря инкапсуляции в липосомы. Активные компоненты • Магний: глицинат 200 мг + цитрат 200 мг (всего 400 мг) • Витамин B6 (пиридоксаль-5-фосфат) — 5 мг Способ применения Взрослым: 1 мерная ложка (5 г) один раз в день после еды во второй половине дня, разведя в 50 мл воды. Детям: 0,5 ложки (2,5 г) по той же схеме. Состав Натуральный соевый лецитин (не ГМО), глицинат магния, цитрат магния, СО2-экстракт лимона, витамин E (D-альфа-токоферол), пиридоксаль-5-фосфат. Пищевая ценность На 5 г: магний 400 мг (100% от АУП), витамин B6 5 мг (250% от АУП).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 3880,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/magnesium-b6-493849481d82.png",
+        "sku": "202450009",
+        "size": "150 г"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Trans-Resveratrol",
+        "description": "Уникальный полифенол для поддержания здоровья и профилактики заболеваний. Антиоксидантные и противовоспалительные свойства, антивозрастной потенциал. Активные компоненты • Ресвератрол (экстракт горца гребенчатого) — 100 мг на капсулу Способ применения Взрослым по 1 капсуле 1 раз в день до еды, желательно в первой половине дня. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Фосфолипиды (соевый лецитин без ГМО), транс-ресвератрол (экстракт горца гребенчатого), L-лейцин, L-валин, L-изолейцин, витамин E (D-альфа-токоферол). Растительные вегетарианские капсулы HPMC.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2950,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/trans-resveratrol-a713b302dd90.png",
+        "sku": "202550001",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Zinc Glycinate + Vitamin C",
+        "description": "Комплексная забота о здоровье и красоте кожи, волос и ногтей. Нормализация гормонального фона и обменных процессов. Активные компоненты • Цинк — 25 мг (200% от АУП) • Витамин C — 100 мг (110% от АУП) Способ применения Взрослым 1 капсула (25 мг) 1 раз в день. Дети 14–18 лет — ½ капсулы, 9–13 лет — ⅓ капсулы, 3–8 лет — ¼ капсулы. Минимальный курс: 2 месяца. Состав Витамин C (L-аскорбат натрия), натуральный соевый лецитин (не ГМО), цинк (Zinc Bisglycinate Chelate), витамин E (D-альфа-токоферол), растительные капсулы HPMC (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2200,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/zinc-vitamin-c-9300cd699933.png",
+        "sku": "202350022",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal B9-B12 Complex",
+        "description": "Важнейший элемент поддержки когнитивных функций мозга и системы кроветворения. Снижает усталость, поддерживает энергетический обмен. Активные компоненты • L-метилфолат кальция (B9) — 0,250 мг (8300% от АУП) • Метилкобаламин (B12) — 0,200 мг (50% от АУП) • Витамин B5 (кальция D-пантотенат) Способ применения 1 капсула в день профилактически или 2 капсулы терапевтически, за 10–15 минут до еды или через час после, в первой половине дня. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Натуральный соевый лецитин (не ГМО), витамин B5, витамин B4 (холина битартрат), витамин B12 (метилкобаламин), витамин B9 (L-метилфолат кальция). Растительные капсулы без диоксида титана.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2420,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/b9-b12-fd4ad4b25788.png",
+        "sku": "202450001",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal B Complex",
+        "description": "Регулирует работу нервной системы, помогает синтезировать мелатонин, адреналин и норадреналин, улучшает когнитивные функции мозга. Активные компоненты • Биотин (B7) — 10 мг (500% от АУП) • Инозитол (B8) — 5 мг (334% от АУП) • Никотинамид (B3) — 6 мг (334% от АУП) • Пиридоксаль-5-фосфат (B6) — 50 мг (250% от АУП) • Тиамина мононитрат (B1) — 0,15 мг (60% от АУП) • Рибофлавин-5-фосфат натрия (B2) — 80 мг Способ применения 1 капсула 1 раз в день за 10–15 минут до приёма пищи, в первой половине дня. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Натуральный соевый лецитин (не ГМО), витамины B8, B3, B6, B2, B1, B7, витамин E (DL-альфа-токоферола ацетат), растительные капсулы без диоксида титана.",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2760,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/b-complex-e6b03b48c9ee.png",
+        "sku": "202450006",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Iron + Vitamin C",
+        "description": "Липосомальное железо с комплексом ко-факторов для максимальной защиты от анемии. Эффективное восстановление уровня железа без раздражения желудка. Активные компоненты • Железа бисглицинат — 25 мг • Витамин C (аскорбат натрия) — 60 мг • L-гистидин — 24 мг • Медь глицинат — 1 мг Способ применения Взрослым 1 капсула 1 раз в день во время еды. Дети 14–18 лет — ½ капсулы, 9–13 лет — ⅓ капсулы. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Натуральный соевый лецитин (без ГМО), витамин C (аскорбат натрия), L-гистидин, железа бисглицинат, витамин B4 (холина битартрат), витамин E (D-альфа-токоферол), медь глицинат. Растительные капсулы (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2760,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/iron-vitamin-c-a03937e0dc59.png",
+        "sku": "202450007",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Vitamin C",
+        "description": "Мощнейший бустер иммунной системы, эффективный антиоксидант и иммуностимулятор: повышает устойчивость к инфекционным и вирусным заболеваниям. Активные компоненты • Витамин C (L-аскорбат натрия) — 250 мг на капсулу / 500 мг на 2 капсулы (555% от АУП) Способ применения Взрослым 2 капсулы (500 мг) 1 раз в день. Дети 14–18 лет — 1 капсула, 9–13 лет — ½ капсулы, 3–8 лет — ¼ капсулы. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Витамин C (L-аскорбат натрия), натуральный соевый лецитин (не ГМО), витамин E (D-альфа-токоферол). Растительные капсулы HPMC (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2760,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/vitamin-c-3e4864756bc1.png",
+        "sku": "202350020",
+        "size": "120 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal 5-HTP",
+        "description": "Натуральное мягкое успокоительное без привыкания. Аминокислота для производства серотонина в липосомальной форме с биодоступностью до 100%. Активные компоненты • Экстракт гриффонии (98% 5-HTP) — 100 мг на капсулу • 5-гидрокситриптофан — 100 мг Способ применения 1 капсула за 30 минут до еды в первой половине дня (стресс); по 1 капсуле 3 раза в день до еды (тяга к сладкому); 1 капсула за 30 минут до сна (сон). Состав Экстракт гриффонии (5-гидрокситриптофан), натуральный соевый лецитин (без ГМО), витамин E (D-альфа-токоферол), растительные капсулы (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2850,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/5-htp-71a598768a15.png",
+        "sku": "202450008",
+        "size": "90 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "Product",
+        "name": "ZOSTERIN Marine Detox",
+        "description": "Природный энтеросорбент из морской травы Zostera marina. Мягко очищает организм от токсинов, поддерживает микрофлору кишечника и снижает воспаление за счёт низкометоксилированного пектина. Активные компоненты • Низкометоксилированный пектин (LMP) — 1000 мг (1 капсула) • Аминокислоты, витамины B и C, йод, селен, цинк, флавоноиды, омега-кислоты Способ применения Профилактика: 1 капсула 2 раза в день, курс 1 месяц. Острая интоксикация: 4 капсулы при первых симптомах, далее по 2 капсулы 2–3 раза в день, курс 3–7 дней. Состав Морской низкометоксилированный пектин (LMP), растительные капсулы HPMC (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 2540,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/zosterin-717ec1b74d8c.png",
+        "sku": "202550003",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "Product",
+        "name": "KELP Natural Iodine",
+        "description": "Природная форма йода нормализует обмен веществ и работу щитовидной железы. 100% натуральный органический йод из ламинарии японской. Активные компоненты • Йод — 250 мкг на капсулу • Фукоидан — 60 мг на капсулу Способ применения Взрослым 1 капсула 1 раз в день во время еды. Детям ½ капсулы 1 раз в день во время еды. Продолжительность приёма — 1 месяц. Состав 100% микроионизированный экстракт ламинарии японской (Laminaria Japonica). Растительные капсулы HPMC (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 1660,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/kelp-027db12b01a1.png",
+        "sku": "202450003",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "Product",
+        "name": "TMG Betaine",
+        "description": "100% безводный бетаин (триметилглицин) из натуральной сахарной свёклы. Снижает уровень гомоцистеина, поддерживает метилирование и защищает сердечно-сосудистую систему. Активные компоненты • Бетаин (Betaine Anhydrous) — 1000 мг на 2 капсулы (100% от АУП) Способ применения 2 капсулы один раз в день во время еды. Продолжительность приёма — 1 месяц, при необходимости повтор 2–4 раза в год. Состав 100% безводный бетаин (триметилглицин/TMG) в форме Betaine Anhydrous, растительные капсулы HPMC (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 1830,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/tmg-47a6b53237ce.png",
+        "sku": "202450004",
+        "size": "90 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "Product",
+        "name": "Magnesium Complex 4 in 1",
+        "description": "Комплекс из 4 форм магния для восстановления нервной системы. Мощный антистресс: снижает напряжение, улучшает качество сна и помогает справиться с бессонницей. Активные компоненты • Магний AQUAMIN MG SOLUBLE® (гидроксид магния) — 232 мг • Глицинат магния — 90 мг • Малат магния — 52 мг • Таурат магния — 36 мг • Всего магния на порцию — 410 мг (100% от АУП) Способ применения По 5 г (1 мерная ложка) 1 раз в день после еды, предварительно разведя в 100–200 мл жидкости. Продолжительность приёма — 1 месяц. Состав Порошок малины сублимированный, гидроксид магния AQUAMIN MG SOLUBLE®, глицинат магния, таурат магния, малат магния, диоксид кремния (Е551), натуральный ароматизатор «клубника».",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 3290,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/magnesium-complex-6345ea4489fd.png",
+        "sku": "202450005",
+        "size": "150 г"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "Product",
+        "name": "Liposomal Glutathione Reduced",
+        "description": "Замедляет процессы преждевременного старения — мощный ANTI-AGE эффект. Защищает клетки от окислительного стресса. Активные компоненты • L-глутатион (восстановленный) — 200 мг на капсулу (200% от АУП) Способ применения 1 раз в день во время еды, запивая небольшим количеством воды. Минимальный курс: 2 месяца, повтор 2–4 раза в год. Состав Натуральный соевый лецитин (не ГМО), L-глутатион (восстановленный), витамин B4 (холина битартрат). Растительные капсулы (без диоксида титана).",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 3780,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/glutathione-a72af9b22b05.png",
+        "sku": "202350021",
+        "size": "60 капсул"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "Product",
+        "name": "Магний Nigari",
+        "description": "Концентрированный хлорид магния высокой биодоступности, идентичный плазме крови человека. В 1 капле 20 мг магния 🔝 Этот магний стерильной экологии древнего моря, то есть не подвергнутый большинству обработок типа бишофита. ☝️Не содержит вредных примесей, как часто бывает в других фирмах хлорида магния. Можно детям и беременным ✅ Состав: Плазма магний, кальций, структурированная вода, зам-зам. 💧В 1 капле 20 мг хлорид магния, 5 мг хлорид кальция. Кальцй нужен для усиления эффекта магния, вступает с ним в реакцию. Почему именно Хлорид Магния❓ В каждой клетке нашего организма этот минерал находится именно в форме хлорида магния. Ни форма сульфат, ни таурат, ни цитрат, ни малат… а именно хлорид магния. И какая бы форма ни попала в желудочно-кишечный тракт (путём проглатывания) либо трансдермально (через кожу), все равно наш организм будет преобразовывать его именно в хлорид магния, и только в такой форме он зайдет в каждую клеточку ✅ Объем: 100 мл (хватает ~ на 2,5-3 мес)",
+        "url": "https://alinaecosin.ru/shop.html",
+        "offers": {
+          "@type": "Offer",
+          "price": 1800,
+          "priceCurrency": "RUB",
+          "url": "https://alinaecosin.ru/shop.html",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Ecosin"
+          }
+        },
+        "image": "https://alinaecosin.store/media/products/nigari-d771006a974f.jpg",
+        "size": "флакон с пипеткой 100 мл, картонная упаковка, вкладыш"
+      }
+    }
+  ]
+}
+</script>
+<!-- SHOP:JSONLD:END -->
 </head>
 <body>
 
@@ -275,14 +826,219 @@ p{margin:0;text-wrap:pretty;}
 
   <section class="shop-body">
     <div class="wrap">
-      <!-- Магазин Ecosin (виджет диспетчерской) -->
-      <div id="ecosin-shop"></div>
-      <noscript>
-        <div class="shop-fallback">
-          Для просмотра каталога нужен включённый JavaScript.
-          Напишите мне в <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a> — оформлю заказ вручную.
-        </div>
-      </noscript>
+      <!-- Магазин Ecosin (виджет диспетчерской).
+           Внутри — статическая копия каталога для поисковых роботов
+           и посетителей без JS. widget.js затирает её при загрузке.
+           Обновляется командой: python tools/build_shop.py -->
+      <div id="ecosin-shop">
+<!-- SHOP:STATIC:START -->
+<div class="shop-static">
+  <ul class="sp-grid">
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/vitamin-d3-c50b09ffa913.png" alt="Liposomal Vitamin D3" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Vitamin D3</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Система комплексной защиты и укрепления иммунитета. Поддерживает работу иммунной, гормональной и нервной систем.</p>
+        <p class="sp-price"><span class="sp-now">2 340 ₽</span> <s class="sp-old">2 750 ₽</s></p>
+        <p class="sp-stock">в наличии: 2 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/iron-5a17916c3157.png" alt="Liposomal Iron" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Iron</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Липосомальное железо с биодоступностью до 100%, обогащённое комплексом ко-факторов для поддержки в рамках протокола борьбы с железодефицитной анемией.</p>
+        <p class="sp-price"><span class="sp-now">2 340 ₽</span> <s class="sp-old">2 750 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/astaxanthin-f68b2af4af18.png" alt="Liposomal Astaxanthin" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Astaxanthin</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Мощнейший природный антиоксидант. Борется с окислительным стрессом и блокирует действие свободных радикалов.</p>
+        <p class="sp-price"><span class="sp-now">2 510 ₽</span> <s class="sp-old">2 950 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/vitamin-k2-307ad64fca52.png" alt="Liposomal Vitamin K2" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Vitamin K2</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Нормализация костного метаболизма, защита от тяжёлых хронических заболеваний и поддержка здорового гомеостаза.</p>
+        <p class="sp-price"><span class="sp-now">2 680 ₽</span> <s class="sp-old">3 150 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/vitamin-e-a955cd042120.png" alt="Liposomal Vitamin E" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Vitamin E</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Инновационный комплекс токотриенолов и токоферолов (все 8 природных изомеров) с биодоступностью до 100% для комплексной поддержки здоровья организма.</p>
+        <p class="sp-price"><span class="sp-now">2 350 ₽</span> <s class="sp-old">2 770 ₽</s></p>
+        <p class="sp-stock">в наличии: 1 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/coenzyme-q10-531fe79dafce.png" alt="Liposomal Coenzyme Q10" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Coenzyme Q10</h3>
+        <p class="sp-unit">50 мл</p>
+        <p class="sp-desc">Поддержка энергетического метаболизма клеток — бустер красоты и энергии. Коэнзим Q10 на 95% связан с выработкой АТФ.</p>
+        <p class="sp-price"><span class="sp-now">2 680 ₽</span> <s class="sp-old">3 150 ₽</s></p>
+        <p class="sp-stock">в наличии: 1 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/magnesium-b6-493849481d82.png" alt="Liposomal Magnesium + Vitamin B6" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Magnesium + Vitamin B6</h3>
+        <p class="sp-unit">150 г</p>
+        <p class="sp-desc">Липосомальный магний в двух формах с витамином B6 для комплексной поддержки нервной, гормональной и иммунной систем. Максимальное усвоение благодаря инкапсуляции в липосомы.</p>
+        <p class="sp-price"><span class="sp-now">3 880 ₽</span> <s class="sp-old">4 570 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/trans-resveratrol-a713b302dd90.png" alt="Liposomal Trans-Resveratrol" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Trans-Resveratrol</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Уникальный полифенол для поддержания здоровья и профилактики заболеваний. Антиоксидантные и противовоспалительные свойства, антивозрастной потенциал.</p>
+        <p class="sp-price"><span class="sp-now">2 950 ₽</span> <s class="sp-old">3 470 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/zinc-vitamin-c-9300cd699933.png" alt="Liposomal Zinc Glycinate + Vitamin C" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Zinc Glycinate + Vitamin C</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Комплексная забота о здоровье и красоте кожи, волос и ногтей. Нормализация гормонального фона и обменных процессов.</p>
+        <p class="sp-price"><span class="sp-now">2 200 ₽</span> <s class="sp-old">2 590 ₽</s></p>
+        <p class="sp-stock">в наличии: 1 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/b9-b12-fd4ad4b25788.png" alt="Liposomal B9-B12 Complex" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal B9-B12 Complex</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Важнейший элемент поддержки когнитивных функций мозга и системы кроветворения. Снижает усталость, поддерживает энергетический обмен.</p>
+        <p class="sp-price"><span class="sp-now">2 420 ₽</span> <s class="sp-old">2 850 ₽</s></p>
+        <p class="sp-stock">в наличии: 5 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/b-complex-e6b03b48c9ee.png" alt="Liposomal B Complex" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal B Complex</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Регулирует работу нервной системы, помогает синтезировать мелатонин, адреналин и норадреналин, улучшает когнитивные функции мозга.</p>
+        <p class="sp-price"><span class="sp-now">2 760 ₽</span> <s class="sp-old">3 250 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/iron-vitamin-c-a03937e0dc59.png" alt="Liposomal Iron + Vitamin C" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Iron + Vitamin C</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Липосомальное железо с комплексом ко-факторов для максимальной защиты от анемии. Эффективное восстановление уровня железа без раздражения желудка.</p>
+        <p class="sp-price"><span class="sp-now">2 760 ₽</span> <s class="sp-old">3 250 ₽</s></p>
+        <p class="sp-stock">в наличии: 3 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/vitamin-c-3e4864756bc1.png" alt="Liposomal Vitamin C" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Vitamin C</h3>
+        <p class="sp-unit">120 капсул</p>
+        <p class="sp-desc">Мощнейший бустер иммунной системы, эффективный антиоксидант и иммуностимулятор: повышает устойчивость к инфекционным и вирусным заболеваниям.</p>
+        <p class="sp-price"><span class="sp-now">2 760 ₽</span> <s class="sp-old">3 250 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/5-htp-71a598768a15.png" alt="Liposomal 5-HTP" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal 5-HTP</h3>
+        <p class="sp-unit">90 капсул</p>
+        <p class="sp-desc">Натуральное мягкое успокоительное без привыкания. Аминокислота для производства серотонина в липосомальной форме с биодоступностью до 100%.</p>
+        <p class="sp-price"><span class="sp-now">2 850 ₽</span> <s class="sp-old">3 350 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/zosterin-717ec1b74d8c.png" alt="ZOSTERIN Marine Detox" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">ZOSTERIN Marine Detox</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Природный энтеросорбент из морской травы Zostera marina. Мягко очищает организм от токсинов, поддерживает микрофлору кишечника и снижает воспаление за счёт низкометоксилированного пектина.</p>
+        <p class="sp-price"><span class="sp-now">2 540 ₽</span> <s class="sp-old">2 990 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/kelp-027db12b01a1.png" alt="KELP Natural Iodine" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">KELP Natural Iodine</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Природная форма йода нормализует обмен веществ и работу щитовидной железы. 100% натуральный органический йод из ламинарии японской.</p>
+        <p class="sp-price"><span class="sp-now">1 660 ₽</span> <s class="sp-old">1 950 ₽</s></p>
+        <p class="sp-stock">в наличии: 1 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/tmg-47a6b53237ce.png" alt="TMG Betaine" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">TMG Betaine</h3>
+        <p class="sp-unit">90 капсул</p>
+        <p class="sp-desc">100% безводный бетаин (триметилглицин) из натуральной сахарной свёклы. Снижает уровень гомоцистеина, поддерживает метилирование и защищает сердечно-сосудистую систему.</p>
+        <p class="sp-price"><span class="sp-now">1 830 ₽</span> <s class="sp-old">2 150 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/magnesium-complex-6345ea4489fd.png" alt="Magnesium Complex 4 in 1" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Magnesium Complex 4 in 1</h3>
+        <p class="sp-unit">150 г</p>
+        <p class="sp-desc">Комплекс из 4 форм магния для восстановления нервной системы. Мощный антистресс: снижает напряжение, улучшает качество сна и помогает справиться с бессонницей.</p>
+        <p class="sp-price"><span class="sp-now">3 290 ₽</span> <s class="sp-old">3 870 ₽</s></p>
+        <p class="sp-stock">в наличии: 1 шт</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/glutathione-a72af9b22b05.png" alt="Liposomal Glutathione Reduced" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Liposomal Glutathione Reduced</h3>
+        <p class="sp-unit">60 капсул</p>
+        <p class="sp-desc">Замедляет процессы преждевременного старения — мощный ANTI-AGE эффект. Защищает клетки от окислительного стресса.</p>
+        <p class="sp-price"><span class="sp-now">3 780 ₽</span> <s class="sp-old">4 450 ₽</s></p>
+        <p class="sp-stock" data-order>под заказ</p>
+      </div>
+    </li>
+    <li class="sp-card">
+      <img class="sp-img" src="https://alinaecosin.store/media/products/nigari-d771006a974f.jpg" alt="Магний Nigari" width="1200" height="630" loading="lazy" decoding="async" />
+      <div class="sp-body">
+        <h3 class="sp-name">Магний Nigari</h3>
+        <p class="sp-unit">флакон с пипеткой 100 мл, картонная упаковка, вкладыш</p>
+        <p class="sp-desc">Концентрированный хлорид магния высокой биодоступности, идентичный плазме крови человека.</p>
+        <p class="sp-price"><span class="sp-now">1 800 ₽</span> <s class="sp-old">2 500 ₽</s></p>
+        <p class="sp-stock">в наличии: 5 шт</p>
+      </div>
+    </li>
+  </ul>
+  <p class="shop-static-note">Каталог с корзиной и оформлением заказа загружается автоматически. Если он не открылся — напишите мне в <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a>, оформлю заказ вручную.</p>
+</div>
+<!-- SHOP:STATIC:END -->
+      </div>
     </div>
   </section>
 

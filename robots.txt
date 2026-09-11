@@ -1,14 +1,12 @@
 User-agent: *
 Allow: /
-
-# Служебные и технические параметры (UTM-метки, результаты поиска)
-Disallow: /*?utm_
-Disallow: /*?yclid=
-Disallow: /*?gclid=
-Disallow: /*&utm_
 Disallow: /search
 
-# Главное зеркало сайта (для Яндекса)
-Host: https://alinaecosin.ru
-
 Sitemap: https://alinaecosin.ru/sitemap.xml
+
+# Для Яндекса: Clean-param склеивает страницы с метками в одну,
+# а не прячет их от робота, как это делал бы Disallow.
+User-agent: Yandex
+Allow: /
+Disallow: /search
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&from&ysclid
