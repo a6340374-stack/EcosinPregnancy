@@ -1,0 +1,122 @@
+/* labs.css (встроен) — страницы про анализы.
+   Подключается после chrome.css и article.css.
+
+   Главный элемент — шкала маркера. Она рисует две вещи разом: широкий
+   референс лаборатории и узкий коридор, на который смотрит нутрициолог.
+   Смысл в том, что значение может лежать внутри референса и при этом
+   далеко от коридора — именно так выглядит «анализы в норме, а сил нет».
+
+   Проценты считаются при вёрстке и лежат в style="--lab-a:…" и т. д.
+   Формула: (значение − начало оси) / (конец оси − начало оси) × 100. */
+
+.scale{
+  margin-top: 30px;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+.scale + .scale{margin-top: 26px;}
+.scale-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
+.scale-name{font-size:18px;color:var(--ink);}
+.scale-unit{font-size:12px;letter-spacing:.1em;color:var(--sand-deep);white-space:nowrap;}
+
+/* Дорожка. Тонкая линия — референс, плотная заливка — коридор,
+   вертикальная риска — иллюстративное значение. */
+.scale-track{
+  position:relative;height: 46px;margin-top: 16px;
+}
+.scale-track::before{                      /* сама ось */
+  content:"";position:absolute;left:0;right:0;top: 21px;height:1px;
+  background: var(--rule);
+}
+.scale-lab{
+  position:absolute;top: 18px;height: 7px;
+  left: var(--lab-a);right: calc(100% - var(--lab-b));
+  border-left:1px solid var(--sand-deep);
+  border-right:1px solid var(--sand-deep);
+  border-top:1px solid var(--sand-deep);
+}
+.scale-opt{
+  position:absolute;top: 19px;height: 5px;
+  left: var(--opt-a);right: calc(100% - var(--opt-b));
+  background: var(--olive);
+}
+.scale-val{position:absolute;left: var(--val);top: 6px;}
+.scale-val::before{
+  content:"";position:absolute;left:-1px;top:0;width:2px;height: 33px;
+  background: var(--terra);
+}
+.scale-val span{
+  position:absolute;left: 7px;top:-2px;white-space:nowrap;
+  font-size:12px;letter-spacing:.04em;color: var(--terra);
+}
+/* У правого края подпись уезжает за рамку — разворачиваем влево. */
+.scale-val[data-side="left"] span{left:auto;right: 7px;}
+
+.scale-axis{
+  display:flex;justify-content:space-between;
+  font-size:11px;letter-spacing:.08em;color:var(--sand-deep);
+  margin-top: -6px;
+}
+.scale-legend{
+  margin-top: 12px;display:flex;flex-wrap:wrap;gap: 6px 20px;
+  font-size:12px;letter-spacing:.03em;color:var(--ink-soft);
+}
+.scale-legend b{font-weight:500;color:var(--ink);}
+.scale-legend i{
+  display:inline-block;width:14px;height:5px;vertical-align:1px;margin-right:6px;
+}
+.scale-legend .k-lab i{border:1px solid var(--sand-deep);border-bottom:0;height:6px;}
+.scale-legend .k-opt i{background:var(--olive);}
+.scale-legend .k-val i{width:2px;height:11px;background:var(--terra);vertical-align:-2px;}
+.scale-about{margin-top: 12px !important;font-size:15px !important;}
+.scale-felt{
+  margin-top: 8px !important;font-size:14px !important;
+  color: var(--ink-soft) !important;font-style: italic;
+}
+
+/* ───────────────────────── СОСТАВ ПАНЕЛИ ───────────────────────── */
+.panel{
+  margin-top: 30px;border:1px solid var(--rule);padding: 28px 30px;
+}
+.panel h3{margin-top:0 !important;font-size:22px;}
+.panel-list{margin: 18px 0 0 !important;padding:0 !important;list-style:none;}
+.panel-list li{
+  padding: 10px 0;border-top:1px solid var(--rule);
+  font-size:16px;color:var(--ink);
+}
+.panel-list li:first-child{border-top:0;padding-top:0;}
+.panel-prep{
+  margin-top: 20px;padding-top: 16px;border-top:1px solid var(--rule);
+  font-size:14px;line-height:1.6;color:var(--ink-soft);
+}
+.panel-prep b{
+  display:block;font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--olive);margin-bottom: 8px;
+}
+
+/* ───────────────────────── СЕТКА СЦЕНАРИЕВ ───────────────────────── */
+.cases{
+  margin-top: 34px;display:grid;grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+}
+.cases a{
+  display:block;padding: 26px 28px;text-decoration:none !important;
+  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  transition: background .2s;
+}
+.cases a:hover{background: var(--cream-warm);}
+.cases h3{
+  margin:0 !important;font-size:22px;color:var(--forest);
+}
+.cases p{margin-top: 10px !important;font-size:15px !important;}
+.cases span{
+  display:block;margin-top: 14px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);
+}
+
+@media (max-width: 760px){
+  .cases{grid-template-columns:1fr;}
+  .panel{padding: 22px 20px;}
+  .scale-val span{font-size:11px;}
+}
