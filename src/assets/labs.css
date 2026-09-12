@@ -115,6 +115,16 @@
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);
 }
 
+/* Ссылка-действие в колонках блока заказа. */
+#order .art-split p a{
+  display:inline-block;margin-top: 4px;
+  font-size:15px;color:var(--forest);
+  text-decoration:none;border-bottom:1px solid var(--olive);
+  padding-bottom: 2px;transition: border-color .2s;
+}
+#order .art-split p a:hover{border-color:var(--forest);}
+#order .art-split ul{margin-top:0;}
+
 @media (max-width: 760px){
   .cases{grid-template-columns:1fr;}
   .panel{padding: 22px 20px;}
