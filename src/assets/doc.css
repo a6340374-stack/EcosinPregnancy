@@ -1,0 +1,90 @@
+/* doc.css (встроен) — страницы документов: согласие, оферта, дисклеймер.
+   Подключается после chrome.css. */
+
+/* ───────────────────────── ШАПКА ДОКУМЕНТА ───────────────────────── */
+.doc-head{padding-block: 64px 40px;border-bottom:1px solid var(--rule);}
+.doc-head h1{
+  font-size: clamp(34px, 5vw, 56px);
+  margin-top: 18px;
+  max-width: 20ch;
+}
+.doc-dates{
+  margin-top: 22px;
+  display:flex;flex-wrap:wrap;gap: 8px 28px;
+  font-size:13px;color:var(--ink-soft);letter-spacing:.03em;
+}
+.doc-dates b{font-weight:500;color:var(--ink);}
+
+/* Короткий человеческий пересказ перед юридическим текстом. Он не заменяет
+   документ и об этом сказано прямо в блоке. */
+.doc-gist{
+  margin-top: 36px;
+  border-left: 2px solid var(--olive);
+  padding: 4px 0 4px 24px;
+  max-width: 68ch;
+}
+.doc-gist h2{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.22em;text-transform:uppercase;
+  color: var(--forest);font-weight:500;
+}
+.doc-gist ul{margin: 14px 0 0;padding-left: 18px;display:flex;flex-direction:column;gap:8px;}
+.doc-gist li{font-size:15px;line-height:1.6;color:var(--ink-soft);}
+.doc-gist p{margin-top:14px;font-size:13px;color:var(--ink-soft);font-style:italic;}
+
+/* ───────────────────────── ТЕЛО ДОКУМЕНТА ───────────────────────── */
+.doc-body{padding-block: 48px 88px;}
+.doc-body .wrap{max-width: 860px;margin-inline:0;}
+.doc-body section{margin-top: 44px;max-width: 68ch;}
+.doc-body section:first-child{margin-top:0;}
+.doc-body h2{
+  font-size: 27px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.doc-body h2 .num{
+  font-family: var(--body);
+  font-size: 12px;letter-spacing:.14em;
+  color: var(--olive);
+  display:block;margin-bottom:10px;font-weight:500;
+}
+.doc-body h3{font-size:20px;margin-top:26px;}
+.doc-body p{margin-top: 16px;font-size:16px;line-height:1.65;color:var(--ink-soft);}
+.doc-body p strong{color:var(--ink);font-weight:500;}
+.doc-body ul, .doc-body ol{margin: 16px 0 0;padding-left: 22px;display:flex;flex-direction:column;gap:10px;}
+.doc-body li{font-size:16px;line-height:1.65;color:var(--ink-soft);}
+.doc-body li strong{color:var(--ink);font-weight:500;}
+.doc-body a{color:var(--forest);text-decoration:underline;text-underline-offset:3px;}
+
+/* Реквизиты и адреса — моноширинный набор, чтобы цифры читались. */
+.doc-req{
+  margin-top: 22px;
+  border:1px solid var(--rule);
+  padding: 22px 24px;
+  font-size:15px;line-height:1.7;color:var(--ink-soft);
+}
+.doc-req b{display:block;color:var(--ink);font-weight:500;margin-bottom:8px;}
+
+/* Место, куда Алина подставляет свои данные перед публикацией. Видно
+   и в вёрстке, и в поиске по исходнику. */
+.doc-todo{
+  background: rgba(184,107,74,0.10);
+  border-bottom: 1px solid var(--terra);
+  padding: 1px 5px;
+  color: var(--terra);
+}
+
+.doc-nav{
+  margin-top: 64px;padding-top: 28px;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap: 10px 26px;font-size:14px;
+}
+.doc-nav a{color:var(--ink-soft);text-decoration:none;transition:color .2s;}
+.doc-nav a:hover{color:var(--forest);}
+.doc-nav span{color:var(--sand-deep);}
+
+/* Медиазапрос держим здесь, а не в chrome.css: chrome подключается первым,
+   и его правило той же силы перебивалось бы обычным .doc-head ниже. */
+@media (max-width: 900px){
+  .doc-head{padding-block: 44px 32px;}
+}
+

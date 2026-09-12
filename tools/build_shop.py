@@ -5,11 +5,15 @@
 Зачем: каталог на сайте рисует widget.js с alinaecosin.store. Робот Яндекса
 исполняет JavaScript плохо, поэтому без этой сборки в исходном HTML товаров
 нет вообще — ни названий, ни цен. Скрипт тянет тот же API, что и виджет, и
-вклеивает в страницу два блока:
+вклеивает два блока:
 
   * видимые карточки товаров внутри #ecosin-shop — их затирает widget.js,
     когда загружается, так что живой посетитель видит обычный магазин;
-  * разметку Schema.org (ItemList из Product с ценами и наличием) в <head>.
+  * разметку Schema.org (ItemList из Product с ценами и наличием).
+
+Правятся исходники в src/, после чего сразу запускается tools/build.py и
+пересобирает shop.html в корне. Руками корневой shop.html не трогать: он
+собирается и любая правка в нём затрётся при следующей сборке.
 
 Запускать после каждого изменения каталога:
 
@@ -26,14 +30,19 @@ import urllib.request
 from datetime import date
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build
+
 API = "https://alinaecosin.store"
 PRODUCTS_URL = f"{API}/shop-api/products"
 SITE = "https://alinaecosin.ru"
 SHOP_URL = f"{SITE}/shop.html"
 
 ROOT = Path(__file__).resolve().parent.parent
-SHOP_FILE = ROOT / "shop.html"
-SITEMAP_FILE = ROOT / "sitemap.xml"
+# Карточки живут в теле страницы, разметка — в хвосте, который подклеивается
+# после подвала. Оба файла исходные: корневой shop.html собирает build.py.
+CARDS_FILE = ROOT / "src" / "pages" / "shop.html"
+JSONLD_FILE = ROOT / "src" / "partials" / "tail-shop.html"
 
 TELEGRAM = "https://t.me/alina_ecosin"
 
@@ -182,36 +191,35 @@ def replace_block(text, name, payload):
     return pattern.sub(f"{start}\n{payload}\n{end}", text, count=1)
 
 
-def touch_sitemap():
-    """lastmod страницы магазина — сегодняшняя дата."""
-    if not SITEMAP_FILE.exists():
-        return False
-    text = SITEMAP_FILE.read_text(encoding="utf-8")
-    today = date.today().isoformat()
-    updated = re.sub(
-        r"(<loc>https://alinaecosin\.ru/shop\.html</loc>\s*<lastmod>)[^<]*(</lastmod>)",
-        rf"\g<1>{today}\g<2>",
-        text,
-    )
-    if updated != text:
-        SITEMAP_FILE.write_text(updated, encoding="utf-8")
-        return True
-    return False
+def touch_updated(text):
+    """Дата в шапке страницы — сегодняшняя. Из неё build.py делает lastmod."""
+    return re.sub(r"^updated:.*$", f"updated: {date.today().isoformat()}", text, count=1, flags=re.M)
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
+
     products = fetch_products()
-    text = SHOP_FILE.read_text(encoding="utf-8")
-    text = replace_block(text, "SHOP:STATIC", render_cards(products))
-    text = replace_block(text, "SHOP:JSONLD", render_jsonld(products))
-    SHOP_FILE.write_text(text, encoding="utf-8")
+
+    cards = CARDS_FILE.read_text(encoding="utf-8")
+    cards = replace_block(cards, "SHOP:STATIC", render_cards(products))
+    CARDS_FILE.write_text(touch_updated(cards), encoding="utf-8")
+
+    jsonld = JSONLD_FILE.read_text(encoding="utf-8")
+    JSONLD_FILE.write_text(
+        replace_block(jsonld, "SHOP:JSONLD", render_jsonld(products)), encoding="utf-8"
+    )
 
     available = sum(1 for p in products if in_stock(p))
     print(f"Товаров в каталоге: {len(products)} (в наличии {available}, "
           f"под заказ {len(products) - available})")
-    print(f"Обновлён {SHOP_FILE.name}: карточки + разметка Schema.org")
-    if touch_sitemap():
-        print(f"Обновлён {SITEMAP_FILE.name}: lastmod магазина")
+    print("Обновлены исходники: карточки и разметка Schema.org")
+    print()
+    print("Пересборка страниц:")
+
+    return build.main([])
 
 
 if __name__ == "__main__":

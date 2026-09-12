@@ -1,0 +1,44 @@
+<!-- Лид-магнит. Сборщик вставляет его в тело страницы на место слота
+     с именем magnet. Значения приходят из шапки страницы: поля magnet_*
+     без приставки. Скрипт подключается автоматически, звать не надо.
+     Внимание: сам слот здесь писать нельзя — подстановщик его увидит. -->
+<div class="magnet" data-magnet
+     data-file="{{ file }}"
+     data-goal="{{ goal }}"
+     data-topic="{{ topic }}">
+
+  <div class="magnet-what">
+    <span class="magnet-tag">Забрать с собой</span>
+    <h2>{{ title }}</h2>
+    <p>{{ text }}</p>
+    <ul class="magnet-facts">{{ facts }}</ul>
+  </div>
+
+  <div class="magnet-side">
+    <form class="magnet-form" data-magnet-form novalidate>
+      <div class="magnet-field">
+        <label for="{{ id }}-name">Как вас зовут</label>
+        <input id="{{ id }}-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required />
+      </div>
+      <div class="magnet-field">
+        <label for="{{ id }}-contact">Telegram или телефон</label>
+        <input id="{{ id }}-contact" name="contact" type="text" placeholder="@username или +7 …" required />
+      </div>
+
+      <!-- Поле-ловушка для спам-ботов. Людям не показываем. -->
+      <div class="magnet-hp" aria-hidden="true">
+        <label for="{{ id }}-company">Компания</label>
+        <input id="{{ id }}-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-magnet-submit>{{ button }} <span class="arrow">→</span></button>
+      <small class="magnet-note" data-magnet-status>Нажимая кнопку, вы соглашаетесь с <a href="/legal/privacy.html">обработкой персональных данных</a>. Рассылок не будет.</small>
+    </form>
+
+    <div class="magnet-done" data-magnet-done hidden>
+      <p class="magnet-done-title" data-magnet-done-title>Готово. Файл ниже.</p>
+      <a class="btn btn-primary" data-magnet-link href="{{ file }}" download>Скачать PDF <span class="arrow">↓</span></a>
+      <small class="magnet-note" data-magnet-done-note>Ссылка останется рабочей — можно сохранить страницу и вернуться.</small>
+    </div>
+  </div>
+</div>

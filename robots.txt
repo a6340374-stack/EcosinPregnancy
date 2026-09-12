@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /search
+Disallow: /files/
 
 Sitemap: https://alinaecosin.ru/sitemap.xml
 
@@ -9,4 +10,10 @@ Sitemap: https://alinaecosin.ru/sitemap.xml
 User-agent: Yandex
 Allow: /
 Disallow: /search
+Disallow: /files/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&from&ysclid
+
+# /files/ — материалы, которые отдаются за контакт. Закрыты не ради секрета:
+# прямую ссылку всё равно можно передать, и это нормально. Смысл в том, чтобы
+# PDF не попал в выдачу сам по себе и не перехватывал людей у страницы,
+# на которой стоит форма. Ищут и находят страницу, файл получают с неё.

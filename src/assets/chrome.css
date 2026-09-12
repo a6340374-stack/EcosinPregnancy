@@ -1,0 +1,149 @@
+/* chrome.css (встроен) — общая обвязка: переменные, сброс, шапка, подвал.
+
+   Подключается первым, до стилей конкретной страницы. Правка меню или
+   подвала делается здесь один раз и расходится по всем страницам, которые
+   его запросили.
+
+   landing.css и shop.css пока держат свои копии этих правил: разбирать
+   вручную свёрстанную главную ради этого рискованнее, чем потерпеть
+   дублирование. Правите шапку здесь — проверьте и их. */
+
+:root{
+  --cream:        #f5ede0;
+  --cream-warm:   #ede2cf;
+  --paper:        #faf6ed;
+  --sand:         #d8c6a3;
+  --sand-deep:    #b9a682;
+  --forest:       #1f4a2c;
+  --forest-deep:  #0f2c1a;
+  --forest-soft:  #2f5d3b;
+  --olive:        #6f7e4a;
+  --olive-soft:   #93a072;
+  --terra:        #b86b4a;
+  --ink:          #2a2418;
+  --ink-soft:     #4d4538;
+  --rule:         rgba(42,36,24,0.18);
+
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --body:    "Onest", "Helvetica Neue", system-ui, sans-serif;
+
+  --max: 1280px;
+  --pad-x: clamp(20px, 4vw, 64px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;margin:0;text-wrap:balance;line-height:1.1;}
+p{margin:0;text-wrap:pretty;}
+
+.wrap{max-width: var(--max); margin: 0 auto; padding-inline: var(--pad-x);}
+.eyebrow{
+  font-family: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--forest);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor;display:inline-block;}
+
+/* ───────────────────────── NAV ───────────────────────── */
+.nav{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(250,246,237,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner{display:flex;align-items:center;gap:32px;padding-block:18px;}
+.brand{display:flex;align-items:baseline;gap:10px;}
+.brand-mark{
+  font-family:var(--display);font-size:26px;letter-spacing:.06em;color:var(--forest);
+  font-weight:500;
+}
+.brand-sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+.nav-links{display:flex;gap:30px;margin-left:auto;font-size:14px;color:var(--ink-soft);}
+.nav-links a{transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a[aria-current="page"]{color:var(--forest);}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px; font-weight:500;
+  transition: all .25s ease;
+}
+.btn-primary{background:var(--forest);color:var(--cream);}
+.btn-primary:hover{background:var(--forest-deep);}
+.btn:hover .arrow{transform: translateX(3px);}
+.arrow{transition:transform .25s ease;display:inline-block;}
+
+/* ───────────────────────── FOOTER ───────────────────────── */
+.foot{
+  background: var(--forest-deep);
+  color: var(--cream);
+  padding-block: 72px 36px;
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(245,237,224,0.16);
+}
+.foot h4{
+  font-family: var(--body);
+  font-weight:500;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--olive-soft);
+  margin-bottom: 18px;
+}
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;}
+.foot ul a{color: rgba(245,237,224,0.75);transition:color .2s;}
+.foot ul a:hover{color: var(--cream);}
+.foot-brand .brand-mark{color: var(--cream);font-size: 30px;}
+.foot-brand p{margin-top:16px;color: rgba(245,237,224,0.6);font-size:14px;max-width:36ch;line-height:1.55;}
+.foot-bottom{
+  padding-top: 28px;
+  display:flex;justify-content:space-between;gap:16px;
+  font-size:12px;color: rgba(245,237,224,0.5);letter-spacing:.05em;
+}
+.foot-legal{
+  padding-top: 14px;
+  font-size:12px;color: rgba(245,237,224,0.4);letter-spacing:.04em;line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .foot-grid{grid-template-columns: 1fr;}
+  .foot-bottom{flex-direction:column;}
+  .nav-links{display:none;}
+}
+
+/* На узком экране в шапке остаются логотип и кнопка, и вдвоём они не влезают:
+   «нутрициология» с разрядкой .24em съедает больше ста пикселей. Подпись
+   убираем, кнопку поджимаем. В landing.css и shop.css та же правка ещё нужна —
+   там шапка до сих пор вылезает за экран. */
+@media (max-width: 560px){
+  .nav-inner{gap:16px;}
+  .brand-sub{display:none;}
+  /* Вправо кнопку толкает margin-left:auto у .nav-links, а они на узком
+     экране скрыты — поэтому auto переезжает на саму кнопку. */
+  .nav .btn{margin-left:auto;padding:10px 16px;font-size:13px;}
+}
