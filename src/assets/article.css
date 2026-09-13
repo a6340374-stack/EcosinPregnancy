@@ -312,6 +312,17 @@
   .magnet-side{padding: 26px 22px;border-left:0;border-top:1px solid var(--rule);}
 }
 
+/* Сертификаты на странице «Обо мне». */
+.certs{
+  margin-top: 26px; display:grid; grid-template-columns:repeat(2,1fr); gap: 18px;
+}
+.certs figure{margin:0;}
+.certs img{width:100%; height:auto; border:1px solid var(--rule); display:block;}
+.certs figcaption{
+  margin-top: 9px; font-size:12px; letter-spacing:.04em; color:var(--ink-soft);
+}
+@media (max-width: 560px){ .certs{grid-template-columns:1fr;} }
+
 /* Соседние материалы. */
 .art-next{
   margin-top: 56px;padding-top: 26px;border-top:1px solid var(--rule);

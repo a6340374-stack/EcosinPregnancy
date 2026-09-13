@@ -281,6 +281,17 @@ p{margin:0;text-wrap:pretty;}
   margin:26px 0 0;font-size:14px;line-height:1.6;color:var(--ink-soft);
 }
 .shop-static-note a{color:var(--forest);}
+
+/* На узком экране в шапке остаются логотип и кнопка, и вдвоём они не влезают:
+   подпись «нутрициология» с разрядкой .24em съедает больше ста пикселей.
+   Подпись убираем, кнопку поджимаем. Вправо её толкает margin-left:auto
+   у .nav-links, а они здесь скрыты — поэтому auto переезжает на кнопку.
+   Та же правка есть в chrome.css: если меняете здесь, поправьте и там. */
+@media (max-width: 560px){
+  .nav-inner{gap:16px;}
+  .brand-sub{display:none;}
+  .nav .btn{margin-left:auto;padding:10px 16px;font-size:13px;}
+}
 </style>
 
 <!-- Yandex.Metrika counter -->
