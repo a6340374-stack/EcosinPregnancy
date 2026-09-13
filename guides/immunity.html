@@ -514,7 +514,15 @@ p{margin:0;text-wrap:pretty;}
   margin-top: 26px; display:grid; grid-template-columns:repeat(2,1fr); gap: 18px;
 }
 .certs figure{margin:0;}
-.certs img{width:100%; height:auto; border:1px solid var(--rule); display:block;}
+.certs img{
+  width:100%; display:block; border:1px solid var(--rule);
+  /* Документы разной ориентации: альбомные сканы и портретный диплом.
+     Фиксированная высота с contain выравнивает сетку и ничего не режет.
+     height обязателен: в разметке у картинок есть атрибут height, и без
+     него он перебивает любой aspect-ratio. Фон белый, а не кремовый —
+     сканы документов сами белые и на кремовом сливаются. */
+  height: 240px; object-fit: contain; background: #fff; padding: 10px;
+}
 .certs figcaption{
   margin-top: 9px; font-size:12px; letter-spacing:.04em; color:var(--ink-soft);
 }
@@ -538,6 +546,82 @@ p{margin:0;text-wrap:pretty;}
   .art-cta{padding: 36px 24px;}
   .art-body{padding-block: 44px 72px;}
   .art-body section{margin-top: 48px;}
+}
+
+/* nav-mobile.css (встроен) — меню на узком экране.
+
+   Подключается ПОСЛЕДНИМ на каждой странице, после landing.css, shop.css
+   или chrome.css. Так и задумано: во всех трёх есть правило
+   .nav-links{display:none} на ширине до 900px, и перебить его может только
+   файл, идущий следом.
+
+   До этого на телефоне меню не было вообще: ссылки скрывались, а кнопки
+   меню не существовало. Со смартфона разделы сайта были недостижимы —
+   только через подвал. */
+
+/* Кнопка-бургер. На десктопе её нет. */
+.nav-burger{
+  display: none;
+  width: 40px; height: 40px;
+  margin-left: 10px;
+  padding: 11px 9px;
+  flex-direction: column; justify-content: space-between;
+  background: none; border: 1px solid var(--rule); border-radius: 999px;
+  cursor: pointer; flex: none;
+}
+.nav-burger span{
+  display: block; height: 1.5px; width: 100%;
+  background: var(--forest); border-radius: 2px;
+  transition: transform .22s ease, opacity .18s ease;
+}
+/* Открытое состояние: три полоски складываются в крестик. */
+.nav-open .nav-burger span:nth-child(1){transform: translateY(6.5px) rotate(45deg);}
+.nav-open .nav-burger span:nth-child(2){opacity: 0;}
+.nav-open .nav-burger span:nth-child(3){transform: translateY(-6.5px) rotate(-45deg);}
+
+@media (max-width: 900px){
+  .nav-burger{display: flex;}
+
+  /* Панель выезжает под шапкой на всю ширину. */
+  .nav-links{
+    display: none;
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; gap: 0;
+    margin: 0; padding: 6px var(--pad-x) 14px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 14px 28px rgba(42,36,24,0.10);
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+  .nav-open .nav-links{display: flex;}
+
+  .nav-links a{
+    padding: 13px 2px;
+    font-size: 16px; color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    white-space: normal;
+  }
+  .nav-links a:last-child{border-bottom: 0;}
+  .nav-links a[aria-current="page"]{color: var(--forest);}
+
+  /* Кнопка записи прижимается вправо: margin-left:auto жил на .nav-links,
+     а они здесь выпали из потока. */
+  .nav .nav-inner > .btn{margin-left: auto;}
+}
+
+@media (max-width: 560px){
+  .nav-inner{gap: 10px;}
+  .brand-sub{display: none;}
+  .nav .nav-inner > .btn{padding: 10px 15px; font-size: 13px;}
+  .nav-burger{width: 38px; height: 38px; margin-left: 6px;}
+}
+
+/* Очень узкие экраны: кнопка записи мешает бургеру. Текст ужимаем,
+   стрелку убираем — смысл кнопки от этого не теряется. */
+@media (max-width: 380px){
+  .nav .nav-inner > .btn{padding: 9px 12px; font-size: 12px;}
+  .nav .nav-inner > .btn .arrow{display: none;}
 }
 </style>
 
@@ -587,7 +671,7 @@ p{margin:0;text-wrap:pretty;}
       <span class="brand-mark">Ecosin</span>
       <span class="brand-sub">нутрициология</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="/#pains">Узнайте себя</a>
       <a href="/#method">Метод</a>
       <a href="/about.html">Обо мне</a>
@@ -599,8 +683,50 @@ p{margin:0;text-wrap:pretty;}
       <a href="/#faq">Вопросы</a>
     </div>
     <a href="/#cta" class="btn btn-primary">Записаться <span class="arrow">→</span></a>
+    <!-- Кнопка меню. На десктопе скрыта, на узком экране это единственный
+         способ добраться до разделов: ссылки там в строку не помещаются. -->
+    <button type="button" class="nav-burger" data-nav-toggle
+            aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<script>
+(function () {
+  var btn = document.querySelector("[data-nav-toggle]");
+  var box = document.getElementById("nav-links");
+  var nav = document.querySelector(".nav");
+  if (!btn || !box || !nav) return;
+
+  function set(open) {
+    nav.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  }
+  function isOpen() { return nav.classList.contains("nav-open"); }
+
+  btn.addEventListener("click", function () { set(!isOpen()); });
+
+  // Переход по ссылке — меню закрывается. Особенно важно для якорей на
+  // той же странице: адрес меняется, а перезагрузки нет.
+  box.addEventListener("click", function (e) {
+    if (e.target.closest("a")) set(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) { set(false); btn.focus(); }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (isOpen() && !nav.contains(e.target)) set(false);
+  });
+
+  // Если экран растянули до десктопного, панель больше не нужна.
+  window.addEventListener("resize", function () {
+    if (isOpen() && window.innerWidth > 900) set(false);
+  });
+})();
+</script>
 
 <main id="content">
 

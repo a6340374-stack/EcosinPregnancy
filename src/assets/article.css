@@ -317,7 +317,15 @@
   margin-top: 26px; display:grid; grid-template-columns:repeat(2,1fr); gap: 18px;
 }
 .certs figure{margin:0;}
-.certs img{width:100%; height:auto; border:1px solid var(--rule); display:block;}
+.certs img{
+  width:100%; display:block; border:1px solid var(--rule);
+  /* Документы разной ориентации: альбомные сканы и портретный диплом.
+     Фиксированная высота с contain выравнивает сетку и ничего не режет.
+     height обязателен: в разметке у картинок есть атрибут height, и без
+     него он перебивает любой aspect-ratio. Фон белый, а не кремовый —
+     сканы документов сами белые и на кремовом сливаются. */
+  height: 240px; object-fit: contain; background: #fff; padding: 10px;
+}
 .certs figcaption{
   margin-top: 9px; font-size:12px; letter-spacing:.04em; color:var(--ink-soft);
 }

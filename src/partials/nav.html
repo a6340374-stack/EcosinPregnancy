@@ -5,7 +5,7 @@
       <span class="brand-mark">Ecosin</span>
       <span class="brand-sub">нутрициология</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="/#pains">Узнайте себя</a>
       <a href="/#method">Метод</a>
       <a href="/about.html">Обо мне</a>
@@ -17,5 +17,47 @@
       <a href="/#faq">Вопросы</a>
     </div>
     <a href="/#cta" class="btn btn-primary">Записаться <span class="arrow">→</span></a>
+    <!-- Кнопка меню. На десктопе скрыта, на узком экране это единственный
+         способ добраться до разделов: ссылки там в строку не помещаются. -->
+    <button type="button" class="nav-burger" data-nav-toggle
+            aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<script>
+(function () {
+  var btn = document.querySelector("[data-nav-toggle]");
+  var box = document.getElementById("nav-links");
+  var nav = document.querySelector(".nav");
+  if (!btn || !box || !nav) return;
+
+  function set(open) {
+    nav.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  }
+  function isOpen() { return nav.classList.contains("nav-open"); }
+
+  btn.addEventListener("click", function () { set(!isOpen()); });
+
+  // Переход по ссылке — меню закрывается. Особенно важно для якорей на
+  // той же странице: адрес меняется, а перезагрузки нет.
+  box.addEventListener("click", function (e) {
+    if (e.target.closest("a")) set(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) { set(false); btn.focus(); }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (isOpen() && !nav.contains(e.target)) set(false);
+  });
+
+  // Если экран растянули до десктопного, панель больше не нужна.
+  window.addEventListener("resize", function () {
+    if (isOpen() && window.innerWidth > 900) set(false);
+  });
+})();
+</script>
