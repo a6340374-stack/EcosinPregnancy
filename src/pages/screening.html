@@ -1,0 +1,130 @@
+---
+url: /screening.html
+out: screening.html
+title: Тест: проверить себя по 18 признакам за 5 минут
+description: Бесплатный опросник нутрициолога Алины Сингизовой: 18 вопросов про энергию, ЖКТ, обмен веществ, дефициты и иммунитет. Показывает, по каким системам больше всего сигналов и что имеет смысл посмотреть.
+keywords: тест на дефициты, проверить здоровье онлайн, опросник нутрициолога, тест почему нет сил, самодиагностика дефицитов, скрининг здоровья, тест на усталость
+og_title: Тест: проверить себя по 18 признакам за 5 минут
+og_description: 18 вопросов про энергию, ЖКТ, обмен, дефициты и иммунитет. Покажет, где больше всего сигналов.
+og_image_alt: Опросник самопроверки — нутрициолог Алина Сингизова
+css: chrome.css, article.css, quiz.css
+tail: partials/tail-screening.html
+updated: 2026-09-13
+changefreq: monthly
+priority: 0.8
+---
+<main id="content">
+
+<section class="art-head">
+  <div class="wrap">
+    <span class="eyebrow">Самопроверка</span>
+    <h1>Проверить себя <em>по 18 признакам</em></h1>
+    <p class="art-lede">Опросник, с которого я начинаю работу с новой клиенткой. Он не ставит диагнозов и не заменяет анализы — он показывает, по каким системам организма у вас больше всего сигналов, и подсказывает, куда смотреть дальше. Пять минут.</p>
+    <div class="art-meta">
+      <span><b>18 вопросов</b> в пяти блоках</span>
+      <span><b>5 минут</b> без регистрации</span>
+      <span><b>Ответы</b> остаются в вашем браузере</span>
+    </div>
+
+    <div class="art-gist">
+      <h2>Прежде чем начать</h2>
+      <ul>
+        <li><b>Это не диагностика.</b> Опросник не определяет заболевания и не заменяет врача. Он структурирует то, что вы и так о себе знаете.</li>
+        <li><b>Отвечайте про последние два-три месяца,</b> а не про разовый плохой день.</li>
+        <li><b>Ничего никуда не отправляется.</b> Ни имени, ни контакта я не спрашиваю, подсчёт идёт прямо в браузере.</li>
+        <li><b>Отвечайте честно.</b> Приукрасить можно, но смысл теряется — результат увидите только вы.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <div class="quiz" id="quiz" data-quiz>
+      <div class="quiz-bar" data-quiz-bar hidden>
+        <div class="quiz-bar-line"><i data-quiz-progress></i></div>
+        <div class="quiz-bar-text">
+          <span data-quiz-count>Отвечено 0 из 18</span>
+          <span data-quiz-hint>Отвечайте про последние 2–3 месяца</span>
+        </div>
+      </div>
+
+      <div data-quiz-body>
+        <noscript>
+          <div class="art-note art-note--warn">
+            <b>Нужен JavaScript</b>
+            <p>Опросник считает ответы прямо в браузере, поэтому без JavaScript он не работает. Включите его или напишите мне в Telegram — разберём вживую.</p>
+          </div>
+        </noscript>
+      </div>
+
+      <div class="quiz-actions" data-quiz-actions hidden>
+        <button type="button" class="btn btn-primary" data-quiz-submit>Посмотреть результат <span class="arrow">→</span></button>
+        <button type="button" class="btn btn-ghost" data-quiz-reset>Начать заново</button>
+        <span class="quiz-note" data-quiz-left></span>
+      </div>
+
+      <div class="qres" data-quiz-result hidden>
+        <div class="qres-head">
+          <h2>Что получилось</h2>
+          <p class="qres-lede" data-quiz-summary></p>
+        </div>
+        <div data-quiz-rows></div>
+
+        <div class="qres-copy">
+          <h3>Забрать результат с собой</h3>
+          <p>Скопируйте — можно сохранить себе или прислать мне, чтобы разговор начался не с нуля.</p>
+          <textarea data-quiz-text readonly aria-label="Результат опросника"></textarea>
+          <div class="row">
+            <button type="button" class="btn btn-primary" data-quiz-copy>Скопировать</button>
+            <a class="btn btn-ghost" href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram</a>
+            <span class="quiz-note" data-quiz-copied></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <h2><span class="num">Как это читать</span>Что означает результат</h2>
+      <p>Опросник считает, сколько сигналов вы отметили в каждом блоке, и переводит это в долю от максимума. Смысл не в абсолютной цифре, а в том, <strong>какой блок вырвался вперёд относительно остальных</strong>.</p>
+      <ul>
+        <li><strong>Спокойно</strong> — сигналов мало, эта система вас сейчас не беспокоит.</li>
+        <li><strong>Есть сигналы</strong> — стоит обратить внимание, но паниковать не о чем.</li>
+        <li><strong>Много сигналов</strong> — с этого блока имеет смысл начинать разбираться.</li>
+      </ul>
+      <p>Дальше под каждым блоком написано, что обычно смотрят в такой ситуации, со ссылкой на разбор. Это не назначение: решение, сдавать что-то или нет, остаётся за вами.</p>
+      <div class="art-note art-note--warn">
+        <b>Чего опросник не делает</b>
+        <p>Он не определяет заболевания, не заменяет обследование и не отменяет визит к врачу. Высокий балл в блоке не означает болезнь, а низкий не гарантирует, что всё в порядке: часть состояний долго идёт без симптомов вовсе.</p>
+        <p>Если вас что-то беспокоит всерьёз — боль, кровотечение, резкая потеря веса, — идите к врачу, не проходя опросников.</p>
+      </div>
+    </section>
+
+    <section id="next">
+      <h2><span class="num">Дальше</span>Что делать с результатом</h2>
+      <p>Самое простое — посмотреть, что написано под вашим верхним блоком, и прочитать разбор по ссылке. Там подробно: почему так бывает, какие показатели смотрят и как к ним готовиться.</p>
+      <p>Если верхних блоков два или три и картина не складывается — это как раз тот случай, когда разговор экономит месяцы. Пришлите результат, и мы начнём не с «расскажите о себе», а с конкретики.</p>
+    </section>
+
+    <div class="art-cta">
+      <h2>Разберём результат вместе</h2>
+      <p>Пятнадцать минут, бесплатно, без обязательств. Посмотрим, что у вас вышло, и я честно скажу, нужна ли вам работа со мной или достаточно сходить к врачу.</p>
+      <div class="row">
+        <a href="/#cta" class="btn btn-cream">Записаться на разговор <span class="arrow">→</span></a>
+        <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener" class="btn btn-line">Написать в Telegram</a>
+      </div>
+    </div>
+
+    <div class="art-next">
+      <a href="/analizy.html">Какие анализы сдать</a>
+      <span>·</span>
+      <a href="/guides/detox.html">Детокс: что работает</a>
+      <span>·</span>
+      <a href="/">На главную</a>
+    </div>
+
+  </div>
+</section>
+
+</main>

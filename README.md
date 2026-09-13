@@ -160,7 +160,7 @@ git add -A && git commit -m "Обновлён каталог" && git push
 Материалы под поиск: `/ramadan.html`, `/ramadan/menu.html`,
 `/guides/fasting.html`, `/guides/detox.html`, `/guides/immunity.html`,
 `/analizy.html` и шесть страниц наборов анализов в `/analizy/`.
-Плюс `/kollegam.html` для специалистов. На четырёх страницах стоят
+Плюс `/screening.html` с опросником и `/kollegam.html` для специалистов. На четырёх страницах стоят
 лид-магниты.
 
 **Схема добавок для детоксикации на сайт не выкладывается.** У Алины она
@@ -260,6 +260,7 @@ grep -rn 'doc-todo' src/pages/legal/
 | `lead_magnet_menu` | меню сухуров и ифтаров |
 | `lead_magnet_fasting` | методичка об интервальном голодании |
 | `lead_magnet_detox` | методичка по детокс-питанию |
+| `screening_done` | человек дошёл до результата опросника |
 | `telegram_click` | клик по ссылке на Telegram |
 | `whatsapp_click` | клик по WhatsApp |
 | `phone_click` | клик по номеру телефона |

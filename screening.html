@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ─────────────── Primary SEO ─────────────── -->
+<title>Тест: проверить себя по 18 признакам за 5 минут</title>
+<meta name="description" content="Бесплатный опросник нутрициолога Алины Сингизовой: 18 вопросов про энергию, ЖКТ, обмен веществ, дефициты и иммунитет. Показывает, по каким системам больше всего сигналов и что имеет смысл посмотреть." />
+<meta name="keywords" content="тест на дефициты, проверить здоровье онлайн, опросник нутрициолога, тест почему нет сил, самодиагностика дефицитов, скрининг здоровья, тест на усталость" />
+<meta name="author" content="Алина Сингизова" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href="https://alinaecosin.ru/screening.html" />
+<meta name="theme-color" content="#1f4a2c" />
+
+<!-- ─────────────── Open Graph ─────────────── -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Ecosin · Алина Сингизова" />
+<meta property="og:title" content="Тест: проверить себя по 18 признакам за 5 минут" />
+<meta property="og:description" content="18 вопросов про энергию, ЖКТ, обмен, дефициты и иммунитет. Покажет, где больше всего сигналов." />
+<meta property="og:url" content="https://alinaecosin.ru/screening.html" />
+<meta property="og:image" content="https://alinaecosin.ru/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Опросник самопроверки — нутрициолог Алина Сингизова" />
+<!-- ─────────────── Twitter Card ─────────────── -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Тест: проверить себя по 18 признакам за 5 минут" />
+<meta name="twitter:description" content="18 вопросов про энергию, ЖКТ, обмен, дефициты и иммунитет. Покажет, где больше всего сигналов." />
+<meta name="twitter:image" content="https://alinaecosin.ru/og-image.jpg" />
+
+<!-- ─────────────── Icons ─────────────── -->
+<!-- Настоящими файлами, а не строкой data:. Яндекс показывает иконку
+     рядом со ссылкой в выдаче, но data: не принимает: ему нужен SVG
+     либо растр не меньше 120×120. Файлы лежат в корне и переживают
+     пересборку — их не трогать. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="icon" href="/favicon-120.png" type="image/png" sizes="120x120" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* chrome.css (встроен) — общая обвязка: переменные, сброс, шапка, подвал.
+
+   Подключается первым, до стилей конкретной страницы. Правка меню или
+   подвала делается здесь один раз и расходится по всем страницам, которые
+   его запросили.
+
+   landing.css и shop.css пока держат свои копии этих правил: разбирать
+   вручную свёрстанную главную ради этого рискованнее, чем потерпеть
+   дублирование. Правите шапку здесь — проверьте и их. */
+
+:root{
+  --cream:        #f5ede0;
+  --cream-warm:   #ede2cf;
+  --paper:        #faf6ed;
+  --sand:         #d8c6a3;
+  --sand-deep:    #b9a682;
+  --forest:       #1f4a2c;
+  --forest-deep:  #0f2c1a;
+  --forest-soft:  #2f5d3b;
+  --olive:        #6f7e4a;
+  --olive-soft:   #93a072;
+  --terra:        #b86b4a;
+  --ink:          #2a2418;
+  --ink-soft:     #4d4538;
+  --rule:         rgba(42,36,24,0.18);
+
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --body:    "Onest", "Helvetica Neue", system-ui, sans-serif;
+
+  --max: 1280px;
+  --pad-x: clamp(20px, 4vw, 64px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;margin:0;text-wrap:balance;line-height:1.1;}
+p{margin:0;text-wrap:pretty;}
+
+.wrap{max-width: var(--max); margin: 0 auto; padding-inline: var(--pad-x);}
+.eyebrow{
+  font-family: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--forest);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor;display:inline-block;}
+
+/* ───────────────────────── NAV ───────────────────────── */
+.nav{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(250,246,237,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner{display:flex;align-items:center;gap:32px;padding-block:18px;}
+.brand{display:flex;align-items:baseline;gap:10px;}
+.brand-mark{
+  font-family:var(--display);font-size:26px;letter-spacing:.06em;color:var(--forest);
+  font-weight:500;
+}
+.brand-sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+.nav-links{display:flex;gap:30px;margin-left:auto;font-size:14px;color:var(--ink-soft);}
+.nav-links a{transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a[aria-current="page"]{color:var(--forest);}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px; font-weight:500;
+  transition: all .25s ease;
+}
+.btn-primary{background:var(--forest);color:var(--cream);}
+.btn-primary:hover{background:var(--forest-deep);}
+.btn:hover .arrow{transform: translateX(3px);}
+.arrow{transition:transform .25s ease;display:inline-block;}
+
+/* ───────────────────────── FOOTER ───────────────────────── */
+.foot{
+  background: var(--forest-deep);
+  color: var(--cream);
+  padding-block: 72px 36px;
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(245,237,224,0.16);
+}
+.foot h4{
+  font-family: var(--body);
+  font-weight:500;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--olive-soft);
+  margin-bottom: 18px;
+}
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;}
+.foot ul a{color: rgba(245,237,224,0.75);transition:color .2s;}
+.foot ul a:hover{color: var(--cream);}
+.foot-brand .brand-mark{color: var(--cream);font-size: 30px;}
+.foot-brand p{margin-top:16px;color: rgba(245,237,224,0.6);font-size:14px;max-width:36ch;line-height:1.55;}
+.foot-bottom{
+  padding-top: 28px;
+  display:flex;justify-content:space-between;gap:16px;
+  font-size:12px;color: rgba(245,237,224,0.5);letter-spacing:.05em;
+}
+.foot-legal{
+  padding-top: 14px;
+  font-size:12px;color: rgba(245,237,224,0.4);letter-spacing:.04em;line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .foot-grid{grid-template-columns: 1fr;}
+  .foot-bottom{flex-direction:column;}
+  .nav-links{display:none;}
+}
+
+/* На узком экране в шапке остаются логотип и кнопка, и вдвоём они не влезают:
+   «нутрициология» с разрядкой .24em съедает больше ста пикселей. Подпись
+   убираем, кнопку поджимаем. В landing.css и shop.css та же правка ещё нужна —
+   там шапка до сих пор вылезает за экран. */
+@media (max-width: 560px){
+  .nav-inner{gap:16px;}
+  .brand-sub{display:none;}
+  /* Вправо кнопку толкает margin-left:auto у .nav-links, а они на узком
+     экране скрыты — поэтому auto переезжает на саму кнопку. */
+  .nav .btn{margin-left:auto;padding:10px 16px;font-size:13px;}
+}
+
+/* article.css (встроен) — длинные читаемые материалы: гайды и статьи.
+   Подключается после chrome.css.
+
+   Отличие от doc.css: там юридический текст, который читают по необходимости
+   и по диагонали, здесь — текст, который читают подряд и с телефона. Поэтому
+   шире воздух, крупнее набор, и есть выноски, таблицы и вопрос-ответ. */
+
+/* ───────────────────────── ШАПКА МАТЕРИАЛА ───────────────────────── */
+.art-head{padding-block: 64px 0;}
+.art-head .wrap{max-width: 1000px;margin-inline:0;}
+.art-head h1{
+  font-size: clamp(36px, 6vw, 64px);
+  margin-top: 20px;
+  max-width: 17ch;
+  line-height: 1.02;
+}
+.art-head h1 em{font-style:italic;color:var(--forest);}
+.art-lede{
+  margin-top: 26px;
+  max-width: 60ch;
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.art-meta{
+  margin-top: 28px;padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap: 8px 26px;
+  font-size:13px;color:var(--ink-soft);letter-spacing:.03em;
+}
+.art-meta b{font-weight:500;color:var(--ink);}
+
+/* Короткая выжимка до того, как человек решит читать целиком. */
+.art-gist{
+  margin-top: 40px;
+  background: var(--cream-warm);
+  padding: 30px 32px;
+  max-width: 72ch;
+}
+.art-gist h2{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.22em;text-transform:uppercase;
+  color: var(--forest);font-weight:500;
+}
+.art-gist ul{margin: 18px 0 0;padding-left: 20px;display:flex;flex-direction:column;gap:10px;}
+.art-gist li{font-size:16px;line-height:1.6;color:var(--ink-soft);}
+.art-gist li b{color:var(--ink);font-weight:500;}
+
+/* Содержание. Нумерация рисуется счётчиком, руками цифры не проставлять. */
+.art-toc{
+  margin-top: 40px;max-width: 72ch;
+  counter-reset: toc;
+}
+.art-toc h2{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.22em;text-transform:uppercase;
+  color: var(--forest);font-weight:500;margin-bottom: 16px;
+}
+.art-toc ol{list-style:none;padding:0;margin:0;}
+.art-toc li{border-top:1px solid var(--rule);}
+.art-toc li:last-child{border-bottom:1px solid var(--rule);}
+.art-toc a{
+  display:flex;align-items:baseline;gap:14px;
+  padding: 11px 0;font-size:16px;color:var(--ink-soft);transition:color .2s;
+}
+.art-toc a:hover{color:var(--forest);}
+.art-toc a::before{
+  counter-increment: toc;content: counter(toc, decimal-leading-zero);
+  font-size:11px;letter-spacing:.1em;color:var(--sand-deep);min-width: 2em;
+}
+
+/* ───────────────────────── ТЕЛО МАТЕРИАЛА ───────────────────────── */
+.art-body{padding-block: 56px 96px;}
+.art-body .wrap{max-width: 1000px;margin-inline:0;}
+.art-body section{margin-top: 64px;max-width: 68ch;scroll-margin-top: 90px;}
+.art-body section:first-child{margin-top:0;}
+.art-body h2{
+  font-size: clamp(27px, 3.4vw, 36px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.art-body h2 .num{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.2em;
+  color: var(--olive);
+  display:block;margin-bottom:12px;font-weight:500;text-transform:uppercase;
+}
+.art-body h3{font-size:21px;margin-top: 34px;}
+.art-body p{margin-top: 18px;font-size:17px;line-height:1.7;color:var(--ink-soft);}
+.art-body p strong{color:var(--ink);font-weight:500;}
+.art-body ul, .art-body ol{margin: 18px 0 0;padding-left: 24px;display:flex;flex-direction:column;gap:12px;}
+.art-body li{font-size:17px;line-height:1.7;color:var(--ink-soft);}
+.art-body li strong{color:var(--ink);font-weight:500;}
+.art-body a{color:var(--forest);text-decoration:underline;text-underline-offset:3px;}
+
+/* Выноска. Три настроения: обычная, предупреждение, важное. */
+.art-note{
+  margin-top: 26px;
+  border-left: 2px solid var(--olive);
+  padding: 2px 0 2px 22px;
+}
+.art-note--warn{border-left-color: var(--terra);}
+.art-note b{
+  display:block;font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color: var(--olive);margin-bottom: 10px;
+}
+.art-note--warn b{color: var(--terra);}
+.art-note p{margin-top: 0;}
+.art-note p + p{margin-top: 14px;}
+
+/* Реплика Алины от первого лица. */
+.art-quote{
+  margin-top: 34px;
+  font-family: var(--display);
+  font-size: clamp(23px, 3vw, 30px);
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 24ch;
+}
+.art-quote span{
+  display:block;margin-top: 14px;
+  font-family:var(--body);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+
+/* Две колонки: сухур и ифтар, «можно» и «лучше не». */
+.art-split{
+  margin-top: 30px;
+  display:grid;grid-template-columns: 1fr 1fr;gap: 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.art-split > div{padding: 26px 28px 28px 0;}
+.art-split > div + div{border-left:1px solid var(--rule);padding-left: 28px;}
+.art-split h4{
+  font-family: var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color: var(--forest);margin-bottom: 14px;
+}
+.art-split ul{margin:0;padding-left: 18px;gap: 9px;}
+.art-split li{font-size:15px;line-height:1.6;}
+
+/* Тарелка: доли в процентах. Ширина полосы задаётся в style="--part:50%". */
+.art-ratio{margin-top: 30px;display:flex;flex-direction:column;gap: 18px;}
+.art-ratio .row{border-top:1px solid var(--rule);padding-top: 14px;}
+.art-ratio .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.art-ratio .name{font-size:17px;color:var(--ink);}
+.art-ratio .part{font-size:13px;letter-spacing:.08em;color:var(--olive);white-space:nowrap;}
+.art-ratio .bar{margin-top: 10px;height: 3px;background: var(--cream-warm);}
+.art-ratio .bar i{display:block;height:100%;background: var(--olive);width: var(--part, 25%);}
+.art-ratio .hint{margin-top: 8px;font-size:14px;color:var(--ink-soft);line-height:1.55;}
+
+/* Таблица. На узком экране уезжает вбок внутри своего контейнера,
+   страницу целиком не тащит. */
+.art-table{margin-top: 26px;overflow-x:auto;}
+.art-table table{border-collapse:collapse;width:100%;min-width: 440px;}
+.art-table th, .art-table td{
+  text-align:left;vertical-align:top;
+  padding: 13px 16px 13px 0;
+  border-bottom:1px solid var(--rule);
+  font-size:15px;line-height:1.6;color:var(--ink-soft);
+}
+.art-table th{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--forest);
+  border-bottom:1px solid var(--ink);
+}
+.art-table td strong{color:var(--ink);font-weight:500;}
+
+/* Вопрос-ответ. Раскрывается нативным <details>, без единой строки скрипта. */
+.art-faq{margin-top: 26px;border-top:1px solid var(--rule);}
+.art-faq details{border-bottom:1px solid var(--rule);}
+.art-faq summary{
+  list-style:none;cursor:pointer;
+  padding: 18px 32px 18px 0;position:relative;
+  font-size:17px;color:var(--ink);transition:color .2s;
+}
+.art-faq summary::-webkit-details-marker{display:none;}
+.art-faq summary:hover{color:var(--forest);}
+.art-faq summary::after{
+  content:"+";position:absolute;right:6px;top:16px;
+  font-size:20px;color:var(--olive);transition:transform .2s;
+}
+.art-faq details[open] summary::after{content:"−";}
+.art-faq details p{margin: 0 0 20px;padding-right: 32px;font-size:16px;}
+
+/* Призыв в конце материала. */
+.art-cta{
+  margin-top: 72px;max-width: none;
+  background: var(--forest-deep);color: var(--cream);
+  padding: 48px 44px;
+}
+.art-cta h2{border:0;padding:0;font-size: clamp(27px, 3.6vw, 38px);max-width: 18ch;}
+.art-cta p{color: rgba(245,237,224,0.72);max-width: 54ch;}
+.art-cta .row{margin-top: 30px;display:flex;flex-wrap:wrap;gap: 14px;}
+.art-cta .btn-cream{background:var(--cream);color:var(--forest);}
+.art-cta .btn-cream:hover{background:var(--paper);}
+.art-cta .btn-line{border:1px solid rgba(245,237,224,0.4);color:var(--cream);}
+.art-cta .btn-line:hover{border-color:var(--cream);}
+
+/* ───────────────────────── ДЕНЬ МЕНЮ ─────────────────────────
+   Пара «сухур — ифтар» на один день. Состав виден сразу, рецепт
+   раскрывается по клику: иначе страница превращается в простыню,
+   по которой не пролистать до нужного дня. */
+.day{margin-top: 44px;border-top: 1px solid var(--ink);padding-top: 18px;}
+.day-num{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);
+}
+.day-cols{margin-top: 14px;display:grid;grid-template-columns:1fr 1fr;gap: 0;}
+.day-cols > div{padding: 18px 26px 22px 0;}
+.day-cols > div + div{border-left:1px solid var(--rule);padding-left: 26px;}
+.day h4{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--forest);margin-bottom: 12px;
+}
+.day-menu{margin:0;padding-left: 18px;display:flex;flex-direction:column;gap: 7px;}
+.day-menu li{font-size:16px;line-height:1.55;color:var(--ink);}
+.day details{margin-top: 16px;border-top:1px solid var(--rule);}
+.day summary{
+  list-style:none;cursor:pointer;padding: 11px 24px 11px 0;position:relative;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);transition:color .2s;
+}
+.day summary::-webkit-details-marker{display:none;}
+.day summary:hover{color:var(--forest);}
+.day summary::after{
+  content:"+";position:absolute;right:2px;top:8px;font-size:17px;color:var(--olive);
+}
+.day details[open] summary::after{content:"−";}
+.day details p{margin: 0 0 16px;font-size:15px;line-height:1.65;}
+
+@media (max-width: 760px){
+  .day-cols{grid-template-columns:1fr;}
+  .day-cols > div{padding: 16px 0;}
+  .day-cols > div + div{border-left:0;border-top:1px solid var(--rule);padding-left:0;}
+}
+
+/* ───────────────────────── ЛИД-МАГНИТ ─────────────────────────
+   Блок с формой посреди текста: слева что внутри, справа два поля.
+   Намеренно спокойный — рамка и хайрлайны, без теней и заливок,
+   чтобы он читался как часть материала, а не как баннер. */
+.magnet{
+  margin: 56px 0;max-width: none;
+  border: 1px solid var(--forest);
+  display:grid;grid-template-columns: 1.15fr 1fr;
+}
+.magnet-what{padding: 34px 36px;}
+.magnet-side{padding: 34px 36px;border-left:1px solid var(--rule);background: var(--cream-warm);}
+.magnet-tag{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);
+}
+.magnet-what h2{
+  margin-top: 14px;border:0;padding:0;
+  font-size: clamp(24px, 3vw, 31px);max-width: 16ch;
+}
+.magnet-what p{margin-top: 14px;font-size:16px;line-height:1.65;color:var(--ink-soft);}
+.magnet-facts{
+  list-style:none;margin: 22px 0 0;padding:0;
+  display:flex;flex-direction:column;gap:0;
+}
+.magnet-facts li{
+  font-size:14px;color:var(--ink-soft);
+  padding: 9px 0;border-top:1px solid var(--rule);
+}
+.magnet-facts li:last-child{border-bottom:1px solid var(--rule);}
+
+.magnet-field{margin-bottom: 16px;}
+.magnet-field label{
+  display:block;margin-bottom: 7px;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+}
+.magnet-field input{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  background: var(--paper);
+  border:1px solid var(--rule);border-radius:0;
+  padding: 12px 14px;transition: border-color .2s;
+}
+.magnet-field input:focus{outline:none;border-color:var(--forest);}
+.magnet-field input::placeholder{color:var(--sand-deep);}
+
+/* Ловушка для ботов: убираем из потока, но не display:none —
+   часть ботов такие поля пропускает. */
+.magnet-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+
+.magnet-form button{width:100%;justify-content:center;margin-top: 4px;}
+.magnet-note{
+  display:block;margin-top: 14px;
+  font-size:12px;line-height:1.55;color:var(--ink-soft);
+}
+.magnet-note a{color:var(--forest);text-decoration:underline;text-underline-offset:2px;}
+
+/* Ссылка-кнопка внутри статьи: правило .art-body a (класс + тег) весит
+   больше, чем .btn-primary (один класс), и красило текст кнопки в тот же
+   зелёный, что и её фон. Двух классов хватает, чтобы перебить. */
+.magnet .btn{text-decoration:none;}
+.magnet .btn-primary{color:var(--cream);}
+.magnet .btn-primary:hover{color:var(--cream);}
+
+.magnet-done:focus{outline:none;}
+.magnet-done-title{
+  font-family:var(--display);font-size:24px;line-height:1.2;
+  color:var(--forest);margin-bottom: 20px;
+}
+.magnet-done .btn{width:100%;justify-content:center;}
+
+@media (max-width: 760px){
+  .magnet{grid-template-columns: 1fr;margin: 40px 0;}
+  .magnet-what{padding: 26px 22px;}
+  .magnet-side{padding: 26px 22px;border-left:0;border-top:1px solid var(--rule);}
+}
+
+/* Соседние материалы. */
+.art-next{
+  margin-top: 56px;padding-top: 26px;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap: 10px 26px;font-size:14px;
+}
+.art-next a{color:var(--ink-soft);text-decoration:none;transition:color .2s;}
+.art-next a:hover{color:var(--forest);}
+.art-next span{color:var(--sand-deep);}
+
+@media (max-width: 760px){
+  .art-head{padding-block: 40px 0;}
+  .art-gist{padding: 24px 22px;}
+  .art-split{grid-template-columns: 1fr;}
+  .art-split > div{padding: 24px 0;}
+  .art-split > div + div{border-left:0;border-top:1px solid var(--rule);padding-left:0;}
+  .art-cta{padding: 36px 24px;}
+  .art-body{padding-block: 44px 72px;}
+  .art-body section{margin-top: 48px;}
+}
+
+/* quiz.css (встроен) — опросник самопроверки.
+   Подключается после chrome.css и article.css.
+
+   Всё считается в браузере, ответы никуда не отправляются. Отсюда и
+   устройство: никакой формы, никаких полей ввода, только кнопки выбора. */
+
+.quiz{margin-top: 40px;}
+
+/* Полоса прохождения. Ширину задаёт скрипт через --done. */
+.quiz-bar{
+  position: sticky; top: 62px; z-index: 20;
+  background: var(--paper);
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 8px;
+}
+.quiz-bar-line{height: 2px; background: var(--cream-warm);}
+.quiz-bar-line i{display:block;height:100%;background:var(--olive);width:var(--done,0%);transition:width .25s;}
+.quiz-bar-text{
+  margin-top: 9px; display:flex; justify-content:space-between; gap:16px;
+  font-size:12px; letter-spacing:.08em; color:var(--ink-soft);
+}
+.quiz-bar-text b{font-weight:500; color:var(--forest);}
+
+/* Блок вопросов */
+.qblock{margin-top: 40px; border-top:1px solid var(--ink); padding-top: 18px;}
+.qblock-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+.qblock-title{font-family:var(--display); font-size:24px; line-height:1.15; color:var(--ink);}
+.qblock-meta{
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--olive);
+  white-space:nowrap;
+}
+
+.q{margin-top: 26px; padding-top: 20px; border-top:1px solid var(--rule);}
+.q:first-of-type{border-top:0; padding-top:0;}
+.q-text{font-size:17px; line-height:1.6; color:var(--ink); margin-bottom: 14px;}
+.q-hint{display:block; margin-top:5px; font-size:14px; color:var(--ink-soft); font-style:italic;}
+
+/* Варианты ответа. Не radio: нам нужен один клик и крупная зона нажатия. */
+.q-opts{display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  border:1px solid var(--rule);}
+.q-opts button{
+  padding: 13px 8px; font-family:inherit; font-size:14px; color:var(--ink-soft);
+  background:transparent; border:0; border-left:1px solid var(--rule);
+  cursor:pointer; transition: background .15s, color .15s; text-align:center;
+}
+.q-opts button:first-child{border-left:0;}
+.q-opts button:hover{background:var(--cream-warm);}
+.q-opts button[aria-pressed="true"]{background:var(--forest); color:var(--cream);}
+
+/* Ползунок энергии */
+.q-slider{display:flex; align-items:center; gap:16px;}
+.q-slider input{flex:1; accent-color: var(--forest); height: 24px;}
+.q-slider output{
+  min-width: 2.4em; text-align:center; font-family:var(--display);
+  font-size:26px; color:var(--forest);
+}
+.q-scale-ends{display:flex; justify-content:space-between; margin-top:6px;
+  font-size:12px; color:var(--sand-deep);}
+
+.quiz-actions{margin-top: 40px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+.quiz-actions .btn{border:0;}
+.quiz-note{font-size:13px; color:var(--ink-soft);}
+
+/* ───────────────────────── РЕЗУЛЬТАТ ───────────────────────── */
+.qres{margin-top: 40px; scroll-margin-top: 90px;}
+.qres[hidden]{display:none;}
+.qres-head{border-top:1px solid var(--ink); padding-top: 22px;}
+.qres-head h2{border:0 !important; padding:0 !important; font-size: clamp(26px,3.4vw,34px);}
+.qres-lede{margin-top:14px !important; max-width:62ch;}
+
+.qrow{margin-top: 26px; padding-top: 18px; border-top:1px solid var(--rule);}
+.qrow-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px;}
+.qrow-name{font-size:18px; color:var(--ink);}
+.qrow-verdict{font-size:12px; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;}
+.qrow-verdict[data-level="0"]{color:var(--olive);}
+.qrow-verdict[data-level="1"]{color:var(--sand-deep);}
+.qrow-verdict[data-level="2"]{color:var(--terra);}
+.qrow-line{margin-top:11px; height:4px; background:var(--cream-warm);}
+.qrow-line i{display:block; height:100%; width:var(--v,0%); background:var(--olive); transition:width .4s;}
+.qrow-line i[data-level="2"]{background:var(--terra);}
+.qrow-line i[data-level="1"]{background:var(--sand-deep);}
+.qrow-what{margin-top:12px !important; font-size:15px !important;}
+.qrow-what a{color:var(--forest); text-decoration:underline; text-underline-offset:3px;}
+
+.qres-copy{
+  margin-top: 34px; border:1px solid var(--rule); padding: 22px 24px;
+}
+.qres-copy h3{margin-top:0 !important; font-size:19px;}
+.qres-copy textarea{
+  width:100%; margin-top:14px; min-height: 150px; resize:vertical;
+  font-family:var(--body); font-size:14px; line-height:1.6; color:var(--ink);
+  background:var(--paper); border:1px solid var(--rule); padding:12px 14px;
+}
+.qres-copy textarea:focus{outline:none; border-color:var(--forest);}
+.qres-copy .row{margin-top:14px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
+
+@media (max-width: 760px){
+  .quiz-bar{top: 58px;}
+  .q-opts{grid-template-columns:repeat(2,1fr);}
+  .q-opts button:nth-child(3){border-left:0;}
+  .q-opts button:nth-child(n+3){border-top:1px solid var(--rule);}
+  .qblock-title{font-size:21px;}
+}
+</style>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112475745', 'ym');
+
+    ym(112475745, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112475745" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
+     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
+<script>
+(function () {
+  function goal(name) {
+    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
+  }
+  window.ecosinGoal = goal;
+
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    if (!el || typeof el.closest !== "function") return;
+    var a = el.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
+    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
+    else if (href.indexOf("tel:") === 0)   goal("phone_click");
+    else if (href.indexOf("shop.html") > -1) goal("shop_open");
+  }, true);
+})();
+</script>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav" aria-label="Основная навигация">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Ecosin — нутрициолог Алина Сингизова, на главную">
+      <span class="brand-mark">Ecosin</span>
+      <span class="brand-sub">нутрициология</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#pains">Узнайте себя</a>
+      <a href="/#method">Метод</a>
+      <a href="/#story">Обо мне</a>
+      <a href="/#services">Услуги</a>
+      <a href="/screening.html" aria-current="page">Тест</a>
+      <a href="/analizy.html">Анализы</a>
+      <a href="/guides/fasting.html">Гайды</a>
+      <a href="/shop.html">Магазин</a>
+      <a href="/#faq">Вопросы</a>
+    </div>
+    <a href="/#cta" class="btn btn-primary">Записаться <span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<main id="content">
+
+<section class="art-head">
+  <div class="wrap">
+    <span class="eyebrow">Самопроверка</span>
+    <h1>Проверить себя <em>по 18 признакам</em></h1>
+    <p class="art-lede">Опросник, с которого я начинаю работу с новой клиенткой. Он не ставит диагнозов и не заменяет анализы — он показывает, по каким системам организма у вас больше всего сигналов, и подсказывает, куда смотреть дальше. Пять минут.</p>
+    <div class="art-meta">
+      <span><b>18 вопросов</b> в пяти блоках</span>
+      <span><b>5 минут</b> без регистрации</span>
+      <span><b>Ответы</b> остаются в вашем браузере</span>
+    </div>
+
+    <div class="art-gist">
+      <h2>Прежде чем начать</h2>
+      <ul>
+        <li><b>Это не диагностика.</b> Опросник не определяет заболевания и не заменяет врача. Он структурирует то, что вы и так о себе знаете.</li>
+        <li><b>Отвечайте про последние два-три месяца,</b> а не про разовый плохой день.</li>
+        <li><b>Ничего никуда не отправляется.</b> Ни имени, ни контакта я не спрашиваю, подсчёт идёт прямо в браузере.</li>
+        <li><b>Отвечайте честно.</b> Приукрасить можно, но смысл теряется — результат увидите только вы.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <div class="quiz" id="quiz" data-quiz>
+      <div class="quiz-bar" data-quiz-bar hidden>
+        <div class="quiz-bar-line"><i data-quiz-progress></i></div>
+        <div class="quiz-bar-text">
+          <span data-quiz-count>Отвечено 0 из 18</span>
+          <span data-quiz-hint>Отвечайте про последние 2–3 месяца</span>
+        </div>
+      </div>
+
+      <div data-quiz-body>
+        <noscript>
+          <div class="art-note art-note--warn">
+            <b>Нужен JavaScript</b>
+            <p>Опросник считает ответы прямо в браузере, поэтому без JavaScript он не работает. Включите его или напишите мне в Telegram — разберём вживую.</p>
+          </div>
+        </noscript>
+      </div>
+
+      <div class="quiz-actions" data-quiz-actions hidden>
+        <button type="button" class="btn btn-primary" data-quiz-submit>Посмотреть результат <span class="arrow">→</span></button>
+        <button type="button" class="btn btn-ghost" data-quiz-reset>Начать заново</button>
+        <span class="quiz-note" data-quiz-left></span>
+      </div>
+
+      <div class="qres" data-quiz-result hidden>
+        <div class="qres-head">
+          <h2>Что получилось</h2>
+          <p class="qres-lede" data-quiz-summary></p>
+        </div>
+        <div data-quiz-rows></div>
+
+        <div class="qres-copy">
+          <h3>Забрать результат с собой</h3>
+          <p>Скопируйте — можно сохранить себе или прислать мне, чтобы разговор начался не с нуля.</p>
+          <textarea data-quiz-text readonly aria-label="Результат опросника"></textarea>
+          <div class="row">
+            <button type="button" class="btn btn-primary" data-quiz-copy>Скопировать</button>
+            <a class="btn btn-ghost" href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram</a>
+            <span class="quiz-note" data-quiz-copied></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <h2><span class="num">Как это читать</span>Что означает результат</h2>
+      <p>Опросник считает, сколько сигналов вы отметили в каждом блоке, и переводит это в долю от максимума. Смысл не в абсолютной цифре, а в том, <strong>какой блок вырвался вперёд относительно остальных</strong>.</p>
+      <ul>
+        <li><strong>Спокойно</strong> — сигналов мало, эта система вас сейчас не беспокоит.</li>
+        <li><strong>Есть сигналы</strong> — стоит обратить внимание, но паниковать не о чем.</li>
+        <li><strong>Много сигналов</strong> — с этого блока имеет смысл начинать разбираться.</li>
+      </ul>
+      <p>Дальше под каждым блоком написано, что обычно смотрят в такой ситуации, со ссылкой на разбор. Это не назначение: решение, сдавать что-то или нет, остаётся за вами.</p>
+      <div class="art-note art-note--warn">
+        <b>Чего опросник не делает</b>
+        <p>Он не определяет заболевания, не заменяет обследование и не отменяет визит к врачу. Высокий балл в блоке не означает болезнь, а низкий не гарантирует, что всё в порядке: часть состояний долго идёт без симптомов вовсе.</p>
+        <p>Если вас что-то беспокоит всерьёз — боль, кровотечение, резкая потеря веса, — идите к врачу, не проходя опросников.</p>
+      </div>
+    </section>
+
+    <section id="next">
+      <h2><span class="num">Дальше</span>Что делать с результатом</h2>
+      <p>Самое простое — посмотреть, что написано под вашим верхним блоком, и прочитать разбор по ссылке. Там подробно: почему так бывает, какие показатели смотрят и как к ним готовиться.</p>
+      <p>Если верхних блоков два или три и картина не складывается — это как раз тот случай, когда разговор экономит месяцы. Пришлите результат, и мы начнём не с «расскажите о себе», а с конкретики.</p>
+    </section>
+
+    <div class="art-cta">
+      <h2>Разберём результат вместе</h2>
+      <p>Пятнадцать минут, бесплатно, без обязательств. Посмотрим, что у вас вышло, и я честно скажу, нужна ли вам работа со мной или достаточно сходить к врачу.</p>
+      <div class="row">
+        <a href="/#cta" class="btn btn-cream">Записаться на разговор <span class="arrow">→</span></a>
+        <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener" class="btn btn-line">Написать в Telegram</a>
+      </div>
+    </div>
+
+    <div class="art-next">
+      <a href="/analizy.html">Какие анализы сдать</a>
+      <span>·</span>
+      <a href="/guides/detox.html">Детокс: что работает</a>
+      <span>·</span>
+      <a href="/">На главную</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" aria-label="Ecosin — на главную"><span class="brand-mark">Ecosin</span></a>
+        <p>Авторская практика нутрициолога Алины Сингизовой. Природа и наука в одном подходе. С уважением к халяль.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="/#pains">Узнайте себя</a></li>
+          <li><a href="/#method">Метод Ecosin</a></li>
+          <li><a href="/#story">Обо мне</a></li>
+          <li><a href="/#services">Услуги</a></li>
+          <li><a href="/shop.html">Магазин</a></li>
+          <li><a href="/#faq">Вопросы</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Читать</h4>
+        <ul>
+          <li><a href="/screening.html">Тест: проверить себя</a></li>
+          <li><a href="/analizy.html">Какие анализы сдать</a></li>
+          <li><a href="/ramadan.html">Питание в Рамадан</a></li>
+          <li><a href="/ramadan/menu.html">Меню на 14 дней</a></li>
+          <li><a href="/guides/fasting.html">Интервальное голодание</a></li>
+          <li><a href="/guides/detox.html">Детокс-питание</a></li>
+          <li><a href="/guides/immunity.html">Поддержка иммунитета</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a></li>
+          <li><a href="https://t.me/info_ecosin_rb" target="_blank" rel="noopener">Канал t.me/info_ecosin_rb</a></li>
+          <li><a href="https://wa.me/79373614477" target="_blank" rel="noopener">WhatsApp +7 937 361 44 77</a></li>
+          <li><a href="tel:+79373614477">Телефон +7 937 361 44 77</a></li>
+          <li><a href="https://instagram.com/alina_ecosin" target="_blank" rel="noopener nofollow">Instagram* @alina_ecosin</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <ul>
+          <li><a href="/legal/privacy.html">Согласие на обработку данных</a></li>
+          <li><a href="/legal/offer.html">Публичная оферта</a></li>
+          <li><a href="/legal/disclaimer.html">Дисклеймер</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Специалистам</h4>
+        <ul>
+          <li><a href="/kollegam.html">Коллегам-нутрициологам</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024–2026 Ecosin · Алина Сингизова</span>
+      <span>Не является заменой медицинской помощи. Уфа · онлайн</span>
+    </div>
+    <div class="foot-legal">
+      <span>Самозанятый (плательщик налога на профессиональный доход) Сингизова Алина Азатовна · ИНН 026703299726</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Опросник самопроверки =====
+     Всё считается в браузере. На сервер не уходит ничего: ни ответов,
+     ни имени — его и не спрашиваем. Ответы держим в localStorage, чтобы
+     случайное обновление страницы не обнулило двадцать кликов. -->
+<script>
+(function () {
+  var root = document.querySelector("[data-quiz]");
+  if (!root) return;
+
+  // ── Вопросы. Блоки соответствуют разборам в /analizy/ — отсюда и ссылки.
+  var BLOCKS = [
+    {
+      title: "Энергия и нервная система",
+      meta: "тонус, сон, стресс",
+      to: { href: "/analizy/energy.html", label: "анализы при усталости" },
+      what: "Здесь обычно смотрят ферритин, витамин D, B12 и щитовидную железу: усталость чаще всего про дефициты, а не про лень.",
+      questions: [
+        { slider: true, text: "Оцените уровень энергии в течение дня",
+          hint: "1 — нет сил встать с кровати, 10 — готовы сворачивать горы" },
+        { text: "Тяжело просыпаетесь, нужно долго раскачиваться или выпить кофе, чтобы прийти в себя?" },
+        { text: "Бывает резкий спад сил днём?",
+          hint: "Непреодолимо тянет поспать или съесть сладкое в районе 15:00–17:00" },
+        { text: "Плохо спите?",
+          hint: "Долго засыпаете, просыпаетесь ночью — особенно в 2–4 часа, — встаёте разбитой" },
+        { text: "Повышенная тревожность, раздражительность, плаксивость, ощущение «на грани»?" }
+      ]
+    },
+    {
+      title: "Желудочно-кишечный тракт",
+      meta: "пищеварение, желчь",
+      to: { href: "/analizy/gut.html", label: "анализы при вздутии и тяжести" },
+      what: "Смотрят ферменты поджелудочной, воспаление в кишечнике и печёночные показатели. Начинать почти всегда нужно отсюда: пока еда не расщепляется, остальное работает вполсилы.",
+      questions: [
+        { text: "Дискомфорт после еды?",
+          hint: "Тяжесть в правом подреберье или желудке, вздутие, урчание, отрыжка, изжога" },
+        { text: "Горечь или налёт на языке по утрам, неприятный запах изо рта?" },
+        { text: "Стул нерегулярный?",
+          hint: "Склонность к запорам, жидкому стулу, чередование, неоформленный стул" },
+        { text: "Плохо переносите жирное?",
+          hint: "Тошнит после жирного, отвращение к жирному и мясу — или наоборот, сильная тяга" }
+      ]
+    },
+    {
+      title: "Обмен веществ и гормоны",
+      meta: "щитовидная железа, углеводы",
+      to: { href: "/analizy/weight.html", label: "анализы, если вес стоит" },
+      what: "Смотрят инсулин натощак с индексом HOMA-IR и щитовидную железу. Именно здесь прячется вес, который не двигается при любых ограничениях.",
+      questions: [
+        { text: "Есть выраженная тяга к определённым продуктам?",
+          hint: "К сладкому, мучному, кофе, шоколаду — или постоянно хочется солёного и острого" },
+        { text: "Мёрзнете даже в тёплом помещении, плохо переносите жару и духоту?" },
+        { text: "Бывают отёки?",
+          hint: "Лицо по утрам, следы от носков и колец к вечеру, общая тяжесть в теле" },
+        { text: "Вес ведёт себя не так, как хотелось бы?",
+          hint: "Стоит и не уходит даже на дефиците — или, наоборот, не получается набрать" }
+      ]
+    },
+    {
+      title: "Внешние признаки дефицитов",
+      meta: "волосы, кожа, мышцы",
+      to: { href: "/analizy/energy.html", label: "анализы при усталости" },
+      what: "Волосы, ногти и кожа реагируют на нехватку железа раньше, чем гемоглобин. Судороги и подёргивания — чаще про магний и группу B.",
+      questions: [
+        { text: "Проблемы с волосами и ногтями?",
+          hint: "Выпадение, сухость, ранняя седина, ломкость, слоящиеся ногти, белые пятнышки" },
+        { text: "Проблемы с кожей?",
+          hint: "Сухость на локтях и пятках, шелушения, высыпания, пигментация, тёмные круги под глазами" },
+        { text: "Мышечная слабость или судороги?",
+          hint: "Сводит икры по ночам, дёргается глаз, общая слабость в мышцах" }
+      ]
+    },
+    {
+      title: "Иммунитет и воспаление",
+      meta: "сопротивляемость",
+      to: { href: "/guides/immunity.html", label: "как поддержать иммунитет" },
+      what: "Частые простуды — обычно не про «слабый иммунитет», а про дефициты, недосып и кишечник. Из показателей в первую очередь смотрят витамин D.",
+      questions: [
+        { text: "Часто и подолгу болеете?",
+          hint: "Затяжной насморк или кашель, герпес чаще двух раз в год, долго восстанавливаетесь" },
+        { text: "Беспокоят боли в теле?",
+          hint: "Суставы, хруст, тяжесть в мышцах, частые головные боли или мигрени" }
+      ]
+    }
+  ];
+
+  var SCALE = [
+    { label: "Нет", value: 0 },
+    { label: "Слегка", value: 1 },
+    { label: "Заметно", value: 4 },
+    { label: "Выраженно", value: 8 }
+  ];
+  var MAXV = 8;
+  var STORE = "ecosin-screening-v1";
+
+  var body     = root.querySelector("[data-quiz-body]");
+  var bar      = root.querySelector("[data-quiz-bar]");
+  var progress = root.querySelector("[data-quiz-progress]");
+  var counter  = root.querySelector("[data-quiz-count]");
+  var actions  = root.querySelector("[data-quiz-actions]");
+  var leftNote = root.querySelector("[data-quiz-left]");
+  var result   = root.querySelector("[data-quiz-result]");
+  var rowsBox  = root.querySelector("[data-quiz-rows]");
+  var summary  = root.querySelector("[data-quiz-summary]");
+  var textArea = root.querySelector("[data-quiz-text]");
+
+  var total = 0;
+  BLOCKS.forEach(function (b) { total += b.questions.length; });
+
+  var answers = {};
+  try {
+    var saved = localStorage.getItem(STORE);
+    if (saved) answers = JSON.parse(saved) || {};
+  } catch (e) { answers = {}; }
+
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(answers)); } catch (e) {}
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function key(b, q) { return b + "-" + q; }
+
+  // ── Отрисовка вопросов
+  function render() {
+    var html = "";
+    BLOCKS.forEach(function (blk, bi) {
+      html += '<div class="qblock">';
+      html += '<div class="qblock-head"><span class="qblock-title">' + esc(blk.title) +
+              '</span><span class="qblock-meta">' + esc(blk.meta) + "</span></div>";
+      blk.questions.forEach(function (q, qi) {
+        var k = key(bi, qi);
+        html += '<div class="q">';
+        html += '<div class="q-text">' + esc(q.text) +
+                (q.hint ? '<span class="q-hint">' + esc(q.hint) + "</span>" : "") + "</div>";
+        if (q.slider) {
+          // Ползунок изначально стоит посередине и выглядит отвеченным.
+          // Значит и считаться должен: иначе блок занижается, а счётчик
+          // показывает «не отвечено» на вопрос, который человек видит
+          // заполненным.
+          if (answers[k] === undefined) answers[k] = 5;
+          var v = answers[k];
+          html += '<div class="q-slider">' +
+            '<input type="range" min="1" max="10" step="1" value="' + v +
+            '" data-k="' + k + '" data-slider aria-label="' + esc(q.text) + '" />' +
+            "<output>" + v + "</output></div>" +
+            '<div class="q-scale-ends"><span>нет сил</span><span>полон энергии</span></div>';
+        } else {
+          html += '<div class="q-opts" role="group" aria-label="' + esc(q.text) + '">';
+          SCALE.forEach(function (opt) {
+            var on = answers[k] === opt.value;
+            html += '<button type="button" data-k="' + k + '" data-v="' + opt.value +
+                    '" aria-pressed="' + (on ? "true" : "false") + '">' + opt.label + "</button>";
+          });
+          html += "</div>";
+        }
+        html += "</div>";
+      });
+      html += "</div>";
+    });
+    body.innerHTML = html;
+    bar.hidden = false;
+    actions.hidden = false;
+    update();
+  }
+
+  function answered() {
+    var n = 0;
+    for (var k in answers) if (answers.hasOwnProperty(k)) n++;
+    return n;
+  }
+
+  function update() {
+    var n = answered();
+    progress.style.setProperty("--done", Math.round(n / total * 100) + "%");
+    counter.textContent = "Отвечено " + n + " из " + total;
+    var left = total - n;
+    leftNote.textContent = left > 0
+      ? "Осталось " + left + " — результат покажу и по неполным ответам, но точнее будет целиком."
+      : "Все вопросы отвечены.";
+  }
+
+  // ── Подсчёт. Слайдер переворачиваем: там 10 это хорошо, а нам нужен
+  //    «сигнал», то есть чем меньше энергии, тем больше балл.
+  function score() {
+    return BLOCKS.map(function (blk, bi) {
+      var sum = 0, max = 0;
+      blk.questions.forEach(function (q, qi) {
+        var v = answers[key(bi, qi)];
+        max += MAXV;
+        if (v === undefined) return;
+        sum += q.slider ? Math.round((10 - v) / 9 * MAXV) : v;
+      });
+      var pct = max ? Math.round(sum / max * 100) : 0;
+      return { block: blk, pct: pct, level: pct >= 45 ? 2 : (pct >= 20 ? 1 : 0) };
+    });
+  }
+
+  var VERDICT = ["Спокойно", "Есть сигналы", "Много сигналов"];
+
+  function show() {
+    var rows = score();
+    var sorted = rows.slice().sort(function (a, b) { return b.pct - a.pct; });
+    var top = sorted[0];
+
+    var html = "";
+    sorted.forEach(function (r) {
+      html += '<div class="qrow">';
+      html += '<div class="qrow-top"><span class="qrow-name">' + esc(r.block.title) + "</span>" +
+              '<span class="qrow-verdict" data-level="' + r.level + '">' + VERDICT[r.level] +
+              " · " + r.pct + "%</span></div>";
+      html += '<div class="qrow-line"><i data-level="' + r.level + '" style="--v:' + r.pct + '%"></i></div>';
+      if (r.level > 0) {
+        html += '<p class="qrow-what">' + esc(r.block.what) +
+                ' <a href="' + r.block.to.href + '">Разбор: ' + esc(r.block.to.label) + "</a>.</p>";
+      }
+      html += "</div>";
+    });
+    rowsBox.innerHTML = html;
+
+    summary.textContent = top.pct < 20
+      ? "Сигналов немного во всех блоках. Это не гарантия, что всё идеально, но повода срочно что-то менять опросник не видит — посмотрите блоки ниже и решите сами."
+      : "Больше всего сигналов в блоке «" + top.block.title + "». С него и имеет смысл начинать: под каждым блоком написано, что обычно смотрят.";
+
+    // Текст для переноса в переписку. Без имени и контактов — только ответы.
+    var lines = ["Результат опросника с alinaecosin.ru", ""];
+    sorted.forEach(function (r) {
+      lines.push(r.block.title + ": " + r.pct + "% — " + VERDICT[r.level]);
+    });
+    lines.push("", "Отвечено " + answered() + " из " + total + " вопросов.");
+    textArea.value = lines.join("\n");
+
+    result.hidden = false;
+    // Полоса прохождения при показе результата только мешает: она липкая
+    // и накрывает заголовок.
+    bar.hidden = true;
+    if (window.ecosinGoal) window.ecosinGoal("screening_done");
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ── События
+  body.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-k]");
+    if (!btn) return;
+    var k = btn.getAttribute("data-k");
+    answers[k] = parseInt(btn.getAttribute("data-v"), 10);
+    var group = btn.parentNode.querySelectorAll("button");
+    for (var i = 0; i < group.length; i++) {
+      group[i].setAttribute("aria-pressed", group[i] === btn ? "true" : "false");
+    }
+    save(); update();
+  });
+
+  body.addEventListener("input", function (e) {
+    var sl = e.target.closest("input[data-slider]");
+    if (!sl) return;
+    answers[sl.getAttribute("data-k")] = parseInt(sl.value, 10);
+    var out = sl.parentNode.querySelector("output");
+    if (out) out.textContent = sl.value;
+    save(); update();
+  });
+
+  root.querySelector("[data-quiz-submit]").addEventListener("click", show);
+
+  root.querySelector("[data-quiz-reset]").addEventListener("click", function () {
+    answers = {};
+    save();
+    result.hidden = true;
+    render();          // render() возвращает полосу обратно
+    root.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  root.querySelector("[data-quiz-copy]").addEventListener("click", function () {
+    var note = root.querySelector("[data-quiz-copied]");
+    function done(ok) {
+      note.textContent = ok ? "Скопировано." : "Не вышло — выделите текст и скопируйте вручную.";
+      setTimeout(function () { note.textContent = ""; }, 4000);
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textArea.value).then(function () { done(true); },
+                                                         function () { done(false); });
+    } else {
+      textArea.select();
+      try { done(document.execCommand("copy")); } catch (e) { done(false); }
+    }
+  });
+
+  render();
+})();
+</script>
+<!-- /Опросник -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://alinaecosin.ru/screening.html#app",
+      "name": "Опросник самопроверки Ecosin",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Любой браузер",
+      "url": "https://alinaecosin.ru/screening.html",
+      "inLanguage": "ru-RU",
+      "description": "Восемнадцать вопросов про энергию, ЖКТ, обмен веществ, дефициты и иммунитет. Показывает, по каким системам больше всего сигналов. Не является диагностикой.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
+      "author": {
+        "@type": "Person",
+        "name": "Алина Сингизова",
+        "jobTitle": "Нутрициолог",
+        "url": "https://alinaecosin.ru/",
+        "sameAs": ["https://t.me/alina_ecosin"]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://alinaecosin.ru/"},
+        {"@type": "ListItem", "position": 2, "name": "Самопроверка", "item": "https://alinaecosin.ru/screening.html"}
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

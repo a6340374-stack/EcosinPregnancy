@@ -1,0 +1,325 @@
+<!-- ===== Опросник самопроверки =====
+     Всё считается в браузере. На сервер не уходит ничего: ни ответов,
+     ни имени — его и не спрашиваем. Ответы держим в localStorage, чтобы
+     случайное обновление страницы не обнулило двадцать кликов. -->
+<script>
+(function () {
+  var root = document.querySelector("[data-quiz]");
+  if (!root) return;
+
+  // ── Вопросы. Блоки соответствуют разборам в /analizy/ — отсюда и ссылки.
+  var BLOCKS = [
+    {
+      title: "Энергия и нервная система",
+      meta: "тонус, сон, стресс",
+      to: { href: "/analizy/energy.html", label: "анализы при усталости" },
+      what: "Здесь обычно смотрят ферритин, витамин D, B12 и щитовидную железу: усталость чаще всего про дефициты, а не про лень.",
+      questions: [
+        { slider: true, text: "Оцените уровень энергии в течение дня",
+          hint: "1 — нет сил встать с кровати, 10 — готовы сворачивать горы" },
+        { text: "Тяжело просыпаетесь, нужно долго раскачиваться или выпить кофе, чтобы прийти в себя?" },
+        { text: "Бывает резкий спад сил днём?",
+          hint: "Непреодолимо тянет поспать или съесть сладкое в районе 15:00–17:00" },
+        { text: "Плохо спите?",
+          hint: "Долго засыпаете, просыпаетесь ночью — особенно в 2–4 часа, — встаёте разбитой" },
+        { text: "Повышенная тревожность, раздражительность, плаксивость, ощущение «на грани»?" }
+      ]
+    },
+    {
+      title: "Желудочно-кишечный тракт",
+      meta: "пищеварение, желчь",
+      to: { href: "/analizy/gut.html", label: "анализы при вздутии и тяжести" },
+      what: "Смотрят ферменты поджелудочной, воспаление в кишечнике и печёночные показатели. Начинать почти всегда нужно отсюда: пока еда не расщепляется, остальное работает вполсилы.",
+      questions: [
+        { text: "Дискомфорт после еды?",
+          hint: "Тяжесть в правом подреберье или желудке, вздутие, урчание, отрыжка, изжога" },
+        { text: "Горечь или налёт на языке по утрам, неприятный запах изо рта?" },
+        { text: "Стул нерегулярный?",
+          hint: "Склонность к запорам, жидкому стулу, чередование, неоформленный стул" },
+        { text: "Плохо переносите жирное?",
+          hint: "Тошнит после жирного, отвращение к жирному и мясу — или наоборот, сильная тяга" }
+      ]
+    },
+    {
+      title: "Обмен веществ и гормоны",
+      meta: "щитовидная железа, углеводы",
+      to: { href: "/analizy/weight.html", label: "анализы, если вес стоит" },
+      what: "Смотрят инсулин натощак с индексом HOMA-IR и щитовидную железу. Именно здесь прячется вес, который не двигается при любых ограничениях.",
+      questions: [
+        { text: "Есть выраженная тяга к определённым продуктам?",
+          hint: "К сладкому, мучному, кофе, шоколаду — или постоянно хочется солёного и острого" },
+        { text: "Мёрзнете даже в тёплом помещении, плохо переносите жару и духоту?" },
+        { text: "Бывают отёки?",
+          hint: "Лицо по утрам, следы от носков и колец к вечеру, общая тяжесть в теле" },
+        { text: "Вес ведёт себя не так, как хотелось бы?",
+          hint: "Стоит и не уходит даже на дефиците — или, наоборот, не получается набрать" }
+      ]
+    },
+    {
+      title: "Внешние признаки дефицитов",
+      meta: "волосы, кожа, мышцы",
+      to: { href: "/analizy/energy.html", label: "анализы при усталости" },
+      what: "Волосы, ногти и кожа реагируют на нехватку железа раньше, чем гемоглобин. Судороги и подёргивания — чаще про магний и группу B.",
+      questions: [
+        { text: "Проблемы с волосами и ногтями?",
+          hint: "Выпадение, сухость, ранняя седина, ломкость, слоящиеся ногти, белые пятнышки" },
+        { text: "Проблемы с кожей?",
+          hint: "Сухость на локтях и пятках, шелушения, высыпания, пигментация, тёмные круги под глазами" },
+        { text: "Мышечная слабость или судороги?",
+          hint: "Сводит икры по ночам, дёргается глаз, общая слабость в мышцах" }
+      ]
+    },
+    {
+      title: "Иммунитет и воспаление",
+      meta: "сопротивляемость",
+      to: { href: "/guides/immunity.html", label: "как поддержать иммунитет" },
+      what: "Частые простуды — обычно не про «слабый иммунитет», а про дефициты, недосып и кишечник. Из показателей в первую очередь смотрят витамин D.",
+      questions: [
+        { text: "Часто и подолгу болеете?",
+          hint: "Затяжной насморк или кашель, герпес чаще двух раз в год, долго восстанавливаетесь" },
+        { text: "Беспокоят боли в теле?",
+          hint: "Суставы, хруст, тяжесть в мышцах, частые головные боли или мигрени" }
+      ]
+    }
+  ];
+
+  var SCALE = [
+    { label: "Нет", value: 0 },
+    { label: "Слегка", value: 1 },
+    { label: "Заметно", value: 4 },
+    { label: "Выраженно", value: 8 }
+  ];
+  var MAXV = 8;
+  var STORE = "ecosin-screening-v1";
+
+  var body     = root.querySelector("[data-quiz-body]");
+  var bar      = root.querySelector("[data-quiz-bar]");
+  var progress = root.querySelector("[data-quiz-progress]");
+  var counter  = root.querySelector("[data-quiz-count]");
+  var actions  = root.querySelector("[data-quiz-actions]");
+  var leftNote = root.querySelector("[data-quiz-left]");
+  var result   = root.querySelector("[data-quiz-result]");
+  var rowsBox  = root.querySelector("[data-quiz-rows]");
+  var summary  = root.querySelector("[data-quiz-summary]");
+  var textArea = root.querySelector("[data-quiz-text]");
+
+  var total = 0;
+  BLOCKS.forEach(function (b) { total += b.questions.length; });
+
+  var answers = {};
+  try {
+    var saved = localStorage.getItem(STORE);
+    if (saved) answers = JSON.parse(saved) || {};
+  } catch (e) { answers = {}; }
+
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(answers)); } catch (e) {}
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function key(b, q) { return b + "-" + q; }
+
+  // ── Отрисовка вопросов
+  function render() {
+    var html = "";
+    BLOCKS.forEach(function (blk, bi) {
+      html += '<div class="qblock">';
+      html += '<div class="qblock-head"><span class="qblock-title">' + esc(blk.title) +
+              '</span><span class="qblock-meta">' + esc(blk.meta) + "</span></div>";
+      blk.questions.forEach(function (q, qi) {
+        var k = key(bi, qi);
+        html += '<div class="q">';
+        html += '<div class="q-text">' + esc(q.text) +
+                (q.hint ? '<span class="q-hint">' + esc(q.hint) + "</span>" : "") + "</div>";
+        if (q.slider) {
+          // Ползунок изначально стоит посередине и выглядит отвеченным.
+          // Значит и считаться должен: иначе блок занижается, а счётчик
+          // показывает «не отвечено» на вопрос, который человек видит
+          // заполненным.
+          if (answers[k] === undefined) answers[k] = 5;
+          var v = answers[k];
+          html += '<div class="q-slider">' +
+            '<input type="range" min="1" max="10" step="1" value="' + v +
+            '" data-k="' + k + '" data-slider aria-label="' + esc(q.text) + '" />' +
+            "<output>" + v + "</output></div>" +
+            '<div class="q-scale-ends"><span>нет сил</span><span>полон энергии</span></div>';
+        } else {
+          html += '<div class="q-opts" role="group" aria-label="' + esc(q.text) + '">';
+          SCALE.forEach(function (opt) {
+            var on = answers[k] === opt.value;
+            html += '<button type="button" data-k="' + k + '" data-v="' + opt.value +
+                    '" aria-pressed="' + (on ? "true" : "false") + '">' + opt.label + "</button>";
+          });
+          html += "</div>";
+        }
+        html += "</div>";
+      });
+      html += "</div>";
+    });
+    body.innerHTML = html;
+    bar.hidden = false;
+    actions.hidden = false;
+    update();
+  }
+
+  function answered() {
+    var n = 0;
+    for (var k in answers) if (answers.hasOwnProperty(k)) n++;
+    return n;
+  }
+
+  function update() {
+    var n = answered();
+    progress.style.setProperty("--done", Math.round(n / total * 100) + "%");
+    counter.textContent = "Отвечено " + n + " из " + total;
+    var left = total - n;
+    leftNote.textContent = left > 0
+      ? "Осталось " + left + " — результат покажу и по неполным ответам, но точнее будет целиком."
+      : "Все вопросы отвечены.";
+  }
+
+  // ── Подсчёт. Слайдер переворачиваем: там 10 это хорошо, а нам нужен
+  //    «сигнал», то есть чем меньше энергии, тем больше балл.
+  function score() {
+    return BLOCKS.map(function (blk, bi) {
+      var sum = 0, max = 0;
+      blk.questions.forEach(function (q, qi) {
+        var v = answers[key(bi, qi)];
+        max += MAXV;
+        if (v === undefined) return;
+        sum += q.slider ? Math.round((10 - v) / 9 * MAXV) : v;
+      });
+      var pct = max ? Math.round(sum / max * 100) : 0;
+      return { block: blk, pct: pct, level: pct >= 45 ? 2 : (pct >= 20 ? 1 : 0) };
+    });
+  }
+
+  var VERDICT = ["Спокойно", "Есть сигналы", "Много сигналов"];
+
+  function show() {
+    var rows = score();
+    var sorted = rows.slice().sort(function (a, b) { return b.pct - a.pct; });
+    var top = sorted[0];
+
+    var html = "";
+    sorted.forEach(function (r) {
+      html += '<div class="qrow">';
+      html += '<div class="qrow-top"><span class="qrow-name">' + esc(r.block.title) + "</span>" +
+              '<span class="qrow-verdict" data-level="' + r.level + '">' + VERDICT[r.level] +
+              " · " + r.pct + "%</span></div>";
+      html += '<div class="qrow-line"><i data-level="' + r.level + '" style="--v:' + r.pct + '%"></i></div>';
+      if (r.level > 0) {
+        html += '<p class="qrow-what">' + esc(r.block.what) +
+                ' <a href="' + r.block.to.href + '">Разбор: ' + esc(r.block.to.label) + "</a>.</p>";
+      }
+      html += "</div>";
+    });
+    rowsBox.innerHTML = html;
+
+    summary.textContent = top.pct < 20
+      ? "Сигналов немного во всех блоках. Это не гарантия, что всё идеально, но повода срочно что-то менять опросник не видит — посмотрите блоки ниже и решите сами."
+      : "Больше всего сигналов в блоке «" + top.block.title + "». С него и имеет смысл начинать: под каждым блоком написано, что обычно смотрят.";
+
+    // Текст для переноса в переписку. Без имени и контактов — только ответы.
+    var lines = ["Результат опросника с alinaecosin.ru", ""];
+    sorted.forEach(function (r) {
+      lines.push(r.block.title + ": " + r.pct + "% — " + VERDICT[r.level]);
+    });
+    lines.push("", "Отвечено " + answered() + " из " + total + " вопросов.");
+    textArea.value = lines.join("\n");
+
+    result.hidden = false;
+    // Полоса прохождения при показе результата только мешает: она липкая
+    // и накрывает заголовок.
+    bar.hidden = true;
+    if (window.ecosinGoal) window.ecosinGoal("screening_done");
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ── События
+  body.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-k]");
+    if (!btn) return;
+    var k = btn.getAttribute("data-k");
+    answers[k] = parseInt(btn.getAttribute("data-v"), 10);
+    var group = btn.parentNode.querySelectorAll("button");
+    for (var i = 0; i < group.length; i++) {
+      group[i].setAttribute("aria-pressed", group[i] === btn ? "true" : "false");
+    }
+    save(); update();
+  });
+
+  body.addEventListener("input", function (e) {
+    var sl = e.target.closest("input[data-slider]");
+    if (!sl) return;
+    answers[sl.getAttribute("data-k")] = parseInt(sl.value, 10);
+    var out = sl.parentNode.querySelector("output");
+    if (out) out.textContent = sl.value;
+    save(); update();
+  });
+
+  root.querySelector("[data-quiz-submit]").addEventListener("click", show);
+
+  root.querySelector("[data-quiz-reset]").addEventListener("click", function () {
+    answers = {};
+    save();
+    result.hidden = true;
+    render();          // render() возвращает полосу обратно
+    root.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  root.querySelector("[data-quiz-copy]").addEventListener("click", function () {
+    var note = root.querySelector("[data-quiz-copied]");
+    function done(ok) {
+      note.textContent = ok ? "Скопировано." : "Не вышло — выделите текст и скопируйте вручную.";
+      setTimeout(function () { note.textContent = ""; }, 4000);
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textArea.value).then(function () { done(true); },
+                                                         function () { done(false); });
+    } else {
+      textArea.select();
+      try { done(document.execCommand("copy")); } catch (e) { done(false); }
+    }
+  });
+
+  render();
+})();
+</script>
+<!-- /Опросник -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://alinaecosin.ru/screening.html#app",
+      "name": "Опросник самопроверки Ecosin",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Любой браузер",
+      "url": "https://alinaecosin.ru/screening.html",
+      "inLanguage": "ru-RU",
+      "description": "Восемнадцать вопросов про энергию, ЖКТ, обмен веществ, дефициты и иммунитет. Показывает, по каким системам больше всего сигналов. Не является диагностикой.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
+      "author": {
+        "@type": "Person",
+        "name": "Алина Сингизова",
+        "jobTitle": "Нутрициолог",
+        "url": "https://alinaecosin.ru/",
+        "sameAs": ["https://t.me/alina_ecosin"]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://alinaecosin.ru/"},
+        {"@type": "ListItem", "position": 2, "name": "Самопроверка", "item": "https://alinaecosin.ru/screening.html"}
+      ]
+    }
+  ]
+}
+</script>

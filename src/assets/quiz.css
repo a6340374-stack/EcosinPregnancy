@@ -1,0 +1,104 @@
+/* quiz.css (встроен) — опросник самопроверки.
+   Подключается после chrome.css и article.css.
+
+   Всё считается в браузере, ответы никуда не отправляются. Отсюда и
+   устройство: никакой формы, никаких полей ввода, только кнопки выбора. */
+
+.quiz{margin-top: 40px;}
+
+/* Полоса прохождения. Ширину задаёт скрипт через --done. */
+.quiz-bar{
+  position: sticky; top: 62px; z-index: 20;
+  background: var(--paper);
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 8px;
+}
+.quiz-bar-line{height: 2px; background: var(--cream-warm);}
+.quiz-bar-line i{display:block;height:100%;background:var(--olive);width:var(--done,0%);transition:width .25s;}
+.quiz-bar-text{
+  margin-top: 9px; display:flex; justify-content:space-between; gap:16px;
+  font-size:12px; letter-spacing:.08em; color:var(--ink-soft);
+}
+.quiz-bar-text b{font-weight:500; color:var(--forest);}
+
+/* Блок вопросов */
+.qblock{margin-top: 40px; border-top:1px solid var(--ink); padding-top: 18px;}
+.qblock-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+.qblock-title{font-family:var(--display); font-size:24px; line-height:1.15; color:var(--ink);}
+.qblock-meta{
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--olive);
+  white-space:nowrap;
+}
+
+.q{margin-top: 26px; padding-top: 20px; border-top:1px solid var(--rule);}
+.q:first-of-type{border-top:0; padding-top:0;}
+.q-text{font-size:17px; line-height:1.6; color:var(--ink); margin-bottom: 14px;}
+.q-hint{display:block; margin-top:5px; font-size:14px; color:var(--ink-soft); font-style:italic;}
+
+/* Варианты ответа. Не radio: нам нужен один клик и крупная зона нажатия. */
+.q-opts{display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  border:1px solid var(--rule);}
+.q-opts button{
+  padding: 13px 8px; font-family:inherit; font-size:14px; color:var(--ink-soft);
+  background:transparent; border:0; border-left:1px solid var(--rule);
+  cursor:pointer; transition: background .15s, color .15s; text-align:center;
+}
+.q-opts button:first-child{border-left:0;}
+.q-opts button:hover{background:var(--cream-warm);}
+.q-opts button[aria-pressed="true"]{background:var(--forest); color:var(--cream);}
+
+/* Ползунок энергии */
+.q-slider{display:flex; align-items:center; gap:16px;}
+.q-slider input{flex:1; accent-color: var(--forest); height: 24px;}
+.q-slider output{
+  min-width: 2.4em; text-align:center; font-family:var(--display);
+  font-size:26px; color:var(--forest);
+}
+.q-scale-ends{display:flex; justify-content:space-between; margin-top:6px;
+  font-size:12px; color:var(--sand-deep);}
+
+.quiz-actions{margin-top: 40px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+.quiz-actions .btn{border:0;}
+.quiz-note{font-size:13px; color:var(--ink-soft);}
+
+/* ───────────────────────── РЕЗУЛЬТАТ ───────────────────────── */
+.qres{margin-top: 40px; scroll-margin-top: 90px;}
+.qres[hidden]{display:none;}
+.qres-head{border-top:1px solid var(--ink); padding-top: 22px;}
+.qres-head h2{border:0 !important; padding:0 !important; font-size: clamp(26px,3.4vw,34px);}
+.qres-lede{margin-top:14px !important; max-width:62ch;}
+
+.qrow{margin-top: 26px; padding-top: 18px; border-top:1px solid var(--rule);}
+.qrow-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px;}
+.qrow-name{font-size:18px; color:var(--ink);}
+.qrow-verdict{font-size:12px; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;}
+.qrow-verdict[data-level="0"]{color:var(--olive);}
+.qrow-verdict[data-level="1"]{color:var(--sand-deep);}
+.qrow-verdict[data-level="2"]{color:var(--terra);}
+.qrow-line{margin-top:11px; height:4px; background:var(--cream-warm);}
+.qrow-line i{display:block; height:100%; width:var(--v,0%); background:var(--olive); transition:width .4s;}
+.qrow-line i[data-level="2"]{background:var(--terra);}
+.qrow-line i[data-level="1"]{background:var(--sand-deep);}
+.qrow-what{margin-top:12px !important; font-size:15px !important;}
+.qrow-what a{color:var(--forest); text-decoration:underline; text-underline-offset:3px;}
+
+.qres-copy{
+  margin-top: 34px; border:1px solid var(--rule); padding: 22px 24px;
+}
+.qres-copy h3{margin-top:0 !important; font-size:19px;}
+.qres-copy textarea{
+  width:100%; margin-top:14px; min-height: 150px; resize:vertical;
+  font-family:var(--body); font-size:14px; line-height:1.6; color:var(--ink);
+  background:var(--paper); border:1px solid var(--rule); padding:12px 14px;
+}
+.qres-copy textarea:focus{outline:none; border-color:var(--forest);}
+.qres-copy .row{margin-top:14px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
+
+@media (max-width: 760px){
+  .quiz-bar{top: 58px;}
+  .q-opts{grid-template-columns:repeat(2,1fr);}
+  .q-opts button:nth-child(3){border-left:0;}
+  .q-opts button:nth-child(n+3){border-top:1px solid var(--rule);}
+  .qblock-title{font-size:21px;}
+}
