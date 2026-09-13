@@ -223,6 +223,12 @@
       topic:   field("topic"),
       hp:      field("company")
     };
+    // Откуда пришла заявка. Помощник объявлен рядом со счётчиком Метрики,
+    // он есть на каждой странице.
+    if (window.ecosinSource) {
+      var s = window.ecosinSource("form", "");
+      for (var k in s) if (s.hasOwnProperty(k)) d[k] = s[k];
+    }
 
     if (!d.name || !d.contact) {
       status.textContent = "Пожалуйста, заполните имя и контакт.";

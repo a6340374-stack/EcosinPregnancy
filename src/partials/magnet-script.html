@@ -50,9 +50,15 @@
       var data = {
         name:    val("name"),
         contact: val("contact"),
-        topic:   topic,
+        // Приписка со страницей — чтобы источник был виден в карточке
+        // заявки уже сейчас, пока приёмник не читает source_*.
+        topic:   topic + (window.ecosinTopicSuffix ? window.ecosinTopicSuffix() : ""),
         hp:      val("company")
       };
+      if (window.ecosinSource) {
+        var s = window.ecosinSource("magnet", goal);
+        for (var k in s) if (s.hasOwnProperty(k)) data[k] = s[k];
+      }
 
       if (!data.name || !data.contact) {
         status.textContent = "Заполните имя и контакт — без них я не смогу ответить.";

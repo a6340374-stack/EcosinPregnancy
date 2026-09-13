@@ -982,6 +982,38 @@ p{margin:0;text-wrap:pretty;}
     else if (href.indexOf("tel:") === 0)   goal("phone_click");
     else if (href.indexOf("shop.html") > -1) goal("shop_open");
   }, true);
+
+  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
+  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
+  // страница и какой магнит реально приводят людей.
+  //
+  // Приёмник читает поля по одному через body.get(), лишние ключи молча
+  // игнорирует. Поэтому сайт может слать источник до того, как на той
+  // стороне появится место под него: ничего не сломается, данные начнут
+  // сохраняться, как только приёмник их прочитает.
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return q.get("utm_campaign") || q.get("utm_source") || "";
+    } catch (e) { return ""; }
+  }
+
+  window.ecosinSource = function (kind, id) {
+    return {
+      source_page: location.pathname,          // /ramadan/menu.html
+      source_kind: kind || "form",             // form | magnet
+      source_id: id || "",                     // lead_magnet_menu
+      source_title: (document.title || "").slice(0, 120),
+      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
+    };
+  };
+
+  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
+  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
+  // эту приписку можно убрать, структурные поля её заменят.
+  window.ecosinTopicSuffix = function () {
+    return location.pathname === "/" ? "" : " · " + location.pathname;
+  };
 })();
 </script>
 </head>
@@ -1707,6 +1739,12 @@ p{margin:0;text-wrap:pretty;}
       topic:   field("topic"),
       hp:      field("company")
     };
+    // Откуда пришла заявка. Помощник объявлен рядом со счётчиком Метрики,
+    // он есть на каждой странице.
+    if (window.ecosinSource) {
+      var s = window.ecosinSource("form", "");
+      for (var k in s) if (s.hasOwnProperty(k)) d[k] = s[k];
+    }
 
     if (!d.name || !d.contact) {
       status.textContent = "Пожалуйста, заполните имя и контакт.";

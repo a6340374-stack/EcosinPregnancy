@@ -659,6 +659,38 @@ p{margin:0;text-wrap:pretty;}
     else if (href.indexOf("tel:") === 0)   goal("phone_click");
     else if (href.indexOf("shop.html") > -1) goal("shop_open");
   }, true);
+
+  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
+  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
+  // страница и какой магнит реально приводят людей.
+  //
+  // Приёмник читает поля по одному через body.get(), лишние ключи молча
+  // игнорирует. Поэтому сайт может слать источник до того, как на той
+  // стороне появится место под него: ничего не сломается, данные начнут
+  // сохраняться, как только приёмник их прочитает.
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return q.get("utm_campaign") || q.get("utm_source") || "";
+    } catch (e) { return ""; }
+  }
+
+  window.ecosinSource = function (kind, id) {
+    return {
+      source_page: location.pathname,          // /ramadan/menu.html
+      source_kind: kind || "form",             // form | magnet
+      source_id: id || "",                     // lead_magnet_menu
+      source_title: (document.title || "").slice(0, 120),
+      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
+    };
+  };
+
+  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
+  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
+  // эту приписку можно убрать, структурные поля её заменят.
+  window.ecosinTopicSuffix = function () {
+    return location.pathname === "/" ? "" : " · " + location.pathname;
+  };
 })();
 </script>
 </head>
@@ -854,7 +886,7 @@ p{margin:0;text-wrap:pretty;}
 <div class="magnet" data-magnet
      data-file="/files/guide-detox.pdf"
      data-goal="lead_magnet_detox"
-     data-topic="Методичка по детокс-питанию — запрос с сайта">
+     data-topic="Методичка по детокс-питанию">
 
   <div class="magnet-what">
     <span class="magnet-tag">Забрать с собой</span>
@@ -1213,9 +1245,15 @@ p{margin:0;text-wrap:pretty;}
       var data = {
         name:    val("name"),
         contact: val("contact"),
-        topic:   topic,
+        // Приписка со страницей — чтобы источник был виден в карточке
+        // заявки уже сейчас, пока приёмник не читает source_*.
+        topic:   topic + (window.ecosinTopicSuffix ? window.ecosinTopicSuffix() : ""),
         hp:      val("company")
       };
+      if (window.ecosinSource) {
+        var s = window.ecosinSource("magnet", goal);
+        for (var k in s) if (s.hasOwnProperty(k)) data[k] = s[k];
+      }
 
       if (!data.name || !data.contact) {
         status.textContent = "Заполните имя и контакт — без них я не смогу ответить.";
