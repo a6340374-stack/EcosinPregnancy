@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Иначе при переходе наружу уходит полный адрес страницы: сторонний
+     сервис узнаёт, что человек читал, скажем, про подготовку
+     к беременности. Заголовком это не задать — GitHub Pages свои
+     заголовки ставить не даёт. -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 
 <!-- ─────────────── Primary SEO ─────────────── -->
 <title>Детокс: что работает на самом деле, а что маркетинг</title>
@@ -879,7 +884,9 @@ p{margin:0;text-wrap:pretty;}
       <p>И про жиры отдельно: рацион с низким содержанием простых углеводов и достаточным количеством полезных жиров — это и есть детокс-рацион. Жиры помогают усвоению жирорастворимых витаминов, способствуют желчеоттоку и разгружают печень, стимулируя выведение продуктов обмена с желчью через кишечник.</p>
     </section>
 
-<!-- Лид-магнит. Сборщик вставляет его в тело страницы на место слота
+<!-- Лид-магнит. Поля помечены ym-disable-keys и ym-hide-content:
+     без этого Вебвизор пишет введённые имя и контакт в запись сеанса.
+     Сборщик вставляет блок в тело страницы на место слота
      с именем magnet. Значения приходят из шапки страницы: поля magnet_*
      без приставки. Скрипт подключается автоматически, звать не надо.
      Внимание: сам слот здесь писать нельзя — подстановщик его увидит. -->
@@ -899,11 +906,13 @@ p{margin:0;text-wrap:pretty;}
     <form class="magnet-form" data-magnet-form novalidate>
       <div class="magnet-field">
         <label for="detox-name">Как вас зовут</label>
-        <input id="detox-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required />
+        <input id="detox-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required
+               class="ym-disable-keys ym-hide-content" />
       </div>
       <div class="magnet-field">
         <label for="detox-contact">Telegram или телефон</label>
-        <input id="detox-contact" name="contact" type="text" placeholder="@username или +7 …" required />
+        <input id="detox-contact" name="contact" type="text" placeholder="@username или +7 …" required
+               class="ym-disable-keys ym-hide-content" />
       </div>
 
       <!-- Поле-ловушка для спам-ботов. Людям не показываем. -->

@@ -1,4 +1,6 @@
-<!-- Лид-магнит. Сборщик вставляет его в тело страницы на место слота
+<!-- Лид-магнит. Поля помечены ym-disable-keys и ym-hide-content:
+     без этого Вебвизор пишет введённые имя и контакт в запись сеанса.
+     Сборщик вставляет блок в тело страницы на место слота
      с именем magnet. Значения приходят из шапки страницы: поля magnet_*
      без приставки. Скрипт подключается автоматически, звать не надо.
      Внимание: сам слот здесь писать нельзя — подстановщик его увидит. -->
@@ -18,11 +20,13 @@
     <form class="magnet-form" data-magnet-form novalidate>
       <div class="magnet-field">
         <label for="{{ id }}-name">Как вас зовут</label>
-        <input id="{{ id }}-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required />
+        <input id="{{ id }}-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required
+               class="ym-disable-keys ym-hide-content" />
       </div>
       <div class="magnet-field">
         <label for="{{ id }}-contact">Telegram или телефон</label>
-        <input id="{{ id }}-contact" name="contact" type="text" placeholder="@username или +7 …" required />
+        <input id="{{ id }}-contact" name="contact" type="text" placeholder="@username или +7 …" required
+               class="ym-disable-keys ym-hide-content" />
       </div>
 
       <!-- Поле-ловушка для спам-ботов. Людям не показываем. -->
