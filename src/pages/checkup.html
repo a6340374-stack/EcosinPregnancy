@@ -1,0 +1,132 @@
+---
+url: /checkup.html
+out: checkup.html
+title: Функциональная анкета перед консультацией — Ecosin
+description: Подробная анкета на 595 вопросов по 22 системам организма. Заполняется перед консультацией нутрициолога Алины Сингизовой. Ответы остаются в браузере.
+keywords: анкета перед консультацией, функциональный опросник, анкета нутрициолога
+og_title: Функциональная анкета перед консультацией
+og_description: 595 вопросов по 22 системам организма. Заполняется перед разбором.
+og_image_alt: Анкета перед консультацией — нутрициолог Алина Сингизова
+robots: noindex, nofollow
+sitemap: no
+css: chrome.css, article.css, checkup.css, nav-mobile.css
+tail: partials/tail-checkup.html
+updated: 2026-09-14
+---
+<main id="content">
+
+<section class="art-head">
+  <div class="wrap">
+    <span class="eyebrow">Анкета</span>
+    <h1>Функциональная анкета <em>перед консультацией</em></h1>
+    <p class="art-lede">Подробный разбор самочувствия по 22 системам организма — от пищеварения и щитовидной железы до сна, настроения и дефицитов. Я прихожу на консультацию, уже видя картину целиком, и мы не тратим час созвона на сбор анамнеза.</p>
+    <div class="art-meta">
+      <span><b>595 вопросов</b> в 22 разделах</span>
+      <span><b>Около часа</b>, можно в несколько заходов</span>
+      <span><b>Ответы</b> остаются в вашем браузере</span>
+    </div>
+
+    <div class="art-gist">
+      <h2>Прежде чем начать</h2>
+      <ul>
+        <li><b>Это не диагностика.</b> Анкета не определяет заболевания и не заменяет врача. Она собирает в одну картину то, что вы и так о себе знаете, и показывает, где сигналов больше всего.</li>
+        <li><b>Отвечайте про последние три месяца,</b> а не про разовый плохой день и не про то, что было когда-то давно.</li>
+        <li><b>Ничего никуда не отправляется.</b> Подсчёт идёт прямо в браузере, ответы не уходят ни мне, ни на сервер. В конце вы сами решите, присылать результат или нет.</li>
+        <li><b>Не обязательно за один раз.</b> Прогресс сохраняется — можно закрыть вкладку, вернуться завтра и продолжить с того же места.</li>
+        <li><b>Отвечайте честно.</b> Приукрасить можно, но тогда и разбор будет про кого-то другого.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <div class="chk" data-checkup>
+
+      <noscript>
+        <div class="art-note art-note--warn">
+          <b>Нужен JavaScript</b>
+          <p>Анкета считает ответы прямо в браузере, поэтому без JavaScript она не работает. Включите его или напишите мне в Telegram — соберём анамнез вживую.</p>
+        </div>
+      </noscript>
+
+      <!-- ЭКРАН 1 — кто заполняет.
+           Пол обязателен: два раздела из 22 показываются по полу — простата
+           только мужчинам, женская репродуктивная только женщинам.
+           Имя и дата рождения не обязательны и нужны ровно для одного —
+           подписать файл с результатом, чтобы он не потерялся в загрузках.
+           Оба поля помечены ym-disable-keys и ym-hide-content: Вебвизор
+           пишет сеанс целиком, включая набранное в полях. -->
+      <section class="chk-start" data-screen="start">
+        <div class="chk-who">
+          <h2>Кто заполняет</h2>
+
+          <div class="chk-fields">
+            <label class="chk-field">
+              <span>Имя <i>— по желанию</i></span>
+              <input type="text" id="chk-name" autocomplete="off" placeholder="Как к вам обращаться"
+                     class="ym-disable-keys ym-hide-content" />
+            </label>
+
+            <label class="chk-field">
+              <span>Дата рождения <i>— по желанию</i></span>
+              <input type="date" id="chk-born" class="ym-disable-keys ym-hide-content" />
+            </label>
+
+            <div class="chk-field">
+              <span>Пол <i>— нужен, чтобы убрать лишние разделы</i></span>
+              <div class="chk-gender" data-gender>
+                <button type="button" data-val="female" aria-pressed="false">Женский</button>
+                <button type="button" data-val="male" aria-pressed="false">Мужской</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="chk-start-actions">
+            <button type="button" class="btn btn-primary" data-start disabled>Начать анкету <span class="arrow">→</span></button>
+            <button type="button" class="btn btn-ghost" data-load-draft>Продолжить из файла</button>
+          </div>
+
+          <p class="chk-hint" data-start-hint><b>Выберите пол,</b> чтобы начать. Имя и дата рождения остаются в вашем браузере и нужны только для подписи файла с результатом.</p>
+        </div>
+      </section>
+
+      <!-- ЭКРАН 2 — вопросы.
+           ym-hide-content на весь контейнер: без этой пометки в записи
+           Вебвизора видно, какие симптомы человек у себя отметил. -->
+      <section class="chk-form ym-hide-content" data-screen="form" hidden>
+        <div class="chk-bar">
+          <div class="chk-bar-line"><i data-progress></i></div>
+          <div class="chk-bar-text">
+            <span data-count>Отвечено 0 из 0</span>
+            <span class="chk-bar-tools">
+              <button type="button" data-save-draft>Сохранить черновик файлом</button>
+              <button type="button" data-reset>Начать заново</button>
+            </span>
+          </div>
+        </div>
+
+        <div data-restored hidden></div>
+
+        <div class="chk-toc" data-toc></div>
+
+        <div class="chk-finish">
+          <p>Разделы можно заполнять в любом порядке и не обязательно все. Чем полнее анкета, тем точнее разбор, но пустые разделы просто не попадут в результат.</p>
+          <div class="chk-finish-actions">
+            <button type="button" class="btn btn-primary" data-finish>Посмотреть результат <span class="arrow">→</span></button>
+            <span class="chk-sec-left" data-left></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ЭКРАН 3 — результат. Тоже скрыт от записи: здесь проценты
+           по системам конкретного человека. -->
+      <section class="chk-res ym-hide-content" data-screen="results" hidden></section>
+
+    </div>
+
+  </div>
+</section>
+
+</main>

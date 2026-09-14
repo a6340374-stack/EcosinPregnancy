@@ -1,0 +1,211 @@
+/* checkup.css (встроен) — функциональная анкета на 595 вопросов.
+   Подключается после chrome.css и article.css.
+
+   Это не лендинг, а рабочий документ на час заполнения. Отсюда устройство:
+   оглавление из 22 разделов — главная навигация страницы, открыт всегда
+   один раздел, полоса прохождения приклеена к верху. Вопросы закрытых
+   разделов в разметку не попадают: 595 вопросов по четыре кнопки — это
+   2380 узлов, браузер на телефоне такое перерисовывать не должен.
+
+   Палитра и типографика — общие переменные сайта, своих цветов здесь нет.
+   Разметка ответов намеренно повторяет quiz.css: короткий опросник
+   на /screening.html и эта анкета должны ощущаться роднёй. */
+
+.chk{margin-top: 34px; margin-bottom: 80px;}
+.chk [hidden]{display:none !important;}
+
+/* btn-ghost живёт в landing.css, а он на этой странице не подключён —
+   держим свою копию, иначе кнопка «Продолжить из файла» осталась бы
+   голым текстом. (Ровно этим сейчас болеет /screening.html.) */
+.chk .btn-ghost{border:1px solid var(--forest); color:var(--forest); background:transparent;
+  font-family:inherit; cursor:pointer;}
+.chk .btn-ghost:hover{background:var(--forest); color:var(--cream);}
+.chk .btn{border:0;}
+.chk .btn-primary{cursor:pointer; font-family:inherit;}
+.chk .btn-primary:disabled{opacity:.4; cursor:default;}
+.chk .btn-primary:disabled:hover{background:var(--forest);}
+
+/* ─────────────────────────── ЭКРАН СТАРТА ─────────────────────────── */
+
+.chk-start{max-width: 70ch;}
+.chk-rules{margin-top: 30px; border-top:1px solid var(--ink); padding-top: 20px;}
+.chk-rules dt{
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--olive); margin-top:20px;
+}
+.chk-rules dt:first-child{margin-top:0;}
+.chk-rules dd{margin:7px 0 0; font-size:16px; line-height:1.6; color:var(--ink-soft);}
+
+.chk-who{margin-top: 38px; border-top:1px solid var(--ink); padding-top: 20px;}
+/* Первым блоком на экране старта — свой отступ не нужен: сверху уже
+   56 пикселей от .art-body и 34 от .chk, вместе получалась дыра. */
+.chk-start .chk-who{margin-top:0;}
+.chk-who h2{font-size:24px !important; border:0 !important; padding:0 !important; margin:0 !important;}
+.chk-fields{margin-top: 22px; display:grid; gap:20px; max-width: 460px;}
+.chk-field > span{
+  display:block; font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--olive); margin-bottom:8px;
+}
+.chk-field > span i{font-style:normal; color:var(--sand-deep); letter-spacing:.06em;}
+.chk-field input[type="text"],
+.chk-field input[type="date"]{
+  width:100%; padding:12px 14px; font-family:var(--body); font-size:16px;
+  color:var(--ink); background:var(--paper);
+  border:1px solid var(--rule); border-radius:0;
+}
+.chk-field input:focus-visible{outline:2px solid var(--forest); outline-offset:1px;}
+
+.chk-gender{display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--rule);}
+.chk-gender button{
+  padding:13px 8px; font-family:inherit; font-size:15px; color:var(--ink-soft);
+  background:transparent; border:0; border-left:1px solid var(--rule); cursor:pointer;
+  transition: background .15s, color .15s;
+}
+.chk-gender button:first-child{border-left:0;}
+.chk-gender button:hover{background:var(--cream-warm);}
+.chk-gender button[aria-pressed="true"]{background:var(--forest); color:var(--cream);}
+
+.chk-start-actions{margin-top:30px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+.chk-hint{font-size:13px; color:var(--ink-soft); max-width:46ch;}
+.chk-hint b{font-weight:500; color:var(--forest);}
+
+/* ──────────────────────── ПОЛОСА ПРОХОЖДЕНИЯ ──────────────────────── */
+
+.chk-bar{
+  position: sticky; top: 62px; z-index: 20;
+  background: var(--paper); padding: 13px 0 11px;
+  border-bottom:1px solid var(--rule); margin-bottom: 6px;
+}
+.chk-bar-line{height:2px; background:var(--cream-warm);}
+.chk-bar-line i{display:block; height:100%; background:var(--olive); width:var(--done,0%); transition:width .25s;}
+.chk-bar-text{
+  margin-top:9px; display:flex; justify-content:space-between; align-items:baseline;
+  gap:16px; flex-wrap:wrap; font-size:12px; letter-spacing:.06em; color:var(--ink-soft);
+}
+.chk-bar-text b{font-weight:500; color:var(--forest);}
+.chk-bar-tools{display:flex; gap:14px; flex-wrap:wrap;}
+.chk-bar-tools button{
+  font-family:inherit; font-size:12px; letter-spacing:.06em; color:var(--ink-soft);
+  background:none; border:0; padding:0; cursor:pointer;
+  border-bottom:1px solid var(--rule);
+}
+.chk-bar-tools button:hover{color:var(--forest); border-bottom-color:var(--forest);}
+
+/* Плашка восстановления прогресса. Без иконок и заливок: это сообщение,
+   а не украшение. */
+.chk-restored{
+  margin-top:18px; border-left:2px solid var(--olive); padding:11px 0 11px 16px;
+  font-size:14px; color:var(--ink-soft);
+}
+.chk-restored b{font-weight:500; color:var(--forest);}
+
+/* ──────────────────────────── ОГЛАВЛЕНИЕ ──────────────────────────── */
+
+.chk-toc{margin-top:26px;}
+.chk-sec{border-top:1px solid var(--rule);}
+.chk-sec:first-child{border-top:1px solid var(--ink);}
+
+.chk-sec-head{
+  width:100%; display:flex; align-items:baseline; gap:16px; text-align:left;
+  padding:17px 0; background:none; border:0; cursor:pointer; font-family:inherit;
+  color:var(--ink);
+}
+.chk-sec-head:hover .chk-sec-name{color:var(--forest);}
+.chk-sec-num{
+  font-family:var(--display); font-size:15px; color:var(--sand-deep);
+  min-width:1.8em; flex:none;
+}
+.chk-sec-name{font-size:17px; line-height:1.35; flex:1; transition:color .15s;}
+.chk-sec-state{
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--sand-deep); white-space:nowrap; flex:none;
+}
+.chk-sec-state[data-full="yes"]{color:var(--olive);}
+.chk-sec[data-open="yes"] .chk-sec-name{color:var(--forest);}
+
+.chk-sec-body{padding-bottom:34px;}
+
+/* ───────────────────────────── ВОПРОСЫ ───────────────────────────── */
+
+.chk-subtitle{
+  margin-top:26px; padding-top:14px; border-top:1px solid var(--ink);
+  font-family:var(--display); font-size:21px; line-height:1.2; color:var(--ink);
+}
+.chk-subnote{margin-top:6px; font-size:14px; line-height:1.5; color:var(--ink-soft); font-style:italic;}
+
+.chk-q{margin-top:22px; padding-top:18px; border-top:1px solid var(--rule);}
+.chk-q:first-of-type{border-top:0;}
+.chk-q-text{
+  display:flex; gap:12px; font-size:16px; line-height:1.55;
+  color:var(--ink); margin-bottom:13px;
+}
+.chk-q-num{color:var(--sand-deep); flex:none; font-size:14px; padding-top:2px; min-width:2em;}
+
+.chk-opts{display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--rule);}
+.chk-opts button{
+  padding:12px 6px; font-family:inherit; font-size:13px; line-height:1.3;
+  color:var(--ink-soft); background:transparent; border:0;
+  border-left:1px solid var(--rule); cursor:pointer; text-align:center;
+  transition: background .15s, color .15s;
+}
+.chk-opts button:first-child{border-left:0;}
+.chk-opts button:hover{background:var(--cream-warm);}
+.chk-opts button[aria-pressed="true"]{background:var(--forest); color:var(--cream);}
+
+.chk-sec-next{margin-top:30px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+.chk-sec-left{font-size:13px; color:var(--ink-soft);}
+
+/* ─────────────────────────── ЗАВЕРШЕНИЕ ─────────────────────────── */
+
+.chk-finish{margin-top:44px; border-top:1px solid var(--ink); padding-top:24px;}
+.chk-finish p{font-size:15px; color:var(--ink-soft); max-width:60ch;}
+.chk-finish-actions{margin-top:20px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+
+/* ──────────────────────────── РЕЗУЛЬТАТ ──────────────────────────── */
+
+.chk-res{margin-top:34px; scroll-margin-top:90px;}
+.chk-res-head{border-top:1px solid var(--ink); padding-top:22px;}
+.chk-res-head h2{border:0 !important; padding:0 !important; margin:0 !important; font-size:clamp(26px,3.4vw,34px) !important;}
+.chk-res-lede{margin-top:14px; max-width:62ch; font-size:16px; line-height:1.6; color:var(--ink-soft);}
+.chk-res-who{margin-top:10px; font-size:13px; letter-spacing:.06em; color:var(--sand-deep);}
+
+.chk-top{margin-top:34px; border-top:1px solid var(--ink); padding-top:18px;}
+.chk-top h3{font-family:var(--display); font-size:22px; margin:0;}
+
+.chk-row{margin-top:22px; padding-top:16px; border-top:1px solid var(--rule);}
+.chk-row-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px;}
+.chk-row-name{font-size:17px; line-height:1.3; color:var(--ink);}
+.chk-row-verdict{font-size:11px; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; flex:none;}
+.chk-row-verdict[data-level="0"]{color:var(--olive);}
+.chk-row-verdict[data-level="1"]{color:var(--sand-deep);}
+.chk-row-verdict[data-level="2"]{color:var(--terra);}
+.chk-row-verdict[data-level="3"]{color:#a8402a;}
+.chk-row-line{margin-top:10px; height:4px; background:var(--cream-warm);}
+.chk-row-line i{display:block; height:100%; width:var(--v,0%); transition:width .4s;}
+.chk-row-line i[data-level="0"]{background:var(--olive);}
+.chk-row-line i[data-level="1"]{background:var(--sand-deep);}
+.chk-row-line i[data-level="2"]{background:var(--terra);}
+.chk-row-line i[data-level="3"]{background:#a8402a;}
+.chk-row-sub{margin-top:8px; font-size:13px; color:var(--ink-soft);}
+.chk-row-subs{margin-top:10px; display:grid; gap:5px;}
+.chk-row-subs span{display:flex; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-soft);}
+.chk-row-subs b{font-weight:400; color:var(--ink); white-space:nowrap;}
+
+.chk-res-actions{margin-top:40px; border-top:1px solid var(--ink); padding-top:24px;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+.chk-res-note{margin-top:18px; font-size:13px; line-height:1.6; color:var(--ink-soft); max-width:62ch;}
+
+/* ───────────────────────────── ТЕЛЕФОН ───────────────────────────── */
+
+@media (max-width: 640px){
+  .chk-bar{top:56px;}
+  .chk-opts{grid-template-columns:1fr 1fr;}
+  .chk-opts button{border-top:1px solid var(--rule); padding:11px 6px;}
+  .chk-opts button:nth-child(-n+2){border-top:0;}
+  .chk-opts button:nth-child(odd){border-left:0;}
+  .chk-sec-head{gap:11px; padding:15px 0;}
+  .chk-sec-name{font-size:16px;}
+  .chk-sec-state{font-size:10px; letter-spacing:.1em;}
+  .chk-q-text{font-size:15px; gap:9px;}
+  .chk-fields{max-width:none;}
+}
