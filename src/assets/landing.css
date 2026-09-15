@@ -196,18 +196,92 @@ p{margin:0;text-wrap:pretty;}
 .leaf-1{top:80px;left:-40px;width:260px;opacity:.5;transform:rotate(-10deg);}
 .leaf-2{bottom:-40px;right:-60px;width:300px;opacity:.45;transform:rotate(180deg);}
 
-/* ───────────────────────── TRUST STRIP ───────────────────────── */
+/* ───────── ОБРАЗОВАНИЕ: полоса с документами ─────────
+   Раньше здесь шла строка из названий курсов без заголовка: на мобильном она
+   разваливалась в пять строк, и было непонятно, что это вообще такое.
+   Теперь у полосы есть заголовок и сами дипломы; клик ведёт на /about.html,
+   где те же документы лежат в полном размере.
+   У картинок обязателен height:auto — иначе атрибут height в разметке
+   перебивает aspect-ratio, и превью вытягивается во всю высоту оригинала. */
 .trust{
   background: var(--forest);
   color: var(--cream);
-  padding-block: 22px;
-  font-size: 13px;
-  overflow:hidden;
-  border-top:1px solid rgba(245,237,224,.1);
+  padding-block: clamp(56px, 6.5vw, 90px);
+  border-top: 1px solid rgba(245,237,224,.1);
 }
-.trust-track{display:flex;gap:64px;align-items:center;flex-wrap:wrap;justify-content:center;}
-.trust-track span{display:flex;align-items:center;gap:14px;letter-spacing:.06em;}
-.trust-track .dot{width:4px;height:4px;background:var(--olive-soft);border-radius:50%;}
+.trust-head{
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(20px, 4vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(34px, 4vw, 54px);
+}
+.trust-head h2{
+  font-size: clamp(30px, 3.6vw, 46px);
+  color: var(--cream);
+}
+.trust-head h2 em{font-style: italic; color: var(--olive-soft); font-weight: 400;}
+.trust-head p{
+  font-size: clamp(15px, 1.1vw, 17px);
+  color: rgba(245,237,224,.8);
+  max-width: 54ch;
+}
+.trust-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--cream);
+  border-bottom: 1px solid rgba(245,237,224,.35);
+  padding-bottom: 3px;
+  transition: border-color .25s;
+}
+.trust-link:hover{border-bottom-color: var(--sand);}
+.trust-link:hover .arrow{transform: translateX(3px);}
+
+.trust-docs{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+.trust-docs img{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: 50% 15%;
+  background: var(--forest-soft);
+  border: 1px solid rgba(245,237,224,.18);
+  border-radius: 3px;
+  transition: border-color .25s;
+}
+.trust-docs a:hover img{border-color: var(--sand);}
+.trust-docs b{
+  display: block;
+  margin-top: 14px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.trust-docs span{
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(245,237,224,.72);
+}
+
+@media (max-width: 900px){
+  .trust-head{grid-template-columns: 1fr; gap: 18px; align-items: start;}
+  .trust-head p{max-width: none;}
+  .trust-docs{grid-template-columns: repeat(2, 1fr); gap: 24px 16px;}
+  .trust-docs li:last-child{grid-column: span 2;}
+  .trust-docs li:last-child img{aspect-ratio: 5/2;}
+}
 
 /* ───────────────────────── SECTION HEADER ───────────────────────── */
 .section{padding-block: clamp(80px, 9vw, 140px);}
