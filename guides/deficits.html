@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Иначе при переходе наружу уходит полный адрес страницы: сторонний
+     сервис узнаёт, что человек читал, скажем, про подготовку
+     к беременности. Заголовком это не задать — GitHub Pages свои
+     заголовки ставить не даёт. -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+
+<!-- ─────────────── Primary SEO ─────────────── -->
+<title>Самодиагностика дефицитов: симптомы, анализы и что с этим делать</title>
+<meta name="description" content="Разбор нутрициолога Алины Сингизовой: по каким признакам заметны дефициты белка, железа, витамина D, магния, цинка и йода, какие анализы это показывают и почему «в референсе» не значит «в порядке»." />
+<meta name="keywords" content="самодиагностика дефицитов, признаки дефицита железа, симптомы нехватки витамина д, дефицит магния симптомы, заеды в уголках рта причины, ферритин норма, какие анализы сдать на дефициты, дефицит белка признаки, дефицит йода тест" />
+<meta name="author" content="Алина Сингизова" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href="https://alinaecosin.ru/guides/deficits.html" />
+<meta name="theme-color" content="#1f4a2c" />
+
+<!-- ─────────────── Open Graph ─────────────── -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Ecosin · Алина Сингизова" />
+<meta property="og:title" content="Самодиагностика дефицитов — разбор нутрициолога" />
+<meta property="og:description" content="Четырнадцать дефицитов по симптомам, анализы к каждому и честная граница: где заканчивается самопроверка и начинается разбор." />
+<meta property="og:url" content="https://alinaecosin.ru/guides/deficits.html" />
+<meta property="og:image" content="https://alinaecosin.ru/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Самодиагностика дефицитов — разбор нутрициолога Алины Сингизовой" />
+<!-- ─────────────── Twitter Card ─────────────── -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Самодиагностика дефицитов — разбор нутрициолога" />
+<meta name="twitter:description" content="Четырнадцать дефицитов по симптомам, анализы к каждому и честная граница: где заканчивается самопроверка и начинается разбор." />
+<meta name="twitter:image" content="https://alinaecosin.ru/og-image.jpg" />
+
+<!-- ─────────────── Icons ─────────────── -->
+<!-- Настоящими файлами, а не строкой data:. Яндекс показывает иконку
+     рядом со ссылкой в выдаче, но data: не принимает: ему нужен SVG
+     либо растр не меньше 120×120. Файлы лежат в корне и переживают
+     пересборку — их не трогать. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="icon" href="/favicon-120.png" type="image/png" sizes="120x120" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* chrome.css (встроен) — общая обвязка: переменные, сброс, шапка, подвал.
+
+   Подключается первым, до стилей конкретной страницы. Правка меню или
+   подвала делается здесь один раз и расходится по всем страницам, которые
+   его запросили.
+
+   landing.css и shop.css пока держат свои копии этих правил: разбирать
+   вручную свёрстанную главную ради этого рискованнее, чем потерпеть
+   дублирование. Правите шапку здесь — проверьте и их. */
+
+:root{
+  --cream:        #f5ede0;
+  --cream-warm:   #ede2cf;
+  --paper:        #faf6ed;
+  --sand:         #d8c6a3;
+  --sand-deep:    #b9a682;
+  --forest:       #1f4a2c;
+  --forest-deep:  #0f2c1a;
+  --forest-soft:  #2f5d3b;
+  --olive:        #6f7e4a;
+  --olive-soft:   #93a072;
+  --terra:        #b86b4a;
+  --ink:          #2a2418;
+  --ink-soft:     #4d4538;
+  --rule:         rgba(42,36,24,0.18);
+
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --body:    "Onest", "Helvetica Neue", system-ui, sans-serif;
+
+  --max: 1280px;
+  --pad-x: clamp(20px, 4vw, 64px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;margin:0;text-wrap:balance;line-height:1.1;}
+p{margin:0;text-wrap:pretty;}
+
+.wrap{max-width: var(--max); margin: 0 auto; padding-inline: var(--pad-x);}
+.eyebrow{
+  font-family: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--forest);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor;display:inline-block;}
+
+/* ───────────────────────── NAV ───────────────────────── */
+.nav{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(250,246,237,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner{display:flex;align-items:center;gap:32px;padding-block:18px;}
+.brand{display:flex;align-items:baseline;gap:10px;}
+.brand-mark{
+  font-family:var(--display);font-size:26px;letter-spacing:.06em;color:var(--forest);
+  font-weight:500;
+}
+.brand-sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+.nav-links{display:flex;gap:30px;margin-left:auto;font-size:14px;color:var(--ink-soft);}
+.nav-links a{transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a[aria-current="page"]{color:var(--forest);}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px; font-weight:500;
+  transition: all .25s ease;
+}
+.btn-primary{background:var(--forest);color:var(--cream);}
+.btn-primary:hover{background:var(--forest-deep);}
+.btn:hover .arrow{transform: translateX(3px);}
+.arrow{transition:transform .25s ease;display:inline-block;}
+
+/* ───────────────────────── FOOTER ───────────────────────── */
+.foot{
+  background: var(--forest-deep);
+  color: var(--cream);
+  padding-block: 72px 36px;
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(245,237,224,0.16);
+}
+.foot h4{
+  font-family: var(--body);
+  font-weight:500;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--olive-soft);
+  margin-bottom: 18px;
+}
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;}
+.foot ul a{color: rgba(245,237,224,0.75);transition:color .2s;}
+.foot ul a:hover{color: var(--cream);}
+.foot-brand .brand-mark{color: var(--cream);font-size: 30px;}
+.foot-brand p{margin-top:16px;color: rgba(245,237,224,0.6);font-size:14px;max-width:36ch;line-height:1.55;}
+.foot-bottom{
+  padding-top: 28px;
+  display:flex;justify-content:space-between;gap:16px;
+  font-size:12px;color: rgba(245,237,224,0.5);letter-spacing:.05em;
+}
+.foot-legal{
+  padding-top: 14px;
+  font-size:12px;color: rgba(245,237,224,0.4);letter-spacing:.04em;line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .foot-grid{grid-template-columns: 1fr;}
+  .foot-bottom{flex-direction:column;}
+  .nav-links{display:none;}
+}
+
+/* На узком экране в шапке остаются логотип и кнопка, и вдвоём они не влезают:
+   «нутрициология» с разрядкой .24em съедает больше ста пикселей. Подпись
+   убираем, кнопку поджимаем. В landing.css и shop.css та же правка ещё нужна —
+   там шапка до сих пор вылезает за экран. */
+@media (max-width: 560px){
+  .nav-inner{gap:16px;}
+  .brand-sub{display:none;}
+  /* Вправо кнопку толкает margin-left:auto у .nav-links, а они на узком
+     экране скрыты — поэтому auto переезжает на саму кнопку. */
+  .nav .btn{margin-left:auto;padding:10px 16px;font-size:13px;}
+}
+
+/* article.css (встроен) — длинные читаемые материалы: гайды и статьи.
+   Подключается после chrome.css.
+
+   Отличие от doc.css: там юридический текст, который читают по необходимости
+   и по диагонали, здесь — текст, который читают подряд и с телефона. Поэтому
+   шире воздух, крупнее набор, и есть выноски, таблицы и вопрос-ответ. */
+
+/* ───────────────────────── ШАПКА МАТЕРИАЛА ───────────────────────── */
+.art-head{padding-block: 64px 0;}
+.art-head .wrap{max-width: 1000px;margin-inline:0;}
+.art-head h1{
+  font-size: clamp(36px, 6vw, 64px);
+  margin-top: 20px;
+  max-width: 17ch;
+  line-height: 1.02;
+}
+.art-head h1 em{font-style:italic;color:var(--forest);}
+.art-lede{
+  margin-top: 26px;
+  max-width: 60ch;
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.art-meta{
+  margin-top: 28px;padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap: 8px 26px;
+  font-size:13px;color:var(--ink-soft);letter-spacing:.03em;
+}
+.art-meta b{font-weight:500;color:var(--ink);}
+
+/* Короткая выжимка до того, как человек решит читать целиком. */
+.art-gist{
+  margin-top: 40px;
+  background: var(--cream-warm);
+  padding: 30px 32px;
+  max-width: 72ch;
+}
+.art-gist h2{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.22em;text-transform:uppercase;
+  color: var(--forest);font-weight:500;
+}
+.art-gist ul{margin: 18px 0 0;padding-left: 20px;display:flex;flex-direction:column;gap:10px;}
+.art-gist li{font-size:16px;line-height:1.6;color:var(--ink-soft);}
+.art-gist li b{color:var(--ink);font-weight:500;}
+
+/* Содержание. Нумерация рисуется счётчиком, руками цифры не проставлять. */
+.art-toc{
+  margin-top: 40px;max-width: 72ch;
+  counter-reset: toc;
+}
+.art-toc h2{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.22em;text-transform:uppercase;
+  color: var(--forest);font-weight:500;margin-bottom: 16px;
+}
+.art-toc ol{list-style:none;padding:0;margin:0;}
+.art-toc li{border-top:1px solid var(--rule);}
+.art-toc li:last-child{border-bottom:1px solid var(--rule);}
+.art-toc a{
+  display:flex;align-items:baseline;gap:14px;
+  padding: 11px 0;font-size:16px;color:var(--ink-soft);transition:color .2s;
+}
+.art-toc a:hover{color:var(--forest);}
+.art-toc a::before{
+  counter-increment: toc;content: counter(toc, decimal-leading-zero);
+  font-size:11px;letter-spacing:.1em;color:var(--sand-deep);min-width: 2em;
+}
+
+/* ───────────────────────── ТЕЛО МАТЕРИАЛА ───────────────────────── */
+.art-body{padding-block: 56px 96px;}
+.art-body .wrap{max-width: 1000px;margin-inline:0;}
+.art-body section{margin-top: 64px;max-width: 68ch;scroll-margin-top: 90px;}
+.art-body section:first-child{margin-top:0;}
+.art-body h2{
+  font-size: clamp(27px, 3.4vw, 36px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.art-body h2 .num{
+  font-family: var(--body);
+  font-size: 11px;letter-spacing:.2em;
+  color: var(--olive);
+  display:block;margin-bottom:12px;font-weight:500;text-transform:uppercase;
+}
+.art-body h3{font-size:21px;margin-top: 34px;}
+.art-body p{margin-top: 18px;font-size:17px;line-height:1.7;color:var(--ink-soft);}
+.art-body p strong{color:var(--ink);font-weight:500;}
+.art-body ul, .art-body ol{margin: 18px 0 0;padding-left: 24px;display:flex;flex-direction:column;gap:12px;}
+.art-body li{font-size:17px;line-height:1.7;color:var(--ink-soft);}
+.art-body li strong{color:var(--ink);font-weight:500;}
+.art-body a{color:var(--forest);text-decoration:underline;text-underline-offset:3px;}
+
+/* Выноска. Три настроения: обычная, предупреждение, важное. */
+.art-note{
+  margin-top: 26px;
+  border-left: 2px solid var(--olive);
+  padding: 2px 0 2px 22px;
+}
+.art-note--warn{border-left-color: var(--terra);}
+.art-note b{
+  display:block;font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color: var(--olive);margin-bottom: 10px;
+}
+.art-note--warn b{color: var(--terra);}
+.art-note p{margin-top: 0;}
+.art-note p + p{margin-top: 14px;}
+
+/* Реплика Алины от первого лица. */
+.art-quote{
+  margin-top: 34px;
+  font-family: var(--display);
+  font-size: clamp(23px, 3vw, 30px);
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 24ch;
+}
+.art-quote span{
+  display:block;margin-top: 14px;
+  font-family:var(--body);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+
+/* Две колонки: сухур и ифтар, «можно» и «лучше не». */
+.art-split{
+  margin-top: 30px;
+  display:grid;grid-template-columns: 1fr 1fr;gap: 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.art-split > div{padding: 26px 28px 28px 0;}
+.art-split > div + div{border-left:1px solid var(--rule);padding-left: 28px;}
+.art-split h4{
+  font-family: var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color: var(--forest);margin-bottom: 14px;
+}
+.art-split ul{margin:0;padding-left: 18px;gap: 9px;}
+.art-split li{font-size:15px;line-height:1.6;}
+
+/* Тарелка: доли в процентах. Ширина полосы задаётся в style="--part:50%". */
+.art-ratio{margin-top: 30px;display:flex;flex-direction:column;gap: 18px;}
+.art-ratio .row{border-top:1px solid var(--rule);padding-top: 14px;}
+.art-ratio .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.art-ratio .name{font-size:17px;color:var(--ink);}
+.art-ratio .part{font-size:13px;letter-spacing:.08em;color:var(--olive);white-space:nowrap;}
+.art-ratio .bar{margin-top: 10px;height: 3px;background: var(--cream-warm);}
+.art-ratio .bar i{display:block;height:100%;background: var(--olive);width: var(--part, 25%);}
+.art-ratio .hint{margin-top: 8px;font-size:14px;color:var(--ink-soft);line-height:1.55;}
+
+/* Таблица. На узком экране уезжает вбок внутри своего контейнера,
+   страницу целиком не тащит. */
+.art-table{margin-top: 26px;overflow-x:auto;}
+.art-table table{border-collapse:collapse;width:100%;min-width: 440px;}
+.art-table th, .art-table td{
+  text-align:left;vertical-align:top;
+  padding: 13px 16px 13px 0;
+  border-bottom:1px solid var(--rule);
+  font-size:15px;line-height:1.6;color:var(--ink-soft);
+}
+.art-table th{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--forest);
+  border-bottom:1px solid var(--ink);
+}
+.art-table td strong{color:var(--ink);font-weight:500;}
+
+/* Вопрос-ответ. Раскрывается нативным <details>, без единой строки скрипта. */
+.art-faq{margin-top: 26px;border-top:1px solid var(--rule);}
+.art-faq details{border-bottom:1px solid var(--rule);}
+.art-faq summary{
+  list-style:none;cursor:pointer;
+  padding: 18px 32px 18px 0;position:relative;
+  font-size:17px;color:var(--ink);transition:color .2s;
+}
+.art-faq summary::-webkit-details-marker{display:none;}
+.art-faq summary:hover{color:var(--forest);}
+.art-faq summary::after{
+  content:"+";position:absolute;right:6px;top:16px;
+  font-size:20px;color:var(--olive);transition:transform .2s;
+}
+.art-faq details[open] summary::after{content:"−";}
+.art-faq details p{margin: 0 0 20px;padding-right: 32px;font-size:16px;}
+
+/* Призыв в конце материала. */
+.art-cta{
+  margin-top: 72px;max-width: none;
+  background: var(--forest-deep);color: var(--cream);
+  padding: 48px 44px;
+}
+.art-cta h2{border:0;padding:0;font-size: clamp(27px, 3.6vw, 38px);max-width: 18ch;}
+.art-cta p{color: rgba(245,237,224,0.72);max-width: 54ch;}
+.art-cta .row{margin-top: 30px;display:flex;flex-wrap:wrap;gap: 14px;}
+.art-cta .btn-cream{background:var(--cream);color:var(--forest);}
+.art-cta .btn-cream:hover{background:var(--paper);}
+.art-cta .btn-line{border:1px solid rgba(245,237,224,0.4);color:var(--cream);}
+.art-cta .btn-line:hover{border-color:var(--cream);}
+
+/* ───────────────────────── ДЕНЬ МЕНЮ ─────────────────────────
+   Пара «сухур — ифтар» на один день. Состав виден сразу, рецепт
+   раскрывается по клику: иначе страница превращается в простыню,
+   по которой не пролистать до нужного дня. */
+.day{margin-top: 44px;border-top: 1px solid var(--ink);padding-top: 18px;}
+.day-num{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);
+}
+.day-cols{margin-top: 14px;display:grid;grid-template-columns:1fr 1fr;gap: 0;}
+.day-cols > div{padding: 18px 26px 22px 0;}
+.day-cols > div + div{border-left:1px solid var(--rule);padding-left: 26px;}
+.day h4{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--forest);margin-bottom: 12px;
+}
+.day-menu{margin:0;padding-left: 18px;display:flex;flex-direction:column;gap: 7px;}
+.day-menu li{font-size:16px;line-height:1.55;color:var(--ink);}
+.day details{margin-top: 16px;border-top:1px solid var(--rule);}
+.day summary{
+  list-style:none;cursor:pointer;padding: 11px 24px 11px 0;position:relative;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);transition:color .2s;
+}
+.day summary::-webkit-details-marker{display:none;}
+.day summary:hover{color:var(--forest);}
+.day summary::after{
+  content:"+";position:absolute;right:2px;top:8px;font-size:17px;color:var(--olive);
+}
+.day details[open] summary::after{content:"−";}
+.day details p{margin: 0 0 16px;font-size:15px;line-height:1.65;}
+
+@media (max-width: 760px){
+  .day-cols{grid-template-columns:1fr;}
+  .day-cols > div{padding: 16px 0;}
+  .day-cols > div + div{border-left:0;border-top:1px solid var(--rule);padding-left:0;}
+}
+
+/* ───────────────────────── ЛИД-МАГНИТ ─────────────────────────
+   Блок с формой посреди текста: слева что внутри, справа два поля.
+   Намеренно спокойный — рамка и хайрлайны, без теней и заливок,
+   чтобы он читался как часть материала, а не как баннер. */
+.magnet{
+  margin: 56px 0;max-width: none;
+  border: 1px solid var(--forest);
+  display:grid;grid-template-columns: 1.15fr 1fr;
+}
+.magnet-what{padding: 34px 36px;}
+.magnet-side{padding: 34px 36px;border-left:1px solid var(--rule);background: var(--cream-warm);}
+.magnet-tag{
+  font-family:var(--body);font-weight:500;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);
+}
+.magnet-what h2{
+  margin-top: 14px;border:0;padding:0;
+  font-size: clamp(24px, 3vw, 31px);max-width: 16ch;
+}
+.magnet-what p{margin-top: 14px;font-size:16px;line-height:1.65;color:var(--ink-soft);}
+.magnet-facts{
+  list-style:none;margin: 22px 0 0;padding:0;
+  display:flex;flex-direction:column;gap:0;
+}
+.magnet-facts li{
+  font-size:14px;color:var(--ink-soft);
+  padding: 9px 0;border-top:1px solid var(--rule);
+}
+.magnet-facts li:last-child{border-bottom:1px solid var(--rule);}
+
+.magnet-field{margin-bottom: 16px;}
+.magnet-field label{
+  display:block;margin-bottom: 7px;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+}
+.magnet-field input{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  background: var(--paper);
+  border:1px solid var(--rule);border-radius:0;
+  padding: 12px 14px;transition: border-color .2s;
+}
+.magnet-field input:focus{outline:none;border-color:var(--forest);}
+.magnet-field input::placeholder{color:var(--sand-deep);}
+
+/* Ловушка для ботов: убираем из потока, но не display:none —
+   часть ботов такие поля пропускает. */
+.magnet-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+
+.magnet-form button{width:100%;justify-content:center;margin-top: 4px;}
+.magnet-note{
+  display:block;margin-top: 14px;
+  font-size:12px;line-height:1.55;color:var(--ink-soft);
+}
+.magnet-note a{color:var(--forest);text-decoration:underline;text-underline-offset:2px;}
+
+/* Ссылка-кнопка внутри статьи: правило .art-body a (класс + тег) весит
+   больше, чем .btn-primary (один класс), и красило текст кнопки в тот же
+   зелёный, что и её фон. Двух классов хватает, чтобы перебить. */
+.magnet .btn{text-decoration:none;}
+.magnet .btn-primary{color:var(--cream);}
+.magnet .btn-primary:hover{color:var(--cream);}
+
+.magnet-done:focus{outline:none;}
+.magnet-done-title{
+  font-family:var(--display);font-size:24px;line-height:1.2;
+  color:var(--forest);margin-bottom: 20px;
+}
+.magnet-done .btn{width:100%;justify-content:center;}
+
+@media (max-width: 760px){
+  .magnet{grid-template-columns: 1fr;margin: 40px 0;}
+  .magnet-what{padding: 26px 22px;}
+  .magnet-side{padding: 26px 22px;border-left:0;border-top:1px solid var(--rule);}
+}
+
+/* Сертификаты на странице «Обо мне». */
+.certs{
+  margin-top: 26px; display:grid; grid-template-columns:repeat(2,1fr); gap: 18px;
+}
+.certs figure{margin:0;}
+.certs img{
+  width:100%; display:block; border:1px solid var(--rule);
+  /* Документы разной ориентации: альбомные сканы и портретный диплом.
+     Фиксированная высота с contain выравнивает сетку и ничего не режет.
+     height обязателен: в разметке у картинок есть атрибут height, и без
+     него он перебивает любой aspect-ratio. Фон белый, а не кремовый —
+     сканы документов сами белые и на кремовом сливаются. */
+  height: 240px; object-fit: contain; background: #fff; padding: 10px;
+}
+.certs figcaption{
+  margin-top: 9px; font-size:12px; letter-spacing:.04em; color:var(--ink-soft);
+}
+@media (max-width: 560px){ .certs{grid-template-columns:1fr;} }
+
+/* Соседние материалы. */
+.art-next{
+  margin-top: 56px;padding-top: 26px;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap: 10px 26px;font-size:14px;
+}
+.art-next a{color:var(--ink-soft);text-decoration:none;transition:color .2s;}
+.art-next a:hover{color:var(--forest);}
+.art-next span{color:var(--sand-deep);}
+
+@media (max-width: 760px){
+  .art-head{padding-block: 40px 0;}
+  .art-gist{padding: 24px 22px;}
+  .art-split{grid-template-columns: 1fr;}
+  .art-split > div{padding: 24px 0;}
+  .art-split > div + div{border-left:0;border-top:1px solid var(--rule);padding-left:0;}
+  .art-cta{padding: 36px 24px;}
+  .art-body{padding-block: 44px 72px;}
+  .art-body section{margin-top: 48px;}
+}
+
+/* nav-mobile.css (встроен) — меню на узком экране.
+
+   Подключается ПОСЛЕДНИМ на каждой странице, после landing.css, shop.css
+   или chrome.css. Так и задумано: во всех трёх есть правило
+   .nav-links{display:none} на ширине до 900px, и перебить его может только
+   файл, идущий следом.
+
+   До этого на телефоне меню не было вообще: ссылки скрывались, а кнопки
+   меню не существовало. Со смартфона разделы сайта были недостижимы —
+   только через подвал. */
+
+/* Кнопка-бургер. На десктопе её нет. */
+.nav-burger{
+  display: none;
+  width: 40px; height: 40px;
+  margin-left: 10px;
+  padding: 11px 9px;
+  flex-direction: column; justify-content: space-between;
+  background: none; border: 1px solid var(--rule); border-radius: 999px;
+  cursor: pointer; flex: none;
+}
+.nav-burger span{
+  display: block; height: 1.5px; width: 100%;
+  background: var(--forest); border-radius: 2px;
+  transition: transform .22s ease, opacity .18s ease;
+}
+/* Открытое состояние: три полоски складываются в крестик. */
+.nav-open .nav-burger span:nth-child(1){transform: translateY(6.5px) rotate(45deg);}
+.nav-open .nav-burger span:nth-child(2){opacity: 0;}
+.nav-open .nav-burger span:nth-child(3){transform: translateY(-6.5px) rotate(-45deg);}
+
+@media (max-width: 900px){
+  .nav-burger{display: flex;}
+
+  /* Панель выезжает под шапкой на всю ширину. */
+  .nav-links{
+    display: none;
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; gap: 0;
+    margin: 0; padding: 6px var(--pad-x) 14px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 14px 28px rgba(42,36,24,0.10);
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+  .nav-open .nav-links{display: flex;}
+
+  .nav-links a{
+    padding: 13px 2px;
+    font-size: 16px; color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    white-space: normal;
+  }
+  .nav-links a:last-child{border-bottom: 0;}
+  .nav-links a[aria-current="page"]{color: var(--forest);}
+
+  /* Кнопка записи прижимается вправо: margin-left:auto жил на .nav-links,
+     а они здесь выпали из потока. */
+  .nav .nav-inner > .btn{margin-left: auto;}
+}
+
+@media (max-width: 560px){
+  .nav-inner{gap: 10px;}
+  .brand-sub{display: none;}
+  .nav .nav-inner > .btn{padding: 10px 15px; font-size: 13px;}
+  .nav-burger{width: 38px; height: 38px; margin-left: 6px;}
+}
+
+/* Очень узкие экраны: кнопка записи мешает бургеру. Текст ужимаем,
+   стрелку убираем — смысл кнопки от этого не теряется. */
+@media (max-width: 380px){
+  .nav .nav-inner > .btn{padding: 9px 12px; font-size: 12px;}
+  .nav .nav-inner > .btn .arrow{display: none;}
+}
+</style>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112475745', 'ym');
+
+    ym(112475745, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112475745" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
+     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
+<script>
+(function () {
+  function goal(name) {
+    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
+  }
+  window.ecosinGoal = goal;
+
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    if (!el || typeof el.closest !== "function") return;
+    var a = el.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
+    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
+    else if (href.indexOf("tel:") === 0)   goal("phone_click");
+    else if (href.indexOf("shop.html") > -1) goal("shop_open");
+  }, true);
+
+  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
+  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
+  // страница и какой магнит реально приводят людей.
+  //
+  // Приёмник читает поля по одному через body.get(), лишние ключи молча
+  // игнорирует. Поэтому сайт может слать источник до того, как на той
+  // стороне появится место под него: ничего не сломается, данные начнут
+  // сохраняться, как только приёмник их прочитает.
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return q.get("utm_campaign") || q.get("utm_source") || "";
+    } catch (e) { return ""; }
+  }
+
+  window.ecosinSource = function (kind, id) {
+    return {
+      source_page: location.pathname,          // /ramadan/menu.html
+      source_kind: kind || "form",             // form | magnet
+      source_id: id || "",                     // lead_magnet_menu
+      source_title: (document.title || "").slice(0, 120),
+      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
+    };
+  };
+
+  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
+  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
+  // эту приписку можно убрать, структурные поля её заменят.
+  window.ecosinTopicSuffix = function () {
+    return location.pathname === "/" ? "" : " · " + location.pathname;
+  };
+})();
+</script>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav" aria-label="Основная навигация">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Ecosin — нутрициолог Алина Сингизова, на главную">
+      <span class="brand-mark">Ecosin</span>
+      <span class="brand-sub">нутрициология</span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#pains">Узнайте себя</a>
+      <a href="/#method">Метод</a>
+      <a href="/about.html">Обо мне</a>
+      <a href="/consultation.html">Услуги</a>
+      <a href="/screening.html">Тест</a>
+      <a href="/analizy.html">Анализы</a>
+      <a href="/guides/fasting.html">Гайды</a>
+      <a href="/shop.html">Магазин</a>
+      <a href="/#faq">Вопросы</a>
+    </div>
+    <a href="/#cta" class="btn btn-primary">Записаться <span class="arrow">→</span></a>
+    <!-- Кнопка меню. На десктопе скрыта, на узком экране это единственный
+         способ добраться до разделов: ссылки там в строку не помещаются. -->
+    <button type="button" class="nav-burger" data-nav-toggle
+            aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<script>
+(function () {
+  var btn = document.querySelector("[data-nav-toggle]");
+  var box = document.getElementById("nav-links");
+  var nav = document.querySelector(".nav");
+  if (!btn || !box || !nav) return;
+
+  function set(open) {
+    nav.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  }
+  function isOpen() { return nav.classList.contains("nav-open"); }
+
+  btn.addEventListener("click", function () { set(!isOpen()); });
+
+  // Переход по ссылке — меню закрывается. Особенно важно для якорей на
+  // той же странице: адрес меняется, а перезагрузки нет.
+  box.addEventListener("click", function (e) {
+    if (e.target.closest("a")) set(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) { set(false); btn.focus(); }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (isOpen() && !nav.contains(e.target)) set(false);
+  });
+
+  // Если экран растянули до десктопного, панель больше не нужна.
+  window.addEventListener("resize", function () {
+    if (isOpen() && window.innerWidth > 900) set(false);
+  });
+})();
+</script>
+
+<main id="content">
+
+<section class="art-head">
+  <div class="wrap">
+    <span class="eyebrow">Разбор нутрициолога</span>
+    <h1>Самодиагностика дефицитов: <em>что тело говорит вслух</em></h1>
+    <p class="art-lede">Дефицит редко начинается с анализа. Он начинается с трещинок в уголках рта, с ногтей в продольную полоску, с усталости, которую списывают на возраст и работу. Здесь собраны четырнадцать дефицитов: по каким признакам их видно, какой анализ их показывает и где заканчивается самопроверка.</p>
+    <div class="art-meta">
+      <span><b>Автор</b> Алина Сингизова, нутрициолог</span>
+      <span><b>Обновлено</b> 16 сентября 2026</span>
+      <span><b>Читать</b> около 12 минут</span>
+    </div>
+
+    <div class="art-gist">
+      <h2>Коротко</h2>
+      <ul>
+        <li><b>Три-пять симптомов из одного списка — повод посмотреть,</b> а не диагноз. Один симптом не значит ничего: заеды бывают и от сухого воздуха.</li>
+        <li><b>«В референсе» и «в порядке» — разные вещи.</b> Референс лаборатории описывает, как выглядит большинство сдававших, а не как выглядит человек с силами.</li>
+        <li><b>Магний и кальций в сыворотке крови дефицит не показывают.</b> Организм держит их уровень любой ценой, и он остаётся нормальным до последнего.</li>
+        <li><b>Симптомы дефицитов пересекаются между собой</b> и с болезнями, которые к питанию отношения не имеют. Поэтому список — это карта, а не приговор.</li>
+        <li><b>Смысл самопроверки в том, чтобы прийти с вопросом,</b> а не сдавать всё подряд и не назначать себе банки по совету из интернета.</li>
+      </ul>
+    </div>
+
+    <nav class="art-toc" aria-label="Содержание">
+      <h2>Что внутри</h2>
+      <ol>
+        <li><a href="#how">Как этим пользоваться</a></li>
+        <li><a href="#macro">Белки, жиры, углеводы</a></li>
+        <li><a href="#iron">Железо</a></li>
+        <li><a href="#d">Витамин D</a></li>
+        <li><a href="#vitamins">Витамины C, B9 и B12</a></li>
+        <li><a href="#minerals">Магний, кальций, цинк, селен, медь</a></li>
+        <li><a href="#iodine">Йод и домашний тест</a></li>
+        <li><a href="#body">Оценка массы тела</a></li>
+        <li><a href="#test">Тест на состояние: 30 вопросов</a></li>
+        <li><a href="#next">Что делать с результатом</a></li>
+        <li><a href="#faq">Частые вопросы</a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <section id="how">
+      <h2><span class="num">Глава 1</span>Как этим пользоваться</h2>
+      <p>Правило простое: <strong>три-пять признаков из одного списка — повод посмотреть этот дефицит анализом.</strong> Один признак сам по себе не значит почти ничего. Заеды в уголках рта бывают от сухого воздуха и привычки облизывать губы, ломкие ногти — от бытовой химии, усталость — от трёх недель по шесть часов сна.</p>
+      <p>Дальше начинается то, из-за чего самодиагностика ломается чаще всего. <strong>Симптомы дефицитов пересекаются.</strong> Выпадение волос стоит в списках железа, цинка, селена и белка. Плохое настроение — в списках железа, магния, D и B12. По одному симптому выбрать виновника невозможно, и именно поэтому здесь к каждому дефициту идёт анализ.</p>
+
+      <h3>Референс и коридор — не одно и то же</h3>
+      <p>В главах ниже встречается слово «ориентир». Это не норматив и не медицинский стандарт. Референс лаборатории — статистика: так выглядели значения у большинства людей, которые в эту лабораторию приходили. Среди них были и уставшие, и болеющие. <strong>Коридор, на который смотрит нутрициолог, уже, и лежит он внутри референса.</strong> Отсюда знакомая ситуация: анализы «чистые», а сил нет.</p>
+      <p>Разница между тем и другим разобрана подробно и с примерами на странице про <a href="/analizy.html">анализы</a>. Читать цифры отсюда как «норму» нельзя: трактует их специалист, вместе с вашими жалобами, питанием и историей.</p>
+
+      <div class="art-note art-note--warn">
+        <b>Чего этот разбор не делает</b>
+        <p>Он не ставит диагнозов и не заменяет врача. Слабость, выпадение волос, одышка и перепады настроения бывают признаками болезней — щитовидной железы, крови, сердца, — к которым питание отношения не имеет. Если жалобы выраженные или держатся долго, начинать нужно с врача, а не со списка добавок.</p>
+        <p>Отдельно: беременность и грудное вскармливание. Там и потребности другие, и цена ошибки выше. Самостоятельно ничего не подбирайте — про это есть <a href="/pregnancy.html">отдельная страница</a>.</p>
+      </div>
+    </section>
+
+    <section id="macro">
+      <h2><span class="num">Глава 2</span>Белки, жиры, углеводы</h2>
+      <p>Начинать всегда стоит отсюда. Витамины и минералы работают на фундаменте из макронутриентов, и если фундамента нет, добавки делают немного.</p>
+
+      <h3>Дефицит белка</h3>
+      <ul>
+        <li>Заеды — покраснение, трещины и шелушение в уголках рта.</li>
+        <li>Ломкие тусклые волосы, выпадение.</li>
+        <li>Сухость и шелушение кожи, медленное заживление ран.</li>
+        <li>Склонность к растяжкам и рубцам.</li>
+        <li>Отёки.</li>
+        <li>Снижение умственной активности, тяга к сладкому.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> общий белок, ориентир 75–85 г/л. Плюс копрограмма: если белок не усваивается, в кале находят непереваренные мышечные волокна.</p>
+
+      <h3>Дефицит жиров</h3>
+      <ul>
+        <li>Продольная вертикальная бугристость ногтей.</li>
+        <li>Сухая дряблая кожа, шелушащиеся локти, трещины на пятках.</li>
+        <li>Медленное заживление ран.</li>
+        <li>Подавленное состояние.</li>
+        <li>Частые простуды.</li>
+        <li>Фолликулярный кератоз — «гусиная кожа».</li>
+        <li>Боли в суставах, сухость слизистых носа и рта.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> липидный профиль целиком, а не один общий холестерин. Ориентиры: общий холестерин 4,5–6, ЛПНП 3–3,3, ЛПВП у верхней границы референса, триглицериды 0,8–0,9. И снова копрограмма: нерасщеплённые жиры в ней говорят о том, что жиры не усваиваются.</p>
+      <p class="quiet">Низкий холестерин у нас принято считать хорошей новостью. Это верно не всегда: из холестерина строятся половые гормоны, кортизол и витамин D, и слишком низкий уровень — не достижение.</p>
+
+      <h3>Дефицит углеводов</h3>
+      <ul>
+        <li>Общая слабость, головокружение, головная боль.</li>
+        <li>Голод, тошнота, обильная потливость.</li>
+        <li>Дрожь в руках, сонливость.</li>
+        <li>Потеря веса.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> копрограмма — при нарушенном усвоении углеводов в кале определяются зёрна крахмала. Но чаще дефицит углеводов виден не в анализе, а в дневнике питания: это состояние жёстких диет, а не редкая находка.</p>
+    </section>
+
+    <section id="iron">
+      <h2><span class="num">Глава 3</span>Железо</h2>
+      <p>Самый частый дефицит у женщин и самый недооценённый. Гемоглобин при этом может оставаться нормальным годами: сначала расходуются запасы, и только потом падает он.</p>
+      <ul>
+        <li>Покраснение и шелушение губ, заеды.</li>
+        <li>Продольная бугристость ногтей, ложбинка поперёк ногтя.</li>
+        <li>Бледность кожи, синяки под глазами.</li>
+        <li>Низкая выносливость, непереносимость нагрузки, одышка при ходьбе.</li>
+        <li>Головные боли и головокружения.</li>
+        <li>Повышенная тревожность, перепады настроения, приступы паники.</li>
+        <li>Сухие волосы и кожа.</li>
+        <li>Синдром беспокойных ног по ночам.</li>
+        <li>Болезненность во рту, отёкший язык.</li>
+        <li>Странные вкусовые желания — мел, глина, сырое тесто.</li>
+        <li>Изменение отношения к запахам: начинает нравиться запах ацетона, краски, бензина.</li>
+      </ul>
+      <p>Два последних пункта стоят особняком. Тяга грызть мел или нюхать краску — не причуда, а довольно специфический признак, и с ним стоит дойти до анализа, даже если больше ничего из списка нет.</p>
+      <p><strong>Что смотреть:</strong> ферритин — запас железа. Ориентир: нижняя граница примерно равна вашему весу в килограммах, верхняя — 100–150 мкг/л. Женщина весом 60 кг с ферритином 15 формально «в референсе» и при этом с пустыми запасами. Плюс сывороточное железо: референс 10–32,2 мкмоль/л, ориентир — середина.</p>
+      <p class="quiet">Ферритин растёт при воспалении, поэтому на фоне простуды или обострения он покажет картину лучше, чем есть. Сдавать имеет смысл вне острого периода и вместе с показателями воспаления.</p>
+      <p>Что именно сдавать при усталости и как это читать — на странице <a href="/analizy/energy.html">анализы при усталости</a>.</p>
+    </section>
+
+    <section id="d">
+      <h2><span class="num">Глава 4</span>Витамин D</h2>
+      <p>В наших широтах солнце работает примерно с мая по сентябрь, и то при открытых руках и ногах в середине дня. Всё остальное время запас только расходуется.</p>
+      <ul>
+        <li>Мышечная слабость, судороги.</li>
+        <li>Частые переломы и трещины костей.</li>
+        <li>Частые простуды.</li>
+        <li>Повышенная потливость.</li>
+        <li>Раздражительность, часто плохое настроение.</li>
+        <li>Медленное заживление ран.</li>
+        <li>Усталость и ощущение садящейся батарейки.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> витамин D, 25(OH)D.</p>
+      <div class="art-table">
+        <table>
+          <thead><tr><th>Значение, нг/мл</th><th>Что это значит</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ниже 20</strong></td><td>дефицит</td></tr>
+            <tr><td><strong>20–30</strong></td><td>недостаток</td></tr>
+            <tr><td><strong>от 30</strong></td><td>адекватный уровень</td></tr>
+            <tr><td><strong>30–60</strong></td><td>ориентир при коррекции</td></tr>
+            <tr><td><strong>от 150</strong></td><td>возможен токсический эффект</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Витамин D — единственный в этом разборе, который многим имеет смысл принимать системно. Но дозу подбирают <strong>по результату анализа, а не по совету из интернета</strong>: он жирорастворимый, накапливается, и передозировка — реальная история, а не страшилка.</p>
+    </section>
+
+    <section id="vitamins">
+      <h2><span class="num">Глава 5</span>Витамины C, B9 и B12</h2>
+
+      <h3>Витамин C</h3>
+      <ul>
+        <li>Синяки на теле от малейшего касания.</li>
+        <li>Усталость, подавленность.</li>
+        <li>Кровоточивость дёсен.</li>
+        <li>Боли в суставах и мышцах.</li>
+        <li>Отёки, дряблая кожа.</li>
+        <li>Частые ОРВИ.</li>
+        <li>Варикозное расширение вен.</li>
+        <li>Растяжки, не связанные с похудением.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> честный ответ — анализ здесь малоинформативен. Витамин C легко выводится, и концентрация в крови отражает скорее вчерашний ужин, чем запас. Референсы у разных лабораторий отличаются заметно, типичная возрастная разбивка выглядит так: 20–40 лет 1,05–17,95; 40–60 лет 0,86–19,54; старше 60 лет 1,22–23,00. Ориентироваться разумнее на симптомы и на то, сколько овощей и зелени реально в тарелке.</p>
+
+      <h3>Фолиевая кислота, B9</h3>
+      <ul>
+        <li>«Лакированный» воспалённый язык.</li>
+        <li>Пигментация на открытых солнцу участках.</li>
+        <li>Утомляемость, раздражительность, потеря аппетита — на ранней стадии.</li>
+        <li>У девушек — задержка полового развития, у женщин — ранний климакс.</li>
+        <li>У кормящих — подавленность, слабость, нехватка молока.</li>
+        <li>Вялость, проблемы с памятью и концентрацией.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> витамин B9. Референс 3,1–20 нг/л (7–40 нмоль/л), ориентир — от 16 нг/л и выше, от 25 нмоль/л и выше.</p>
+      <div class="art-note">
+        <b>Отдельно про беременность</b>
+        <p>Дефицит фолатов на ранних сроках связан с дефектами нервной трубки плода и другими пороками развития, а нервная трубка закрывается до того, как большинство женщин узнаёт о беременности. Поэтому фолаты — разговор <em>до</em> зачатия, а не после. Что смотреть на этапе подготовки — на странице <a href="/analizy/preconception.html">анализы перед беременностью</a>.</p>
+      </div>
+
+      <h3>Витамин B12</h3>
+      <ul>
+        <li>«Лакированный» воспалённый язык.</li>
+        <li>Пигментация на открытых участках кожи.</li>
+        <li>Бледная кожа с зеленоватым или голубоватым оттенком.</li>
+        <li>Нехватка энергии.</li>
+        <li>Жжение и онемение в ногах.</li>
+        <li>Проблемы с концентрацией, нарушение памяти.</li>
+        <li>Подавленное состояние.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> витамин B12. Референс 189–833 пг/мл, ориентир — от 600 и выше. Нижняя часть референса при таких жалобах — не повод успокаиваться.</p>
+      <p class="quiet">B12 есть только в животной пище. На вегетарианском и особенно веганском питании его дефицит — вопрос времени, и это тот случай, когда добавка не опция, а необходимость.</p>
+    </section>
+
+    <section id="minerals">
+      <h2><span class="num">Глава 6</span>Магний, кальций, цинк, селен, медь</h2>
+
+      <h3>Магний</h3>
+      <ul>
+        <li>Судороги, подёргивание мышц, лицевой тик.</li>
+        <li>Трудности с засыпанием, поверхностный сон.</li>
+        <li>Нерегулярное сердцебиение, высокое давление.</li>
+        <li>Подавленность, беспокойство, гиперактивность.</li>
+        <li>Звон в ушах, чувствительность к громким звукам.</li>
+        <li>Чувствительность глаз к свету, тяжёлая адаптация к смене освещения.</li>
+        <li>Головокружение, изнурённость.</li>
+        <li>Камни в почках, запоры, проблемы с глотанием.</li>
+        <li>Постоянное желание съесть что-то солёное или сладкое, тяга к шоколаду.</li>
+        <li>Пищевая аллергия.</li>
+      </ul>
+      <div class="art-note art-note--warn">
+        <b>Магний в сыворотке дефицит не покажет</b>
+        <p>Магний критичен для работы сердца и нервов, поэтому организм удерживает его концентрацию в крови стабильной, вытягивая из костей и мышц. При нормальном магнии в сыворотке возможен тотальный дефицит. Смотреть приходится на симптомы и на питание.</p>
+      </div>
+
+      <h3>Кальций</h3>
+      <ul>
+        <li>Ломкость волос и ногтей.</li>
+        <li>Хрупкость костей, склонность к переломам.</li>
+        <li>Слабость, сонливость, утомляемость.</li>
+        <li>Судороги в конечностях, онемение пальцев рук и ног.</li>
+        <li>Внезапная метеозависимость: головные боли, озноб, ломота в костях на перемену погоды.</li>
+        <li>Частые ОРВИ, тахикардия, повышение давления.</li>
+        <li>Преждевременная седина.</li>
+      </ul>
+      <p>С кальцием та же история, что с магнием: в сыворотке крови дефицит не виден. Есть нюанс в другую сторону — <strong>повышенный кальций в крови и в волосах может говорить не об избытке, а о потерях:</strong> организм вымывает его из костей. Это одна из ранних картин остеопороза, и с ней нужно к врачу.</p>
+
+      <h3>Цинк</h3>
+      <ul>
+        <li>Ухудшение состояния кожи, плохая регенерация, долго заживающие ранки.</li>
+        <li>Акне.</li>
+        <li>Нарушения сна.</li>
+        <li>Выпадение волос, ухудшение состояния ногтей.</li>
+        <li>Снижение аппетита.</li>
+        <li>Ухудшение ночного зрения.</li>
+        <li>Снижение настроения.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> цинк в крови. Референс 10,7–17,5 мкмоль/л (0,75–1,5 мкг/мл, 650–2910 мкг/л), ориентир — от середины и выше.</p>
+
+      <h3>Селен</h3>
+      <ul>
+        <li>Сильная усталость, выпадение волос.</li>
+        <li>Набор веса.</li>
+        <li>Частые мышечные спазмы.</li>
+        <li>Проблемы с фертильностью.</li>
+        <li>Сниженный иммунитет, склонность к воспалительным и бронхолёгочным заболеваниям.</li>
+        <li>Болезни кожи, волос и ногтей.</li>
+        <li>У детей — замедление роста.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> селен в крови. Референс 0,075–0,12 (до 0,2) мкг/мл, или 23–190 мкг/л, ориентир — от середины и выше.</p>
+
+      <h3>Медь</h3>
+      <ul>
+        <li>Слабость, бледность кожи.</li>
+        <li>Седина до сорока лет.</li>
+        <li>Нарушение пигментации кожи, витилиго.</li>
+        <li>Ранние морщины.</li>
+        <li>Растяжки, не связанные с похудением.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> медь в крови. Референс 10,7–17,5 мкмоль/л (575–1725 мкг/л, 0,8–1,7 мкг/мл), ориентир — от середины и выше.</p>
+      <p class="quiet">Цинк и медь конкурируют за усвоение. Длительный приём цинка в высоких дозах без контроля сажает медь. Это одна из причин, по которой минералы не подбирают поодиночке и на глаз.</p>
+    </section>
+
+    <section id="iodine">
+      <h2><span class="num">Глава 7</span>Йод</h2>
+      <ul>
+        <li>Слабость, утомляемость, снижение работоспособности.</li>
+        <li>Ухудшение памяти.</li>
+        <li>Набор веса, отёчность.</li>
+        <li>Зябкость, плохая переносимость холода.</li>
+        <li>Плохая переносимость физических нагрузок.</li>
+        <li>Сухость кожи, тусклые и ломкие волосы.</li>
+      </ul>
+      <p><strong>Что смотреть:</strong> йод в моче. Почками выводится 80–90% поступающего с пищей йода, поэтому его концентрация в моче отражает обеспеченность. Ориентир — 110–130 мкг/л.</p>
+      <div class="art-table">
+        <table>
+          <thead><tr><th>Медиана йода в моче, мкг/л</th><th>Выраженность дефицита</th></tr></thead>
+          <tbody>
+            <tr><td><strong>более 100</strong></td><td>дефицита нет</td></tr>
+            <tr><td><strong>50–99</strong></td><td>лёгкий дефицит</td></tr>
+            <tr><td><strong>20–49</strong></td><td>умеренный дефицит</td></tr>
+            <tr><td><strong>менее 20</strong></td><td>тяжёлый дефицит</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Про домашний тест с йодной сеткой</h3>
+      <p>Тест известен всем: нанести на ночь три полоски спиртового раствора йода — тонкую 1–2 мм, среднюю 3 мм и толстую 5–6 мм — и утром посмотреть, что впиталось. Считается, что исчезновение только тонкой линии говорит о достаточном уровне, исчезновение тонкой и средней — о нехватке, а чистая кожа — о выраженном дефиците.</p>
+      <p><strong>Скажу честно: этот тест не показывает уровень йода в организме.</strong> Скорость, с которой пятно бледнеет, зависит от температуры кожи, её толщины и влажности, от концентрации раствора и от того, тёрлись ли вы об одеяло. Взять его как повод сдать мочу на йод — можно. Считать по нему, что йода не хватает, и начинать принимать добавки — нельзя.</p>
+      <div class="art-note art-note--warn">
+        <b>Если всё-таки пробуете</b>
+        <p>Никогда не наносите йод на шею в проекции щитовидной железы, на область сердца и на слизистые.</p>
+        <p>И отдельно: при заболеваниях щитовидной железы йод в добавках без назначения врача опасен — при аутоиммунном тиреоидите он способен ухудшить течение болезни. Это тот минерал, который нельзя «попить на всякий случай».</p>
+      </div>
+    </section>
+
+    <section id="body">
+      <h2><span class="num">Глава 8</span>Оценка массы тела</h2>
+      <p>Прежде чем что-то менять в весе, полезно понять, с чем вы имеете дело. Два простых способа, и работают они в паре, а не поодиночке.</p>
+
+      <h3>Индекс массы тела</h3>
+      <p>ИМТ — это вес в килограммах, делённый на рост в метрах в квадрате. Женщина 64 кг при росте 1,68 м: 64 ÷ (1,68 × 1,68) = 22,7.</p>
+      <p>Ограничение у ИМТ серьёзное: <strong>он не различает мышцы и жир</strong> и ничего не знает о телосложении. Тренирующийся человек по нему легко оказывается «с избыточным весом», а человек без мышечной массы с лишним жиром — в идеальной норме.</p>
+
+      <h3>Обхват талии</h3>
+      <p>Показатель грубее, но честнее в главном — он про висцеральный жир, тот, что вокруг органов. Ориентир: <strong>до 80 см для женщин и до 92 см для мужчин.</strong> Измерять в самом узком месте, на выдохе, не втягивая живот.</p>
+      <p>Если ИМТ в норме, а талия за границей — это и есть повод разбираться, а не радоваться весам. Что при этом смотреть, разобрано на странице <a href="/analizy/weight.html">анализы при проблемах с весом</a>.</p>
+    </section>
+
+    <section id="test">
+      <h2><span class="num">Глава 9</span>Тест на состояние здоровья</h2>
+      <p>Тридцать вопросов. Отвечайте «да» или «нет» и считайте только «да».</p>
+
+      <h3>Силы и кровь</h3>
+      <ol>
+        <li>Ощущаете упадок сил, разбитость в течение дня?</li>
+        <li>Быстро устаёте, плохо переносите привычные нагрузки?</li>
+        <li>Снизилась работоспособность?</li>
+        <li>Стали невнимательны, рассеянны, трудно сосредоточиться?</li>
+        <li>Жалуетесь на головокружение и головную боль?</li>
+        <li>После небольшой нагрузки перехватывает дыхание, учащается сердцебиение?</li>
+        <li>Темнеет в глазах, появляются «чёрные мушки»?</li>
+        <li>Беспокоит онемение в руках и ногах?</li>
+        <li>Часто болеете простудными заболеваниями?</li>
+      </ol>
+
+      <h3>Кожа, волосы, ногти</h3>
+      <ol start="10">
+        <li>Кожа бледная и сухая, с сероватым или желтоватым оттенком?</li>
+        <li>Потрескалась кожа в уголках рта, на руках и ногах?</li>
+        <li>Волосы потускнели, стали ломкими, выпадают?</li>
+        <li>Ногти хрупкие, появились белые пятнышки или чёрточки?</li>
+        <li>Синяки возникают от малейшего контакта с поверхностями?</li>
+        <li>Есть акне — на лице, спине, груди?</li>
+        <li>Есть множественные растяжки?</li>
+        <li>Много родинок, папиллом, бородавок?</li>
+      </ol>
+
+      <h3>Вкус, запах, сон</h3>
+      <ol start="18">
+        <li>Изменились вкусовые пристрастия: хочется есть мел, глину, сухую крупу, сырые продукты?</li>
+        <li>Изменилось обоняние: нравится запах клея, лака, краски, бензина, выхлопных газов?</li>
+        <li>Есть тяга к шоколаду или какао?</li>
+        <li>Бывает непроизвольное желание двигать ногами в покое, перед засыпанием?</li>
+        <li>Просыпаетесь ночью?</li>
+        <li>Нужно много времени, чтобы заснуть?</li>
+        <li>Чувствуете сонливость по утрам?</li>
+        <li>Много нервничаете, страдаете бессонницей?</li>
+      </ol>
+
+      <h3>Пищеварение, гормоны, лекарства</h3>
+      <ol start="26">
+        <li>Бывают запоры?</li>
+        <li>Страдаете язвенной болезнью, гастритом, геморроем?</li>
+        <li>Есть симптомы ПМС: перепады настроения, тяга к сладкому, нервозность, болезненность в груди, плаксивость, усталость?</li>
+        <li>Принимаете оральные контрацептивы или метформин?</li>
+        <li>Редко бываете на свежем воздухе?</li>
+      </ol>
+
+      <h3>Как читать результат</h3>
+      <p>Шкалы здесь нет и быть не может — это не диагностический опросник, а способ увидеть картину целиком. Но ориентир такой:</p>
+      <ul>
+        <li><strong>До трёх «да»</strong> — ничего тревожного. Посмотрите, нет ли среди них специфических признаков из глав выше: тяги к мелу, запаха краски, беспокойных ног.</li>
+        <li><strong>Четыре-девять</strong> — есть с чем работать. Имеет смысл посмотреть базовые анализы, а не гадать.</li>
+        <li><strong>Десять и больше</strong> — набор такого размера уже не про один дефицит. Тут разумнее не собирать себе схему по интернету, а разобрать ситуацию со специалистом.</li>
+      </ul>
+      <p>Два пункта стоит прокомментировать отдельно. <strong>Оральные контрацептивы</strong> расходуют витамины группы B, магний, цинк и селен, <strong>метформин</strong> — витамин B12, и это не побочный эффект, а известная особенность приёма. <strong>ПМС</strong>, который принято терпеть, часто связан с магнием, B6 и работой печени; что смотреть — на странице <a href="/analizy/cycle.html">анализы при сбоях цикла</a>.</p>
+      <p>Более короткая и уже интерактивная версия проверки — <a href="/screening.html">опросник на сайте</a>: восемнадцать вопросов, результат сразу на экране.</p>
+    </section>
+
+    <section id="next">
+      <h2><span class="num">Глава 10</span>Что делать с результатом</h2>
+      <p>Самое бесполезное, что можно сделать с этим разбором, — узнать себя в трёх главах, расстроиться и закрыть вкладку. Поэтому короткий план.</p>
+      <ol>
+        <li><strong>Выпишите дефициты, которые нашли у себя</strong> — те, где набралось три-пять признаков. Рядом отметьте, какие анализы к ним относятся.</li>
+        <li><strong>Посчитайте ИМТ и измерьте талию.</strong> Запишите обе цифры: через три месяца они пригодятся для сравнения.</li>
+        <li><strong>Отметьте, на сколько вопросов теста ответили «да»</strong> и какие именно это вопросы.</li>
+        <li><strong>Не назначайте себе добавки по этому списку.</strong> Часть минералов отсюда конкурирует друг с другом, часть не видна в анализах вовсе, а йод при проблемах со щитовидной железой прямо опасен.</li>
+        <li><strong>Сдайте то, что действительно относится к вашей картине.</strong> Наборы под конкретные жалобы — усталость, ЖКТ, цикл, вес, отёки, подготовка к беременности — собраны на странице <a href="/analizy.html">про анализы</a>.</li>
+      </ol>
+      <p>С этими тремя записями разговор со специалистом начинается не с нуля — и это, пожалуй, главная польза самопроверки.</p>
+    </section>
+
+    <section id="faq">
+      <h2><span class="num">Глава 11</span>Частые вопросы</h2>
+      <div class="art-faq">
+        <details>
+          <summary>У меня совпало сразу по пяти дефицитам. Это нормально?</summary>
+          <p>Обычное дело, и чаще всего это не пять разных дефицитов. Симптомы сильно пересекаются: выпадение волос стоит в списках железа, цинка, селена и белка одновременно. Плюс за общей картиной может стоять одна причина — например, кишечник, который плохо усваивает всё сразу. Поэтому набор из многих совпадений — повод не покупать пять банок, а разобраться, откуда это растёт.</p>
+        </details>
+        <details>
+          <summary>Анализы в норме, а самочувствие плохое. Как так?</summary>
+          <p>Референс лаборатории — это статистика по людям, которые сдавали анализ, а не описание хорошего самочувствия. Среди них были и уставшие. Ферритин 15 при весе 60 кг формально в референсе и при этом означает пустые запасы железа. Плюс магний и кальций в сыворотке крови дефицит не показывают в принципе: организм держит их уровень стабильным до последнего.</p>
+        </details>
+        <details>
+          <summary>Можно начать принимать витамины, не сдавая анализы?</summary>
+          <p>Витамин D и железо — точно нет: оба накапливаются, у обоих есть передозировка с реальными последствиями. Йод при аутоиммунном тиреоидите способен ухудшить течение болезни. Относительно безопасно начать с базы, которая нужна почти всем независимо от анализов: достаточно белка, овощи и зелень каждый день, сон и вода. Этого хватает, чтобы часть симптомов ушла ещё до первой пробирки.</p>
+        </details>
+        <details>
+          <summary>Работает ли домашний тест с йодной сеткой?</summary>
+          <p>Как измерение — нет. Скорость исчезновения полосок зависит от температуры и влажности кожи, её толщины, концентрации раствора и трения об одежду, а не от запасов йода. Считать по нему уровень нельзя. Реальный показатель — йод в моче: почками выводится 80–90% поступающего с пищей йода.</p>
+        </details>
+        <details>
+          <summary>Я беременна или кормлю. Можно пользоваться этим разбором?</summary>
+          <p>Читать — да, подбирать себе что-то по нему — нет. Во время беременности и лактации потребности другие, часть ориентиров из этого текста неприменима, а цена ошибки выше. Дефицит фолатов, железа и D в этот период разбирают персонально и вместе с наблюдающим врачом.</p>
+        </details>
+        <details>
+          <summary>Как часто пересдавать?</summary>
+          <p>Если дефицит нашли и корректируете — обычно через три месяца: примерно столько нужно, чтобы изменения стали видны в цифрах. Если всё в порядке и жалоб нет — раз в год достаточно. Пересдавать через две недели, чтобы посмотреть, пошло ли дело, смысла нет: вы увидите колебание, а не результат.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="art-cta">
+      <h2>Нашли себя сразу в нескольких главах?</h2>
+      <p>Значит, дело, скорее всего, не в отдельной банке, а в том, что за этим стоит. Разберём вашу картину целиком: жалобы, питание, анализы — и соберём план, который вы сможете выполнять. Первый разговор бесплатный.</p>
+      <div class="row">
+        <a href="/#cta" class="btn btn-cream">Записаться на разговор <span class="arrow">→</span></a>
+        <a href="/analizy.html" class="btn btn-line">Посмотреть, что сдать</a>
+      </div>
+    </div>
+
+    <div class="art-next">
+      <a href="/screening.html">Пройти опросник</a>
+      <span>·</span>
+      <a href="/guides/immunity.html">Как поддержать иммунитет</a>
+      <span>·</span>
+      <a href="/analizy.html">Какие анализы сдать</a>
+      <span>·</span>
+      <a href="/">На главную</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" aria-label="Ecosin — на главную"><span class="brand-mark">Ecosin</span></a>
+        <p>Авторская практика нутрициолога Алины Сингизовой. Природа и наука в одном подходе. С уважением к халяль.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="/#pains">Узнайте себя</a></li>
+          <li><a href="/#method">Метод Ecosin</a></li>
+          <li><a href="/about.html">Обо мне</a></li>
+          <li><a href="/consultation.html">Разовая консультация</a></li>
+          <li><a href="/health.html">Ведение здоровья</a></li>
+          <li><a href="/pregnancy.html">Ведение беременности</a></li>
+          <li><a href="/shop.html">Магазин</a></li>
+          <li><a href="/#faq">Вопросы</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Читать</h4>
+        <ul>
+          <li><a href="/screening.html">Тест: проверить себя</a></li>
+          <li><a href="/analizy.html">Какие анализы сдать</a></li>
+          <li><a href="/ramadan.html">Питание в Рамадан</a></li>
+          <li><a href="/ramadan/menu.html">Меню на 14 дней</a></li>
+          <li><a href="/guides/fasting.html">Интервальное голодание</a></li>
+          <li><a href="/guides/detox.html">Детокс-питание</a></li>
+          <li><a href="/guides/immunity.html">Поддержка иммунитета</a></li>
+          <li><a href="/guides/deficits.html">Самодиагностика дефицитов</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Telegram @alina_ecosin</a></li>
+          <li><a href="https://t.me/info_ecosin_rb" target="_blank" rel="noopener">Канал t.me/info_ecosin_rb</a></li>
+          <li><a href="https://wa.me/79373614477" target="_blank" rel="noopener">WhatsApp +7 937 361 44 77</a></li>
+          <li><a href="tel:+79373614477">Телефон +7 937 361 44 77</a></li>
+          <li><a href="https://instagram.com/alina_ecosin" target="_blank" rel="noopener nofollow">Instagram* @alina_ecosin</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <ul>
+          <li><a href="/legal/privacy.html">Согласие на обработку данных</a></li>
+          <li><a href="/legal/offer.html">Публичная оферта</a></li>
+          <li><a href="/legal/disclaimer.html">Дисклеймер</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Специалистам</h4>
+        <ul>
+          <li><a href="/kollegam.html">Коллегам-нутрициологам</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024–2026 Ecosin · Алина Сингизова</span>
+      <span>Не является заменой медицинской помощи. Уфа · онлайн</span>
+    </div>
+    <div class="foot-legal">
+      <span>Самозанятый (плательщик налога на профессиональный доход) Сингизова Алина Азатовна · ИНН 026703299726</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Разметка страницы. Вопросы и ответы обязаны дословно совпадать
+     с тем, что видно на странице. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://alinaecosin.ru/guides/deficits.html#article",
+      "headline": "Самодиагностика дефицитов: симптомы, анализы и что с этим делать",
+      "description": "По каким признакам заметны дефициты белка, железа, витамина D, магния, цинка и йода, какие анализы это показывают и почему «в референсе» не значит «в порядке».",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-09-16",
+      "dateModified": "2026-09-16",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://alinaecosin.ru/guides/deficits.html"
+      },
+      "image": "https://alinaecosin.ru/og-image.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Алина Сингизова",
+        "jobTitle": "Нутрициолог",
+        "url": "https://alinaecosin.ru/",
+        "sameAs": [
+          "https://t.me/alina_ecosin"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ecosin",
+        "url": "https://alinaecosin.ru/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://alinaecosin.ru/guides/deficits.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "У меня совпало сразу по пяти дефицитам. Это нормально?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Обычное дело, и чаще всего это не пять разных дефицитов. Симптомы сильно пересекаются: выпадение волос стоит в списках железа, цинка, селена и белка одновременно. Плюс за общей картиной может стоять одна причина — например, кишечник, который плохо усваивает всё сразу. Поэтому набор из многих совпадений — повод не покупать пять банок, а разобраться, откуда это растёт."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Анализы в норме, а самочувствие плохое. Как так?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Референс лаборатории — это статистика по людям, которые сдавали анализ, а не описание хорошего самочувствия. Среди них были и уставшие. Ферритин 15 при весе 60 кг формально в референсе и при этом означает пустые запасы железа. Плюс магний и кальций в сыворотке крови дефицит не показывают в принципе: организм держит их уровень стабильным до последнего."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно начать принимать витамины, не сдавая анализы?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Витамин D и железо — точно нет: оба накапливаются, у обоих есть передозировка с реальными последствиями. Йод при аутоиммунном тиреоидите способен ухудшить течение болезни. Относительно безопасно начать с базы, которая нужна почти всем независимо от анализов: достаточно белка, овощи и зелень каждый день, сон и вода. Этого хватает, чтобы часть симптомов ушла ещё до первой пробирки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Работает ли домашний тест с йодной сеткой?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Как измерение — нет. Скорость исчезновения полосок зависит от температуры и влажности кожи, её толщины, концентрации раствора и трения об одежду, а не от запасов йода. Считать по нему уровень нельзя. Реальный показатель — йод в моче: почками выводится 80–90% поступающего с пищей йода."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Я беременна или кормлю. Можно пользоваться этим разбором?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Читать — да, подбирать себе что-то по нему — нет. Во время беременности и лактации потребности другие, часть ориентиров из этого текста неприменима, а цена ошибки выше. Дефицит фолатов, железа и D в этот период разбирают персонально и вместе с наблюдающим врачом."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как часто пересдавать?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Если дефицит нашли и корректируете — обычно через три месяца: примерно столько нужно, чтобы изменения стали видны в цифрах. Если всё в порядке и жалоб нет — раз в год достаточно. Пересдавать через две недели, чтобы посмотреть, пошло ли дело, смысла нет: вы увидите колебание, а не результат."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://alinaecosin.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Самодиагностика дефицитов",
+          "item": "https://alinaecosin.ru/guides/deficits.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
