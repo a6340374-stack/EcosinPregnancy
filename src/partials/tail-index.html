@@ -242,7 +242,10 @@
       return;
     }
 
+    // Надпись на самой кнопке: строку под ней человек не читает.
+    var btnWas = btn.innerHTML;
     btn.disabled = true;
+    btn.innerHTML = "Отправляю…";
     status.textContent = "Отправляю…";
 
     fetch(LEAD_ENDPOINT, {
@@ -254,16 +257,21 @@
       .then(function (res) {
         if (res && res.ok) {
           form.reset();
+          // Кнопку оставляем выключенной: форма пуста, повторно слать
+          // нечего, а надпись подтверждает, что всё случилось.
+          btn.innerHTML = "Отправлено";
           if (window.ecosinGoal) window.ecosinGoal("lead_form");
           status.textContent = "\u2705 Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
         } else {
           btn.disabled = false;
+          btn.innerHTML = btnWas;
           offerMessengers(d);
           if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
         }
       })
       .catch(function () {
         btn.disabled = false;
+        btn.innerHTML = btnWas;
         offerMessengers(d);
         if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
       });

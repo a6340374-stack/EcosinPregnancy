@@ -143,6 +143,20 @@ p{margin:0;text-wrap:pretty;}
 .btn-primary{background:var(--forest);color:var(--cream);}
 .btn-primary:hover{background:var(--forest-deep);}
 .btn:hover .arrow{transform: translateX(3px);}
+/* ── Отклик кнопки ────────────────────────────────────────────────────────
+   Нажатие обязано быть видно. До 22.09.2026 кнопка формы выглядела
+   нетронутой всё время отправки: disabled выставлялся, но стиля под него
+   не было, а «Отправляю…» уходило в мелкую строку под кнопкой, которую
+   никто не читает. Человек жал второй и третий раз. */
+.btn:active{transform: translateY(1px);}
+.btn:disabled,
+.btn[disabled]{opacity:.6; cursor: progress; transform:none;}
+.btn:disabled .arrow,
+.btn[disabled] .arrow{opacity:.5;}
+/* Наведение на отключённую кнопку не должно её «оживлять» — иначе она
+   выглядит рабочей ровно в тот момент, когда не работает. */
+.btn-primary:disabled:hover,
+.btn-primary[disabled]:hover{background:var(--forest);}
 .arrow{transition:transform .25s ease;display:inline-block;}
 
 /* ───────────────────────── FOOTER ───────────────────────── */
@@ -1270,9 +1284,20 @@ p{margin:0;text-wrap:pretty;}
         status.textContent = "Заполните имя и контакт — без них я не смогу ответить.";
         return;
       }
-      if (data.hp) return; // бот, молча ничего не делаем
+      // Ловушка сработала. Обычно это бот, и заявку мы не шлём. Но иногда
+      // это автозаполнение браузера, подставившее живому человеку название
+      // организации, — и тогда «молча ничего не делать» означает, что он
+      // остался у неподвижной кнопки и без файла. Файл отдаём всегда.
+      if (data.hp) {
+        give("offline");
+        return;
+      }
 
+      // Надпись меняем НА САМОЙ КНОПКЕ, а не только в строке под ней:
+      // туда человек не смотрит, он смотрит туда, куда нажал.
+      var btnWas = btn.innerHTML;
       btn.disabled = true;
+      btn.innerHTML = "Отправляю…";
       status.textContent = "Отправляю…";
 
       fetch(LEAD_ENDPOINT, {
@@ -1294,6 +1319,8 @@ p{margin:0;text-wrap:pretty;}
           }
         })
         .catch(function () {
+          btn.disabled = false;
+          btn.innerHTML = btnWas;
           if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
           give("offline");
         });

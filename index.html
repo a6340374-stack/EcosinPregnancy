@@ -154,6 +154,23 @@ p{margin:0;text-wrap:pretty;}
 .btn-primary:hover{background:var(--forest-deep);}
 .btn-ghost{border:1px solid var(--forest);color:var(--forest);}
 .btn-ghost:hover{background:var(--forest);color:var(--cream);}
+/* ── Отклик кнопки ────────────────────────────────────────────────────────
+   Нажатие обязано быть видно. До 22.09.2026 кнопка формы выглядела
+   нетронутой всё время отправки: disabled выставлялся, но стиля под него
+   не было, а «Отправляю…» уходило в мелкую строку под кнопкой, которую
+   никто не читает. Человек жал второй и третий раз. */
+.btn:active{transform: translateY(1px);}
+.btn:disabled,
+.btn[disabled]{opacity:.6; cursor: progress; transform:none;}
+.btn:disabled .arrow,
+.btn[disabled] .arrow{opacity:.5;}
+/* Наведение на отключённую кнопку не должно её «оживлять» — иначе она
+   выглядит рабочей ровно в тот момент, когда не работает. */
+.btn-primary:disabled:hover,
+.btn-primary[disabled]:hover{background:var(--forest);}
+/* Прозрачные кнопки главной не должны заливаться зелёным, когда выключены. */
+.btn-ghost:disabled:hover,
+.btn-ghost[disabled]:hover{background:transparent;color:var(--forest);}
 .btn-cream{background:var(--cream);color:var(--forest);}
 .btn-cream:hover{background:var(--paper);}
 
@@ -1875,7 +1892,10 @@ p{margin:0;text-wrap:pretty;}
       return;
     }
 
+    // Надпись на самой кнопке: строку под ней человек не читает.
+    var btnWas = btn.innerHTML;
     btn.disabled = true;
+    btn.innerHTML = "Отправляю…";
     status.textContent = "Отправляю…";
 
     fetch(LEAD_ENDPOINT, {
@@ -1887,16 +1907,21 @@ p{margin:0;text-wrap:pretty;}
       .then(function (res) {
         if (res && res.ok) {
           form.reset();
+          // Кнопку оставляем выключенной: форма пуста, повторно слать
+          // нечего, а надпись подтверждает, что всё случилось.
+          btn.innerHTML = "Отправлено";
           if (window.ecosinGoal) window.ecosinGoal("lead_form");
           status.textContent = "\u2705 Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
         } else {
           btn.disabled = false;
+          btn.innerHTML = btnWas;
           offerMessengers(d);
           if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
         }
       })
       .catch(function () {
         btn.disabled = false;
+        btn.innerHTML = btnWas;
         offerMessengers(d);
         if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
       });
