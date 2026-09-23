@@ -991,10 +991,15 @@ p{margin:0;text-wrap:pretty;}
                class="ym-disable-keys ym-hide-content" />
       </div>
 
-      <!-- Поле-ловушка для спам-ботов. Людям не показываем. -->
+      <!-- Ловушка для спам-ботов. Людям не показываем.
+           ИМЯ ПОЛЯ НЕЙТРАЛЬНОЕ НАМЕРЕННО. Когда оно называлось «company»
+           с подписью «Компания», автозаполнение Яндекс.Браузера вписывало
+           туда название организации ЖИВОМУ человеку — и заявка не
+           отправлялась вовсе (23.09.2026). Бота имя поля не смущает: он
+           заполняет всё подряд. -->
       <div class="magnet-hp" aria-hidden="true">
-        <label for="guide-company">Компания</label>
-        <input id="guide-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        <label for="guide-note2">Не заполняйте это поле</label>
+        <input id="guide-note2" name="note2" type="text" tabindex="-1" autocomplete="off" />
       </div>
 
       <button type="submit" class="btn btn-primary" data-magnet-submit>Скачать методичку <span class="arrow">→</span></button>
@@ -1299,6 +1304,11 @@ p{margin:0;text-wrap:pretty;}
         note.innerHTML = "Заявка до меня не дошла: что-то с сервером. " +
           'Если хотите разбор — напишите в <a href="' + TG_LINK +
           '" target="_blank" rel="noopener">Telegram</a>, отвечу лично.';
+      } else if (reason === "nocontact") {
+        title.textContent = "Файл ваш — забирайте.";
+        note.innerHTML = "Ваш контакт я могла не получить. " +
+          'Если хотите разбор — напишите в <a href="' + TG_LINK +
+          '" target="_blank" rel="noopener">Telegram</a>, отвечу лично.';
       }
       form.hidden = true;
       done.hidden = false;
@@ -1315,7 +1325,7 @@ p{margin:0;text-wrap:pretty;}
         // Приписка со страницей — чтобы источник был виден в карточке
         // заявки уже сейчас, пока приёмник не читает source_*.
         topic:   topic + (window.ecosinTopicSuffix ? window.ecosinTopicSuffix() : ""),
-        hp:      val("company")
+        hp:      val("note2")
       };
       if (window.ecosinSource) {
         var s = window.ecosinSource("magnet", goal);
@@ -1326,12 +1336,13 @@ p{margin:0;text-wrap:pretty;}
         status.textContent = "Заполните имя и контакт — без них я не смогу ответить.";
         return;
       }
-      // Ловушка сработала. Обычно это бот, и заявку мы не шлём. Но иногда
-      // это автозаполнение браузера, подставившее живому человеку название
-      // организации, — и тогда «молча ничего не делать» означает, что он
-      // остался у неподвижной кнопки и без файла. Файл отдаём всегда.
+      // Ловушка сработала — почти наверняка бот, заявку не шлём. Файл
+      // всё равно отдаём: если это редкий случай автозаполнения у живого
+      // человека, он хотя бы получит материал и увидит, как со мной
+      // связаться. Раньше здесь говорилось «что-то с сервером» — неправда,
+      // из-за которой поломку искали в сети, а не в форме.
       if (data.hp) {
-        give("offline");
+        give("nocontact");
         return;
       }
 

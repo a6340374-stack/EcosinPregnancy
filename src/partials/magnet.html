@@ -29,10 +29,15 @@
                class="ym-disable-keys ym-hide-content" />
       </div>
 
-      <!-- Поле-ловушка для спам-ботов. Людям не показываем. -->
+      <!-- Ловушка для спам-ботов. Людям не показываем.
+           ИМЯ ПОЛЯ НЕЙТРАЛЬНОЕ НАМЕРЕННО. Когда оно называлось «company»
+           с подписью «Компания», автозаполнение Яндекс.Браузера вписывало
+           туда название организации ЖИВОМУ человеку — и заявка не
+           отправлялась вовсе (23.09.2026). Бота имя поля не смущает: он
+           заполняет всё подряд. -->
       <div class="magnet-hp" aria-hidden="true">
-        <label for="{{ id }}-company">Компания</label>
-        <input id="{{ id }}-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        <label for="{{ id }}-note2">Не заполняйте это поле</label>
+        <input id="{{ id }}-note2" name="note2" type="text" tabindex="-1" autocomplete="off" />
       </div>
 
       <button type="submit" class="btn btn-primary" data-magnet-submit>{{ button }} <span class="arrow">→</span></button>
