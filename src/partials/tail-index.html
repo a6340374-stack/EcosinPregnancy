@@ -174,7 +174,15 @@
   // Приёмник заявок на стороне сервера. Секретов в браузере нет: токен бота
   // живёт в .env «Диспетчерской», а не в этом файле.
   // Пока адрес пуст — форма доводит человека до мессенджера с готовым текстом.
-  var LEAD_ENDPOINT = "https://alinaecosin.store/shop-api/site-lead";
+  // Приёмник на ПОДДОМЕНЕ САЙТА. Для браузера это «свой» адрес, и защита
+  // вроде Яндекс.Протекта его не режет — в отличие от чужого домена, на
+  // котором заявки терялись молча (23.09.2026).
+  var LEAD_ENDPOINT = "https://api.alinaecosin.ru/shop-api/site-lead";
+  // Запасной путь — прежний адрес. Нужен, если поддомен вдруг недоступен:
+  // DNS у оператора связи, просроченный сертификат, что угодно. Пробуем его
+  // ТОЛЬКО когда основной не ответил по сети. Если сервер ответил «нет» —
+  // это ответ, а не сбой, и повторять нечего.
+  var LEAD_FALLBACK = "https://alinaecosin.store/shop-api/site-lead";
   var TG_LINK  = "https://t.me/alina_ecosin";
   var WA_PHONE = "79373614477";
 
@@ -248,12 +256,16 @@
     btn.innerHTML = "Отправляю…";
     status.textContent = "Отправляю…";
 
-    fetch(LEAD_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(d)
-    })
-      .then(function (r) { return r.json(); })
+    function send(url) {
+      return fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(d)
+      }).then(function (r) { return r.json(); });
+    }
+
+    send(LEAD_ENDPOINT)
+      .catch(function () { return send(LEAD_FALLBACK); })
       .then(function (res) {
         if (res && res.ok) {
           form.reset();

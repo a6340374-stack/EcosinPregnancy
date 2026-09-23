@@ -33,7 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build
 
-API = "https://alinaecosin.store"
+API = "https://api.alinaecosin.ru"
 PRODUCTS_URL = f"{API}/shop-api/products"
 SITE = "https://alinaecosin.ru"
 SHOP_URL = f"{SITE}/shop.html"
