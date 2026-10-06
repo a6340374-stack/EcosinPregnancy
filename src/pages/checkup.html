@@ -9,7 +9,7 @@ og_description: 595 вопросов по 22 системам организма
 og_image_alt: Анкета перед консультацией — нутрициолог Алина Сингизова
 robots: noindex, nofollow
 sitemap: no
-css: chrome.css, article.css, checkup.css, nav-mobile.css
+css: chrome.css, article.css, checkup.css, checkup-report.css, nav-mobile.css
 tail: partials/tail-checkup.html
 updated: 2026-09-14
 ---
@@ -23,7 +23,7 @@ updated: 2026-09-14
     <div class="art-meta">
       <span><b>595 вопросов</b> в 22 разделах</span>
       <span><b>Около часа</b>, можно в несколько заходов</span>
-      <span><b>Ответы</b> остаются в вашем браузере</span>
+      <span><b>Ответы</b> отправляются только по вашей кнопке</span>
     </div>
 
     <div class="art-gist">
@@ -31,7 +31,7 @@ updated: 2026-09-14
       <ul>
         <li><b>Это не диагностика.</b> Анкета не определяет заболевания и не заменяет врача. Она собирает в одну картину то, что вы и так о себе знаете, и показывает, где сигналов больше всего.</li>
         <li><b>Отвечайте про последние три месяца,</b> а не про разовый плохой день и не про то, что было когда-то давно.</li>
-        <li><b>Ничего никуда не отправляется.</b> Подсчёт идёт прямо в браузере, ответы не уходят ни мне, ни на сервер. В конце вы сами решите, присылать результат или нет.</li>
+        <li><b>Вы решаете, отправлять ли результат.</b> Подсчёт идёт прямо в браузере. После заполнения можно одним нажатием отправить отчёт мне в Telegram или сохранить файл себе.</li>
         <li><b>Не обязательно за один раз.</b> Прогресс сохраняется — можно закрыть вкладку, вернуться завтра и продолжить с того же места.</li>
         <li><b>Отвечайте честно.</b> Приукрасить можно, но тогда и разбор будет про кого-то другого.</li>
       </ul>
@@ -72,6 +72,12 @@ updated: 2026-09-14
             <label class="chk-field">
               <span>Дата рождения <i>— по желанию</i></span>
               <input type="date" id="chk-born" class="ym-disable-keys ym-hide-content" />
+            </label>
+
+            <label class="chk-field">
+              <span>Telegram или телефон <i>— для отправки результата</i></span>
+              <input type="text" id="chk-contact" autocomplete="off" placeholder="Чтобы Алина могла вам ответить"
+                     class="ym-disable-keys ym-hide-content" />
             </label>
 
             <div class="chk-field">

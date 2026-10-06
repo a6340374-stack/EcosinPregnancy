@@ -76,8 +76,8 @@ data_js = data_js.replace("</", "<\\/")
 APP = r"""
 <!-- ===== Функциональная анкета =====
 
-     595 вопросов, 22 раздела. Всё считается в браузере: ни ответы, ни имя
-     никуда не отправляются, серверной части у страницы нет вообще.
+     595 вопросов, 22 раздела. Всё считается в браузере. Готовый отчёт
+     отправляется Алине только по отдельному нажатию пользователя.
 
      Почему не перерисовываем страницу целиком на каждый клик: 595 вопросов
      по четыре кнопки — 2380 узлов. Открыт всегда один раздел, в разметке
@@ -112,7 +112,7 @@ APP = r"""
   var DRAFT_VERSION = 1;
 
   var state = {
-    name: "", born: "", gender: "",
+    name: "", born: "", contact: "", gender: "",
     answers: {},   // "секция-подраздел-вопрос" → 0|1|4|8
     open: null,    // индекс открытого раздела
     started: false,
@@ -237,9 +237,11 @@ APP = r"""
     var hint = $("[data-start-hint]");
     var nameInput = $("#chk-name");
     var bornInput = $("#chk-born");
+    var contactInput = $("#chk-contact");
 
     nameInput.value = state.name || "";
     bornInput.value = state.born || "";
+    contactInput.value = state.contact || "";
 
     function syncGender() {
       var btns = genderBox.querySelectorAll("button");
@@ -247,7 +249,7 @@ APP = r"""
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Имя и дата рождения остаются в вашем браузере и нужны только для подписи файла с результатом.";
+        hint.innerHTML = "<b>Можно начинать.</b> Результат отправится Алине только после вашего нажатия на кнопку в конце анкеты.";
       }
     }
 
@@ -261,6 +263,7 @@ APP = r"""
 
     nameInput.addEventListener("input", function () { state.name = nameInput.value; save(); });
     bornInput.addEventListener("input", function () { state.born = bornInput.value; save(); });
+    contactInput.addEventListener("input", function () { state.contact = contactInput.value; save(); });
 
     startBtn.addEventListener("click", function () {
       if (!state.gender) return;
@@ -481,6 +484,7 @@ APP = r"""
   function bindStartValues() {
     $("#chk-name").value = state.name || "";
     $("#chk-born").value = state.born || "";
+    $("#chk-contact").value = state.contact || "";
     var btns = $("[data-gender]").querySelectorAll("button");
     for (var i = 0; i < btns.length; i++)
       btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
@@ -507,170 +511,7 @@ APP = r"""
 
   // ───────────────────────────── результат ──────────────────────────
 
-  function rows() {
-    var out = [], i;
-    for (i = 0; i < DATA.length; i++) {
-      if (!visible(i)) continue;
-      var s = sectionScore(i);
-      if (s.answered === 0) continue;
-      var subs = [];
-      if (DATA[i].s) for (var j = 0; j < DATA[i].s.length; j++) {
-        var ss = subScore(i, j);
-        if (ss.answered === 0) continue;
-        subs.push({ title: DATA[i].s[j].t, pct: ss.pct, answered: ss.answered, total: ss.total });
-      }
-      out.push({
-        idx: i, title: DATA[i].t, pct: s.pct,
-        answered: s.answered, total: s.total, subs: subs
-      });
-    }
-    return out;
-  }
-
-  function resultHtml(forFile) {
-    var list = rows();
-    var t = totals();
-    var top = list.slice().filter(function (r) { return r.pct > 50; })
-      .sort(function (a, b) { return b.pct - a.pct; }).slice(0, 5);
-
-    var html = "";
-    html += '<div class="chk-res-head"><h2>Что получилось</h2>';
-
-    if (list.length === 0) {
-      html += '<p class="chk-res-lede">Пока ни одного ответа. Вернитесь к анкете и заполните хотя бы один раздел.</p></div>';
-      return html;
-    }
-
-    var lede;
-    if (top.length === 0) {
-      lede = "Ни по одной системе сигналы не выходят за умеренный уровень. Это не значит, что всё идеально, — это значит, что по вашим ответам явных провалов не видно.";
-    } else {
-      var names = top.map(function (r) { return r.title.toLowerCase(); });
-      lede = "Больше всего сигналов — " + names.slice(0, 3).join(", ") +
-             ". С этого и начнём разбор.";
-    }
-    html += '<p class="chk-res-lede">' + esc(lede) + '</p>';
-
-    var whoBits = [];
-    if (state.name) whoBits.push(esc(state.name));
-    if (state.born) whoBits.push("дата рождения " + esc(state.born.split("-").reverse().join(".")));
-    whoBits.push("отвечено " + t.answered + " из " + t.total + " " + plural(t.total, "вопроса", "вопросов", "вопросов"));
-    html += '<p class="chk-res-who">' + whoBits.join(" · ") + "</p>";
-    html += '<div class="chk-res-legend" aria-label="Цветовая шкала результатов">';
-    for (var li = 0; li < VERDICT.length; li++)
-      html += '<span data-level="' + li + '">' + VERDICT[li] + '</span>';
-    html += '</div><p class="chk-res-legend-note">Цвет показывает уровень ответов внутри раздела. Оценка основана только на заполненных вопросах.</p>';
-    html += "</div>";
-
-    if (top.length) {
-      html += '<div class="chk-top"><h3>Куда смотреть в первую очередь</h3></div>';
-      html += rowsHtml(top);
-      html += '<div class="chk-top"><h3>Все разделы</h3></div>';
-    }
-
-    html += rowsHtml(list);
-
-    if (!forFile) {
-      var tg = "https://t.me/alina_ecosin";
-      html += '<div class="chk-res-actions">';
-      html += '<button type="button" class="btn btn-primary" data-download>Скачать результат файлом</button>';
-      html += '<a class="btn btn-ghost" href="' + tg + '" target="_blank" rel="noopener">Написать Алине</a>';
-      html += '<button type="button" class="btn btn-ghost" data-back>Вернуться к анкете</button>';
-      html += "</div>";
-      html += '<p class="chk-res-note">Файл сохраняется к вам на устройство — я его не получаю. Чтобы я увидела результат, пришлите файл в Telegram. ' +
-              'Проценты считаются от тех вопросов, на которые вы ответили: незаполненные разделы в подсчёт не попадают и в этом списке не показаны.</p>';
-    } else {
-      html += '<p class="chk-res-note">Проценты считаются от отвеченных вопросов. Незаполненные разделы в список не попали. ' +
-              'Это не диагноз и не заменяет обследование — это структурированный рассказ о самочувствии.</p>';
-    }
-    return html;
-  }
-
-  function rowsHtml(list) {
-    var html = "", i, j;
-    for (i = 0; i < list.length; i++) {
-      var r = list[i], lv = level(r.pct);
-      html += '<div class="chk-row" data-level="' + lv + '">';
-      html += '<div class="chk-row-top"><span class="chk-row-name">' + esc(r.title) + "</span>";
-      html += '<span class="chk-row-verdict" data-level="' + lv + '">' + VERDICT[lv] + "</span></div>";
-      html += '<div class="chk-row-line"><i data-level="' + lv + '" style="--v:' + r.pct.toFixed(1) + '%"></i></div>';
-      html += '<div class="chk-row-sub">' + Math.round(r.pct) + "% · отвечено " + r.answered + " из " + r.total + "</div>";
-      if (r.subs && r.subs.length > 1) {
-        html += '<div class="chk-row-subs">';
-        for (j = 0; j < r.subs.length; j++)
-          html += '<span data-level="' + level(r.subs[j].pct) + '">' +
-                  esc(r.subs[j].title) + " <b>" + Math.round(r.subs[j].pct) + "%</b></span>";
-        html += "</div>";
-      }
-      html += "</div>";
-    }
-    return html;
-  }
-
-  function showResults() {
-    var box = $("[data-screen='results']");
-    box.innerHTML = resultHtml(false);
-    state.done = true;
-    save();
-    screen("results");
-    window.scrollTo({ top: root.offsetTop - 80, behavior: "smooth" });
-
-    var dl = box.querySelector("[data-download]");
-    if (dl) dl.addEventListener("click", downloadResult);
-    var back = box.querySelector("[data-back]");
-    if (back) back.addEventListener("click", function () {
-      state.done = false; save();
-      showForm(false);
-      window.scrollTo({ top: root.offsetTop - 80, behavior: "smooth" });
-    });
-
-    // Номер счётчика знает только metrika.html — здесь берём его помощник,
-    // чтобы номер не размножался по файлам.
-    if (typeof window.ecosinGoal === "function") window.ecosinGoal("checkup_done");
-  }
-
-  // Результат файлом: самодостаточный HTML со своими стилями, чтобы
-  // открывался откуда угодно и печатался как есть.
-  function downloadResult() {
-    var css = [
-      "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;",
-      "max-width:760px;margin:40px auto;padding:0 20px;color:#2a2418;line-height:1.55;background:#faf6ed;}",
-      "h2{font-size:28px;margin:0 0 6px;font-weight:600;}h3{font-size:19px;margin:34px 0 0;}",
-      ".chk-res-lede{font-size:17px;color:#4d4538;margin:14px 0 0;}",
-      ".chk-res-who{font-size:13px;color:#b9a682;margin:10px 0 0;}",
-      ".chk-res-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}",
-      ".chk-res-legend span{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:5px;font-size:12px;font-weight:600;color:var(--level-ink);background:var(--level-bg);}",
-      ".chk-res-legend span:before{content:'';width:9px;height:9px;border-radius:50%;background:var(--level-color);}",
-      ".chk-res-legend-note{margin-top:9px;font-size:12px;color:#4d4538;}",
-      ".chk-res-head{border-top:2px solid #2a2418;padding-top:18px;}",
-      ".chk-top{border-top:1px solid #2a2418;padding-top:14px;margin-top:34px;}",
-      ".chk-row{margin-top:14px;padding:16px 18px;border:1px solid var(--level-border);border-left:5px solid var(--level-color);border-radius:6px;background:var(--level-bg);break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}",
-      '.chk-row[data-level="0"],.chk-res-legend span[data-level="0"],.chk-row-subs span[data-level="0"]{--level-color:#3f8350;--level-ink:#285c37;--level-bg:#e9f3ea;--level-border:#c7e1ca;}',
-      '.chk-row[data-level="1"],.chk-res-legend span[data-level="1"],.chk-row-subs span[data-level="1"]{--level-color:#b38616;--level-ink:#745409;--level-bg:#fff4d8;--level-border:#ead8a0;}',
-      '.chk-row[data-level="2"],.chk-res-legend span[data-level="2"],.chk-row-subs span[data-level="2"]{--level-color:#c8662b;--level-ink:#8e421c;--level-bg:#fbe9dc;--level-border:#edc4a8;}',
-      '.chk-row[data-level="3"],.chk-res-legend span[data-level="3"],.chk-row-subs span[data-level="3"]{--level-color:#b53d39;--level-ink:#842824;--level-bg:#f9e4e2;--level-border:#e8b9b5;}',
-      ".chk-row-top{display:flex;justify-content:space-between;gap:14px;align-items:baseline;}",
-      ".chk-row-name{font-size:17px;}",
-      ".chk-row-verdict{padding:4px 8px;border:1px solid var(--level-border);border-radius:4px;background:#ffffff99;color:var(--level-ink);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}",
-      ".chk-row-line{margin-top:12px;height:7px;border-radius:4px;background:#ffffff99;overflow:hidden;}",
-      ".chk-row-line i{display:block;height:100%;width:var(--v,0%);background:var(--level-color);}",
-      ".chk-row-sub{margin-top:7px;font-size:13px;color:#4d4538;}",
-      ".chk-row-subs{margin-top:12px;display:grid;gap:5px;}",
-      ".chk-row-subs span{display:flex;justify-content:space-between;gap:12px;padding:5px 8px;border-left:3px solid var(--level-color);background:#ffffff99;font-size:13px;color:#4d4538;}",
-      ".chk-row-subs b{font-weight:700;color:var(--level-ink);white-space:nowrap;}",
-      "@media(max-width:640px){.chk-row-top{align-items:flex-start;flex-direction:column;gap:8px;}}",
-      ".chk-res-note{margin-top:28px;font-size:13px;color:#4d4538;border-top:1px solid rgba(42,36,24,.18);padding-top:14px;}"
-    ].join("");
-
-    var title = "Функциональная анкета" + (state.name ? " — " + state.name : "");
-    var doc = '<!doctype html><html lang="ru"><head><meta charset="utf-8">' +
-      '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-      "<title>" + esc(title) + "</title><style>" + css + "</style></head><body>" +
-      resultHtml(true) +
-      "</body></html>";
-
-    downloadFile(doc, fileName("Анкета", "html"), "text/html");
-  }
+__REPORT_JS__
 
   // ───────────────────────── черновик файлом ────────────────────────
   //
@@ -760,7 +601,11 @@ APP = r"""
 </script>
 """
 
-APP = APP.replace("__DATA__", data_js)
+report_css = (ROOT / "src" / "assets" / "checkup-report.css").read_text(encoding="utf-8")
+report_css_js = json.dumps(report_css, ensure_ascii=False).replace("</", "<\\/")
+report_js = (ROOT / "src" / "assets" / "checkup-report.js").read_text(encoding="utf-8")
+report_js = report_js.replace("__REPORT_CSS__", report_css_js)
+APP = APP.replace("__DATA__", data_js).replace("__REPORT_JS__", report_js)
 OUT.write_text(APP.lstrip("\n"), encoding="utf-8")
 print("записан", OUT)
 print("вопросов:", total, "| разделов:", len(sections), "| размер:", OUT.stat().st_size, "байт")

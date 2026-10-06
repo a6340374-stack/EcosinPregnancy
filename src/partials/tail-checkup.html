@@ -1,7 +1,7 @@
 <!-- ===== Функциональная анкета =====
 
-     595 вопросов, 22 раздела. Всё считается в браузере: ни ответы, ни имя
-     никуда не отправляются, серверной части у страницы нет вообще.
+     595 вопросов, 22 раздела. Всё считается в браузере. Готовый отчёт
+     отправляется Алине только по отдельному нажатию пользователя.
 
      Почему не перерисовываем страницу целиком на каждый клик: 595 вопросов
      по четыре кнопки — 2380 узлов. Открыт всегда один раздел, в разметке
@@ -36,7 +36,7 @@
   var DRAFT_VERSION = 1;
 
   var state = {
-    name: "", born: "", gender: "",
+    name: "", born: "", contact: "", gender: "",
     answers: {},   // "секция-подраздел-вопрос" → 0|1|4|8
     open: null,    // индекс открытого раздела
     started: false,
@@ -161,9 +161,11 @@
     var hint = $("[data-start-hint]");
     var nameInput = $("#chk-name");
     var bornInput = $("#chk-born");
+    var contactInput = $("#chk-contact");
 
     nameInput.value = state.name || "";
     bornInput.value = state.born || "";
+    contactInput.value = state.contact || "";
 
     function syncGender() {
       var btns = genderBox.querySelectorAll("button");
@@ -171,7 +173,7 @@
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Имя и дата рождения остаются в вашем браузере и нужны только для подписи файла с результатом.";
+        hint.innerHTML = "<b>Можно начинать.</b> Результат отправится Алине только после вашего нажатия на кнопку в конце анкеты.";
       }
     }
 
@@ -185,6 +187,7 @@
 
     nameInput.addEventListener("input", function () { state.name = nameInput.value; save(); });
     bornInput.addEventListener("input", function () { state.born = bornInput.value; save(); });
+    contactInput.addEventListener("input", function () { state.contact = contactInput.value; save(); });
 
     startBtn.addEventListener("click", function () {
       if (!state.gender) return;
@@ -405,6 +408,7 @@
   function bindStartValues() {
     $("#chk-name").value = state.name || "";
     $("#chk-born").value = state.born || "";
+    $("#chk-contact").value = state.contact || "";
     var btns = $("[data-gender]").querySelectorAll("button");
     for (var i = 0; i < btns.length; i++)
       btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
@@ -431,104 +435,173 @@
 
   // ───────────────────────────── результат ──────────────────────────
 
-  function rows() {
-    var out = [], i;
-    for (i = 0; i < DATA.length; i++) {
+  // Подробный отчёт: отправка возможна только по нажатию пользователя.
+  var REPORT_CSS = "/* Отчёт анкеты. Этот же файл встраивается в скачиваемый HTML. */\nbody.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}\n.chk-report{max-width:900px;margin:0 auto;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.05);font-family:Onest,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Arial,sans-serif;color:#2c2c2c;line-height:1.6;}\n.chk-report *{box-sizing:border-box;}\n.chk-report h2,.chk-report h3,.chk-report p{margin:0;}\n.chk-report__brand{text-align:center;font-size:30px;font-weight:300;letter-spacing:.12em;color:#4a4a4a;}\n.chk-report__eyebrow{text-align:center;color:#707070;font-size:15px;margin:4px 0 24px!important;}\n.chk-report__intro{padding:24px 28px;border:1px solid #f4a261;border-radius:12px;background:linear-gradient(135deg,#fff5e6,#ffe4cc);}\n.chk-report__intro h2{font-family:inherit;font-size:20px;font-weight:600;color:#4a4a4a;}\n.chk-report__intro p{margin-top:8px;color:#666;font-size:14px;}\n.chk-report__benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px;}\n.chk-report__benefit{padding:12px 14px;border:1px solid #e0d5cc;border-radius:10px;background:#fff;font-size:13px;line-height:1.35;}\n.chk-report__benefit b{display:block;font-size:14px;}\n.chk-report__meta{margin-top:24px;padding:16px 20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__meta-name{font-size:17px;font-weight:600;}\n.chk-report__meta-detail{font-size:13px;color:#707070;}\n.chk-report__heading{text-align:center;font-family:inherit!important;font-size:22px!important;font-weight:600!important;color:#4a4a4a;margin:28px 0 18px!important;padding:0!important;border:0!important;}\n.chk-report__summary{padding:20px 24px;border:2px solid #e0d5cc;border-radius:14px;}\n.chk-report__summary h3{font-family:inherit;font-size:17px;font-weight:600;color:#4a4a4a;}\n.chk-report__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;}\n.chk-report__stat{padding:12px 8px;border:1px solid #f0e8dd;border-radius:10px;background:#fafafa;text-align:center;}\n.chk-report__stat b{display:block;font-size:24px;line-height:1.2;color:var(--report-color);}\n.chk-report__stat span{font-size:11px;color:#707070;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__priority{margin-top:16px;padding:12px 16px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__priority b{color:#c8662b;}\n.chk-report__toolbar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 20px;}\n.chk-report__tool{padding:8px 16px;border:1px solid #e0d5cc;border-radius:8px;background:#f5f1ed;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__tool:hover{background:#e9dfd5;}\n.chk-report__section{margin-bottom:12px;border:1px solid #e0d5cc;border-radius:10px;overflow:hidden;background:#fff;}\n.chk-report__section summary{display:flex;align-items:center;gap:12px;padding:14px 18px;list-style:none;cursor:pointer;}\n.chk-report__section summary::-webkit-details-marker{display:none;}\n.chk-report__section summary:hover{background:#fafafa;}\n.chk-report__section-name{flex:1;min-width:0;color:#e87a47;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__section-score{flex:none;padding:4px 12px;border-radius:16px;background:var(--report-color);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;}\n.chk-report__chevron{flex:none;color:#707070;font-size:13px;transition:transform .2s;}\n.chk-report__section[open] .chk-report__chevron{transform:rotate(180deg);}\n.chk-report__body{padding:0 18px 18px;border-top:1px solid #f0e8dd;}\n.chk-report__subsection{margin-top:18px;padding-top:14px;border-top:1px dashed #e0d5cc;}\n.chk-report__subsection:first-child{border-top:0;padding-top:6px;}\n.chk-report__subhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;}\n.chk-report__subscore{display:flex;align-items:center;justify-content:center;flex:none;width:50px;height:50px;border-radius:8px;background:var(--report-color);color:#fff;font-size:18px;font-weight:700;}\n.chk-report__subname{font-size:14px;font-weight:600;line-height:1.3;}\n.chk-report__submeta{margin-top:3px;font-size:13px;color:#707070;}\n.chk-report__subnote,.chk-report__partial{margin:10px 0!important;padding:9px 12px;border-radius:7px;background:#fff5e6;color:#65594e;font-size:12px;}\n.chk-report__status{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:12px;background:var(--report-tint);color:var(--report-ink);font-size:12px;font-weight:600;}\n.chk-report__q{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px;padding:8px 10px;border-radius:6px;background:#fafafa;}\n.chk-report__qnum{min-width:22px;padding-top:2px;color:#707070;font-size:12px;font-weight:600;}\n.chk-report__qtext{flex:1;min-width:0;font-size:13px;line-height:1.4;}\n.chk-report__answer{display:inline-flex;align-items:center;gap:6px;flex:none;padding:3px 10px;border-radius:12px;background:var(--report-color);color:#fff;font-size:12px;font-weight:600;white-space:nowrap;}\n.chk-report__answer::before{content:\"\";width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;}\n.chk-report [data-level=\"0\"]{--report-color:#6baa75;--report-ink:#43864c;--report-tint:#eaf5ec;}\n.chk-report [data-level=\"1\"]{--report-color:#f4a261;--report-ink:#a6591b;--report-tint:#fff0e2;}\n.chk-report [data-level=\"2\"]{--report-color:#e87a47;--report-ink:#a8441d;--report-tint:#ffebdf;}\n.chk-report [data-level=\"3\"]{--report-color:#d9534f;--report-ink:#a32c28;--report-tint:#fde9e8;}\n.chk-report [data-level=\"none\"]{--report-color:#bfbfbf;--report-ink:#666;--report-tint:#f2f2f2;}\n.chk-report__legend{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px;margin-top:24px;padding:14px 18px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__legend span{display:inline-flex;align-items:center;gap:7px;}\n.chk-report__legend i{width:14px;height:14px;border-radius:3px;background:var(--report-color);}\n.chk-report__note{margin-top:12px;color:#707070;font-size:12px;}\n.chk-report__empty{padding:20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__next{display:grid;gap:14px;margin-top:32px;}\n.chk-report__offer{display:flex;align-items:center;gap:20px;padding:22px 24px;border:2px solid;border-radius:14px;}\n.chk-report__offer--consult{border-color:#e87a47;background:linear-gradient(135deg,#ffe4cc,#fff5e6);}\n.chk-report__offer--analizy{border-color:#5ba8c7;background:linear-gradient(135deg,#e8f4f8,#f0f8fb);}\n.chk-report__offer-text{flex:1;min-width:0;}\n.chk-report__offer h3{font-family:inherit;font-size:17px;font-weight:600;}\n.chk-report__offer p{margin-top:6px;color:#606060;font-size:14px;}\n.chk-report__offer a{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:12px 18px;border-radius:10px;background:#0088cc;color:#fff!important;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;}\n.chk-report__offer--analizy a{background:#4a95b5;}\n.chk-report__send{margin-top:28px;padding:22px 24px;border:1px solid #c9decf;border-radius:12px;background:#f0f8f1;}\n.chk-report__send h3{font-size:18px;font-weight:600;}\n.chk-report__send p{margin-top:6px;font-size:13px;color:#516056;}\n.chk-report__send-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}\n.chk-report__send-fields label{font-size:12px;font-weight:600;color:#3d5942;}\n.chk-report__send-fields input{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b6cdbb;border-radius:7px;background:#fff;color:#2c2c2c;font:inherit;font-size:14px;}\n.chk-report__send button{padding:11px 18px;border:0;border-radius:8px;background:#3f8350;color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;}\n.chk-report__send button:disabled{opacity:.65;cursor:default;}\n.chk-report__send-status{min-height:20px;}\n.chk-report__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}\n.chk-report__actions button{padding:10px 16px;border:1px solid #d8c6a3;border-radius:8px;background:#fff;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__footer{margin-top:30px;padding-top:18px;border-top:1px solid #e0d5cc;color:#707070;font-size:13px;text-align:center;}\n@media(max-width:700px){.chk-report__benefits{grid-template-columns:1fr}.chk-report__offer{flex-direction:column;text-align:center}.chk-report__offer a{width:100%}}\n@media(max-width:600px){body.chk-report-file{padding:16px 8px}.chk-report{padding:20px 14px}.chk-report__stats,.chk-report__send-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.chk-report__q{flex-wrap:wrap}.chk-report__answer{width:100%;justify-content:center}.chk-report__section summary{gap:8px;padding:12px}.chk-report__section-name{font-size:12px}.chk-report__section-score{font-size:11px;padding:4px 8px}}\n@media(max-width:420px){.chk-report__send-fields{grid-template-columns:1fr}}\n@media print{body.chk-report-file{padding:0;background:#fff}body:not(.chk-report-file) *{visibility:hidden!important}body:not(.chk-report-file) .chk-report,body:not(.chk-report-file) .chk-report *{visibility:visible!important}body:not(.chk-report-file) .chk-report{position:absolute;top:0;left:0;width:100%}.chk-report{max-width:none;padding:20px;box-shadow:none}.chk-report__toolbar,.chk-report__actions,.chk-report__send{display:none}.chk-report__section{break-inside:avoid}.chk-report__section .chk-report__body{display:block!important}.chk-report__section-score,.chk-report__subscore,.chk-report__answer,.chk-report__legend i{-webkit-print-color-adjust:exact;print-color-adjust:exact}}\n";
+  var REPORT_LEVELS = ["Низкий уровень", "Умеренный уровень", "Повышенный уровень", "Высокий уровень"];
+
+  function reportSections() {
+    var out = [];
+    for (var i = 0; i < DATA.length; i++) {
       if (!visible(i)) continue;
-      var s = sectionScore(i);
-      if (s.answered === 0) continue;
-      var subs = [];
-      if (DATA[i].s) for (var j = 0; j < DATA[i].s.length; j++) {
-        var ss = subScore(i, j);
-        if (ss.answered === 0) continue;
-        subs.push({ title: DATA[i].s[j].t, pct: ss.pct, answered: ss.answered, total: ss.total });
-      }
-      out.push({
-        idx: i, title: DATA[i].t, pct: s.pct,
-        answered: s.answered, total: s.total, subs: subs
-      });
+      var score = sectionScore(i);
+      if (score.answered) out.push({ idx: i, score: score, level: level(score.pct) });
     }
     return out;
   }
 
-  function resultHtml(forFile) {
-    var list = rows();
-    var t = totals();
-    var top = list.slice().filter(function (r) { return r.pct > 50; })
-      .sort(function (a, b) { return b.pct - a.pct; }).slice(0, 5);
+  function reportAnswer(v) {
+    if (v === undefined) return { label: "Не отвечено", level: "none" };
+    for (var i = 0; i < SCALE.length; i++)
+      if (SCALE[i].v === v) return { label: SCALE[i].label, level: i };
+    return { label: "Не отвечено", level: "none" };
+  }
 
+  function reportQuestions(si, sub, questions) {
     var html = "";
-    html += '<div class="chk-res-head"><h2>Что получилось</h2>';
-
-    if (list.length === 0) {
-      html += '<p class="chk-res-lede">Пока ни одного ответа. Вернитесь к анкете и заполните хотя бы один раздел.</p></div>';
-      return html;
-    }
-
-    var lede;
-    if (top.length === 0) {
-      lede = "Ни по одной системе сигналы не выходят за умеренный уровень. Это не значит, что всё идеально, — это значит, что по вашим ответам явных провалов не видно.";
-    } else {
-      var names = top.map(function (r) { return r.title.toLowerCase(); });
-      lede = "Больше всего сигналов — " + names.slice(0, 3).join(", ") +
-             ". С этого и начнём разбор.";
-    }
-    html += '<p class="chk-res-lede">' + esc(lede) + '</p>';
-
-    var whoBits = [];
-    if (state.name) whoBits.push(esc(state.name));
-    if (state.born) whoBits.push("дата рождения " + esc(state.born.split("-").reverse().join(".")));
-    whoBits.push("отвечено " + t.answered + " из " + t.total + " " + plural(t.total, "вопроса", "вопросов", "вопросов"));
-    html += '<p class="chk-res-who">' + whoBits.join(" · ") + "</p>";
-    html += '<div class="chk-res-legend" aria-label="Цветовая шкала результатов">';
-    for (var li = 0; li < VERDICT.length; li++)
-      html += '<span data-level="' + li + '">' + VERDICT[li] + '</span>';
-    html += '</div><p class="chk-res-legend-note">Цвет показывает уровень ответов внутри раздела. Оценка основана только на заполненных вопросах.</p>';
-    html += "</div>";
-
-    if (top.length) {
-      html += '<div class="chk-top"><h3>Куда смотреть в первую очередь</h3></div>';
-      html += rowsHtml(top);
-      html += '<div class="chk-top"><h3>Все разделы</h3></div>';
-    }
-
-    html += rowsHtml(list);
-
-    if (!forFile) {
-      var tg = "https://t.me/alina_ecosin";
-      html += '<div class="chk-res-actions">';
-      html += '<button type="button" class="btn btn-primary" data-download>Скачать результат файлом</button>';
-      html += '<a class="btn btn-ghost" href="' + tg + '" target="_blank" rel="noopener">Написать Алине</a>';
-      html += '<button type="button" class="btn btn-ghost" data-back>Вернуться к анкете</button>';
-      html += "</div>";
-      html += '<p class="chk-res-note">Файл сохраняется к вам на устройство — я его не получаю. Чтобы я увидела результат, пришлите файл в Telegram. ' +
-              'Проценты считаются от тех вопросов, на которые вы ответили: незаполненные разделы в подсчёт не попадают и в этом списке не показаны.</p>';
-    } else {
-      html += '<p class="chk-res-note">Проценты считаются от отвеченных вопросов. Незаполненные разделы в список не попали. ' +
-              'Это не диагноз и не заменяет обследование — это структурированный рассказ о самочувствии.</p>';
+    for (var i = 0; i < questions.length; i++) {
+      var answer = reportAnswer(state.answers[key(si, sub, i)]);
+      html += '<div class="chk-report__q">';
+      html += '<span class="chk-report__qnum">' + (i + 1) + '.</span>';
+      html += '<span class="chk-report__qtext">' + esc(questions[i]) + '</span>';
+      html += '<span class="chk-report__answer" data-level="' + answer.level + '">' + answer.label + '</span>';
+      html += '</div>';
     }
     return html;
   }
 
-  function rowsHtml(list) {
-    var html = "", i, j;
-    for (i = 0; i < list.length; i++) {
-      var r = list[i], lv = level(r.pct);
-      html += '<div class="chk-row" data-level="' + lv + '">';
-      html += '<div class="chk-row-top"><span class="chk-row-name">' + esc(r.title) + "</span>";
-      html += '<span class="chk-row-verdict" data-level="' + lv + '">' + VERDICT[lv] + "</span></div>";
-      html += '<div class="chk-row-line"><i data-level="' + lv + '" style="--v:' + r.pct.toFixed(1) + '%"></i></div>';
-      html += '<div class="chk-row-sub">' + Math.round(r.pct) + "% · отвечено " + r.answered + " из " + r.total + "</div>";
-      if (r.subs && r.subs.length > 1) {
-        html += '<div class="chk-row-subs">';
-        for (j = 0; j < r.subs.length; j++)
-          html += '<span data-level="' + level(r.subs[j].pct) + '">' +
-                  esc(r.subs[j].title) + " <b>" + Math.round(r.subs[j].pct) + "%</b></span>";
-        html += "</div>";
-      }
-      html += "</div>";
+  function reportSubsection(si, sub) {
+    var item = DATA[si].s[sub], score = subScore(si, sub);
+    var lv = score.answered ? level(score.pct) : "none";
+    var label = score.answered ? REPORT_LEVELS[lv] : "Не заполнено";
+    var html = '<div class="chk-report__subsection">';
+    html += '<div class="chk-report__subhead">';
+    html += '<span class="chk-report__subscore" data-level="' + lv + '">' + score.sum + '</span>';
+    html += '<div><div class="chk-report__subname">' + esc(item.t) + '</div>';
+    html += '<div class="chk-report__submeta"><span class="chk-report__status" data-level="' + lv + '">' + label + '</span>';
+    html += score.sum + ' из ' + (score.answered * 8) + ' баллов';
+    if (score.answered < score.total) html += ' · отвечено ' + score.answered + ' из ' + score.total;
+    html += '</div></div></div>';
+    if (item.n) html += '<p class="chk-report__subnote">' + esc(item.n) + '</p>';
+    html += reportQuestions(si, sub, item.q);
+    return html + '</div>';
+  }
+
+  function reportSection(row, open) {
+    var si = row.idx, item = DATA[si], score = row.score, lv = row.level;
+    var html = '<details class="chk-report__section"' + (open ? ' open' : '') + '>';
+    html += '<summary><span class="chk-report__section-name">' + (si + 1) + '. ' + esc(item.t) + '</span>';
+    html += '<span class="chk-report__section-score" data-level="' + lv + '">' + score.sum + ' / ' + (score.answered * 8) + '</span>';
+    html += '<span class="chk-report__chevron" aria-hidden="true">▼</span></summary>';
+    html += '<div class="chk-report__body">';
+    if (score.answered < score.total)
+      html += '<p class="chk-report__partial">Отвечено ' + score.answered + ' из ' + score.total + ' вопросов. Цвет считается по отвеченным.</p>';
+    if (item.n) html += '<p class="chk-report__subnote">' + esc(item.n) + '</p>';
+    if (item.q) html += reportQuestions(si, null, item.q);
+    if (item.s) for (var j = 0; j < item.s.length; j++) html += reportSubsection(si, j);
+    return html + '</div></details>';
+  }
+
+  function resultHtml(forFile) {
+    var list = reportSections(), total = totals(), counts = [0, 0, 0, 0];
+    for (var i = 0; i < list.length; i++) counts[list[i].level]++;
+    var html = '<div class="chk-report">';
+    html += '<div class="chk-report__brand">ALINA ECOSIN</div>';
+    html += '<p class="chk-report__eyebrow">Чек-ап организма · Персональный отчёт</p>';
+    html += '<div class="chk-report__intro"><h2>Ваш персональный чек-ап организма</h2>';
+    html += '<p>Подробные результаты по системам организма: баллы, цветовые уровни и каждый ответ в одном файле.</p>';
+    html += '<div class="chk-report__benefits">';
+    html += '<div class="chk-report__benefit"><b>Подробный анализ</b>Разделы и подразделы</div>';
+    html += '<div class="chk-report__benefit"><b>Цветовая карта</b>Уровни видны сразу</div>';
+    html += '<div class="chk-report__benefit"><b>Полный отчёт</b>Все ответы по вопросам</div>';
+    html += '</div></div>';
+    html += '<div class="chk-report__meta">';
+    html += '<div class="chk-report__meta-name">' + (state.name ? esc(state.name) : 'Без имени') + '</div>';
+    var meta = [];
+    if (state.born) meta.push('Дата рождения: ' + esc(state.born.split('-').reverse().join('.')));
+    if (state.gender) meta.push('Пол: ' + (state.gender === 'female' ? 'женский' : 'мужской'));
+    if (state.contact) meta.push('Контакт: ' + esc(state.contact));
+    meta.push('Отвечено ' + total.answered + ' из ' + total.total);
+    html += '<div class="chk-report__meta-detail">' + meta.join(' · ') + '</div></div>';
+
+    html += '<h2 class="chk-report__heading">Краткая сводка</h2>';
+    html += '<div class="chk-report__summary"><h3>Распределение заполненных разделов</h3>';
+    html += '<div class="chk-report__stats">';
+    var labels = ['В норме', 'Умеренно', 'Повышено', 'Высоко'];
+    for (i = 0; i < 4; i++)
+      html += '<div class="chk-report__stat" data-level="' + i + '"><b>' + counts[i] + '</b><span>' + labels[i] + '</span></div>';
+    html += '</div>';
+    var priority = list.filter(function (r) { return r.level >= 2; })
+      .sort(function (a, b) { return b.score.pct - a.score.pct; }).slice(0, 3);
+    if (priority.length) {
+      html += '<div class="chk-report__priority"><b>Куда смотреть в первую очередь:</b> ';
+      html += priority.map(function (r) { return esc(DATA[r.idx].t); }).join(', ') + '.</div>';
+    } else {
+      html += '<div class="chk-report__priority">По заполненным разделам нет повышенных уровней.</div>';
     }
+    html += '</div>';
+
+    html += '<h2 class="chk-report__heading">Результаты по системам</h2>';
+    if (list.length) {
+      html += '<div class="chk-report__toolbar">';
+      html += '<button type="button" class="chk-report__tool" data-expand-all>Развернуть всё</button>';
+      html += '<button type="button" class="chk-report__tool" data-collapse-all>Свернуть всё</button>';
+      html += '<button type="button" class="chk-report__tool" data-print>Распечатать / PDF</button>';
+      html += '</div>';
+      for (i = 0; i < list.length; i++) html += reportSection(list[i], i === 0);
+    } else {
+      html += '<p class="chk-report__empty">Пока нет ответов. Вернитесь к анкете и заполните хотя бы один раздел.</p>';
+    }
+
+    html += '<div class="chk-report__legend">';
+    for (i = 0; i < 4; i++)
+      html += '<span data-level="' + i + '"><i aria-hidden="true"></i>' + REPORT_LEVELS[i] + '</span>';
+    html += '</div>';
+    html += '<p class="chk-report__note">Цвет показывает уровень по отвеченным вопросам. Этот отчёт не является диагнозом.</p>';
+    html += '<div class="chk-report__next">';
+    html += '<div class="chk-report__offer chk-report__offer--consult"><div class="chk-report__offer-text">';
+    html += '<h3>Обсудить результат</h3><p>Алина разберёт анкету вместе с вами и поможет составить план дальнейших действий.</p></div>';
+    html += '<a href="https://alinaecosin.ru/consultation.html" target="_blank" rel="noopener">О консультации →</a></div>';
+    html += '<div class="chk-report__offer chk-report__offer--analizy"><div class="chk-report__offer-text">';
+    html += '<h3>Какие анализы сдать</h3><p>Посмотрите подборки анализов по жалобам и подготовку к сдаче.</p></div>';
+    html += '<a href="https://alinaecosin.ru/analizy.html" target="_blank" rel="noopener">К анализам →</a></div>';
+    html += '</div>';
+    if (!forFile) {
+      html += '<div class="chk-report__send"><h3>Отправить результат Алине</h3>';
+      html += '<p>После нажатия полный отчёт уйдёт в личный Telegram Алины. Укажите контакт, чтобы она могла вам ответить.</p>';
+      html += '<div class="chk-report__send-fields">';
+      html += '<label>Ваше имя<input type="text" data-send-name class="ym-disable-keys ym-hide-content" value="' + esc(state.name || '') + '" autocomplete="name"></label>';
+      html += '<label>Telegram или телефон<input type="text" data-send-contact class="ym-disable-keys ym-hide-content" value="' + esc(state.contact || '') + '" autocomplete="off"></label>';
+      html += '</div><button type="button" data-send>Отправить результат Алине</button>';
+      html += '<p class="chk-report__send-status" data-send-status role="status" aria-live="polite"></p></div>';
+      html += '<div class="chk-report__actions">';
+      html += '<button type="button" data-download>Скачать полный отчёт</button>';
+      html += '<button type="button" data-back>Вернуться к анкете</button></div>';
+      html += '<p class="chk-report__note">Если отправка недоступна, сохраните файл и пришлите его Алине самостоятельно.</p>';
+    }
+    html += '<div class="chk-report__footer">Ecosin · Алина Сингизова</div></div>';
     return html;
+  }
+
+  function reportActions(box) {
+    box.onclick = function (e) {
+      var button = e.target.closest('button');
+      if (!button || !box.contains(button)) return;
+      if (button.hasAttribute('data-expand-all')) {
+        box.querySelectorAll('.chk-report__section').forEach(function (d) { d.open = true; });
+      } else if (button.hasAttribute('data-collapse-all')) {
+        box.querySelectorAll('.chk-report__section').forEach(function (d) { d.open = false; });
+      } else if (button.hasAttribute('data-print')) {
+        box.querySelectorAll('.chk-report__section').forEach(function (d) { d.open = true; });
+        window.print();
+      } else if (button.hasAttribute('data-download')) {
+        downloadResult();
+      } else if (button.hasAttribute('data-send')) {
+        sendResult(box, button);
+      } else if (button.hasAttribute('data-back')) {
+        state.done = false; save(); showForm(false);
+        window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
+      }
+    };
   }
 
   function showResults() {
@@ -536,65 +609,68 @@
     box.innerHTML = resultHtml(false);
     state.done = true;
     save();
-    screen("results");
-    window.scrollTo({ top: root.offsetTop - 80, behavior: "smooth" });
-
-    var dl = box.querySelector("[data-download]");
-    if (dl) dl.addEventListener("click", downloadResult);
-    var back = box.querySelector("[data-back]");
-    if (back) back.addEventListener("click", function () {
-      state.done = false; save();
-      showForm(false);
-      window.scrollTo({ top: root.offsetTop - 80, behavior: "smooth" });
-    });
-
-    // Номер счётчика знает только metrika.html — здесь берём его помощник,
-    // чтобы номер не размножался по файлам.
-    if (typeof window.ecosinGoal === "function") window.ecosinGoal("checkup_done");
+    screen('results');
+    window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
+    reportActions(box);
+    if (typeof window.ecosinGoal === 'function') window.ecosinGoal('checkup_done');
   }
 
-  // Результат файлом: самодостаточный HTML со своими стилями, чтобы
-  // открывался откуда угодно и печатался как есть.
-  function downloadResult() {
-    var css = [
-      "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;",
-      "max-width:760px;margin:40px auto;padding:0 20px;color:#2a2418;line-height:1.55;background:#faf6ed;}",
-      "h2{font-size:28px;margin:0 0 6px;font-weight:600;}h3{font-size:19px;margin:34px 0 0;}",
-      ".chk-res-lede{font-size:17px;color:#4d4538;margin:14px 0 0;}",
-      ".chk-res-who{font-size:13px;color:#b9a682;margin:10px 0 0;}",
-      ".chk-res-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}",
-      ".chk-res-legend span{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:5px;font-size:12px;font-weight:600;color:var(--level-ink);background:var(--level-bg);}",
-      ".chk-res-legend span:before{content:'';width:9px;height:9px;border-radius:50%;background:var(--level-color);}",
-      ".chk-res-legend-note{margin-top:9px;font-size:12px;color:#4d4538;}",
-      ".chk-res-head{border-top:2px solid #2a2418;padding-top:18px;}",
-      ".chk-top{border-top:1px solid #2a2418;padding-top:14px;margin-top:34px;}",
-      ".chk-row{margin-top:14px;padding:16px 18px;border:1px solid var(--level-border);border-left:5px solid var(--level-color);border-radius:6px;background:var(--level-bg);break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}",
-      '.chk-row[data-level="0"],.chk-res-legend span[data-level="0"],.chk-row-subs span[data-level="0"]{--level-color:#3f8350;--level-ink:#285c37;--level-bg:#e9f3ea;--level-border:#c7e1ca;}',
-      '.chk-row[data-level="1"],.chk-res-legend span[data-level="1"],.chk-row-subs span[data-level="1"]{--level-color:#b38616;--level-ink:#745409;--level-bg:#fff4d8;--level-border:#ead8a0;}',
-      '.chk-row[data-level="2"],.chk-res-legend span[data-level="2"],.chk-row-subs span[data-level="2"]{--level-color:#c8662b;--level-ink:#8e421c;--level-bg:#fbe9dc;--level-border:#edc4a8;}',
-      '.chk-row[data-level="3"],.chk-res-legend span[data-level="3"],.chk-row-subs span[data-level="3"]{--level-color:#b53d39;--level-ink:#842824;--level-bg:#f9e4e2;--level-border:#e8b9b5;}',
-      ".chk-row-top{display:flex;justify-content:space-between;gap:14px;align-items:baseline;}",
-      ".chk-row-name{font-size:17px;}",
-      ".chk-row-verdict{padding:4px 8px;border:1px solid var(--level-border);border-radius:4px;background:#ffffff99;color:var(--level-ink);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}",
-      ".chk-row-line{margin-top:12px;height:7px;border-radius:4px;background:#ffffff99;overflow:hidden;}",
-      ".chk-row-line i{display:block;height:100%;width:var(--v,0%);background:var(--level-color);}",
-      ".chk-row-sub{margin-top:7px;font-size:13px;color:#4d4538;}",
-      ".chk-row-subs{margin-top:12px;display:grid;gap:5px;}",
-      ".chk-row-subs span{display:flex;justify-content:space-between;gap:12px;padding:5px 8px;border-left:3px solid var(--level-color);background:#ffffff99;font-size:13px;color:#4d4538;}",
-      ".chk-row-subs b{font-weight:700;color:var(--level-ink);white-space:nowrap;}",
-      "@media(max-width:640px){.chk-row-top{align-items:flex-start;flex-direction:column;gap:8px;}}",
-      ".chk-res-note{margin-top:28px;font-size:13px;color:#4d4538;border-top:1px solid rgba(42,36,24,.18);padding-top:14px;}"
-    ].join("");
-
-    var title = "Функциональная анкета" + (state.name ? " — " + state.name : "");
-    var doc = '<!doctype html><html lang="ru"><head><meta charset="utf-8">' +
+  function reportDocument() {
+    var title = 'Функциональная анкета' + (state.name ? ' — ' + state.name : '');
+    var behavior = '<script>document.addEventListener("click",function(e){' +
+      'var b=e.target.closest("[data-expand-all],[data-collapse-all],[data-print]");if(!b)return;' +
+      'var ds=document.querySelectorAll(".chk-report__section");' +
+      'if(b.hasAttribute("data-expand-all"))ds.forEach(function(d){d.open=true});' +
+      'if(b.hasAttribute("data-collapse-all"))ds.forEach(function(d){d.open=false});' +
+      'if(b.hasAttribute("data-print")){ds.forEach(function(d){d.open=true});window.print()}' +
+      '});</scr' + 'ipt>';
+    return '<!doctype html><html lang="ru"><head><meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-      "<title>" + esc(title) + "</title><style>" + css + "</style></head><body>" +
-      resultHtml(true) +
-      "</body></html>";
-
-    downloadFile(doc, fileName("Анкета", "html"), "text/html");
+      '<title>' + esc(title) + '</title><style>' + REPORT_CSS + '</style></head>' +
+      '<body class="chk-report-file">' + resultHtml(true) + behavior + '</body></html>';
   }
+
+  function downloadResult() {
+    downloadFile(reportDocument(), fileName('Анкета', 'html'), 'text/html');
+  }
+
+  function sendResult(box, button) {
+    var status = box.querySelector('[data-send-status]');
+    var name = box.querySelector('[data-send-name]').value.trim();
+    var contact = box.querySelector('[data-send-contact]').value.trim();
+    if (!name || !contact) {
+      status.textContent = 'Укажите имя и Telegram или телефон для связи.';
+      return;
+    }
+    state.name = name; state.contact = contact; save();
+    button.disabled = true;
+    button.textContent = 'Отправляю…';
+    status.textContent = 'Отправляю полный отчёт Алине…';
+    var payload = JSON.stringify({ name: name, contact: contact, html: reportDocument() });
+    function send(url) {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); });
+    }
+    send('https://api.alinaecosin.ru/shop-api/checkup')
+      .catch(function () { return send('https://alinaecosin.store/shop-api/checkup'); })
+      .then(function (res) {
+        if (res && res.ok) {
+          button.textContent = 'Отправлено Алине';
+          status.textContent = 'Готово: полный отчёт доставлен Алине в Telegram.';
+          if (typeof window.ecosinGoal === 'function') window.ecosinGoal('checkup_sent');
+        } else {
+          button.disabled = false;
+          button.textContent = 'Отправить результат Алине';
+          status.textContent = 'Не удалось отправить отчёт. Сохраните файл и пришлите его Алине в Telegram.';
+        }
+      })
+      .catch(function () {
+        button.disabled = false;
+        button.textContent = 'Отправить результат Алине';
+        status.textContent = 'Нет связи с сервером. Сохраните файл и пришлите его Алине в Telegram.';
+      });
+  }
+
 
   // ───────────────────────── черновик файлом ────────────────────────
   //
