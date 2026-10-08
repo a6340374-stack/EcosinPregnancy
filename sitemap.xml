@@ -13,13 +13,13 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/analizy.html</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://alinaecosin.ru/pregnancy.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -37,13 +37,13 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/consultation.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alinaecosin.ru/guides/deficits.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -55,7 +55,7 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/guides/fasting.html</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/health.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/about.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -103,13 +103,19 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/analizy/energy.html</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alinaecosin.ru/analizy/ferritin.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://alinaecosin.ru/analizy/gut.html</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -127,7 +133,25 @@
   </url>
   <url>
     <loc>https://alinaecosin.ru/otzyvy.html</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alinaecosin.ru/zhkt/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alinaecosin.ru/zhkt/vzdutie-posle-edy.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

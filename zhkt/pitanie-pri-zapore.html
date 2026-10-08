@@ -10,29 +10,29 @@
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 
 <!-- ─────────────── Primary SEO ─────────────── -->
-<title>Сопровождение нутрициолога онлайн на 2–3 месяца — от 50 000 ₽</title>
-<meta name="description" content="Онлайн-сопровождение нутрициолога Алины Сингизовой на 2–3 месяца: индивидуальный план питания, еженедельные созвоны и чат. Программа от 50 000 ₽." />
-<meta name="keywords" content="сопровождение нутрициолога, ведение у нутрициолога, нутрициолог на 3 месяца, индивидуальный план питания, программа восстановления здоровья, нутрициолог работа с жкт" />
+<title>Питание при запоре у взрослых: клетчатка, вода и примеры блюд</title>
+<meta name="description" content="Как постепенно изменить питание при запоре: источники клетчатки, жидкость, примеры сочетаний продуктов и дневник. Когда изменения рациона стоит обсудить с врачом." />
+<meta name="keywords" content="" />
 <meta name="author" content="Алина Сингизова" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<link rel="canonical" href="https://alinaecosin.ru/health.html" />
+<link rel="canonical" href="https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html" />
 <meta name="theme-color" content="#1f4a2c" />
 
 <!-- ─────────────── Open Graph ─────────────── -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:site_name" content="Ecosin · Алина Сингизова" />
-<meta property="og:title" content="Сопровождение нутрициолога онлайн на 2–3 месяца — от 50 000 ₽" />
-<meta property="og:description" content="Онлайн-сопровождение нутрициолога Алины Сингизовой на 2–3 месяца: индивидуальный план питания, еженедельные созвоны и чат. Программа от 50 000 ₽." />
-<meta property="og:url" content="https://alinaecosin.ru/health.html" />
+<meta property="og:title" content="Питание при запоре у взрослых: клетчатка, вода и примеры блюд" />
+<meta property="og:description" content="Как постепенно изменить питание при запоре: источники клетчатки, жидкость, примеры сочетаний продуктов и дневник. Когда изменения рациона стоит обсудить с врачом." />
+<meta property="og:url" content="https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html" />
 <meta property="og:image" content="https://alinaecosin.ru/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Ведение здоровья — нутрициолог Алина Сингизова" />
+<meta property="og:image:alt" content="Ecosin — питание и нутрициология" />
 <!-- ─────────────── Twitter Card ─────────────── -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Сопровождение нутрициолога онлайн на 2–3 месяца — от 50 000 ₽" />
-<meta name="twitter:description" content="Онлайн-сопровождение нутрициолога Алины Сингизовой на 2–3 месяца: индивидуальный план питания, еженедельные созвоны и чат. Программа от 50 000 ₽." />
+<meta name="twitter:title" content="Питание при запоре у взрослых: клетчатка, вода и примеры блюд" />
+<meta name="twitter:description" content="Как постепенно изменить питание при запоре: источники клетчатки, жидкость, примеры сочетаний продуктов и дневник. Когда изменения рациона стоит обсудить с врачом." />
 <meta name="twitter:image" content="https://alinaecosin.ru/og-image.jpg" />
 
 <!-- ─────────────── Icons ─────────────── -->
@@ -567,172 +567,6 @@ p{margin:0;text-wrap:pretty;}
   .art-body section{margin-top: 48px;}
 }
 
-/* labs.css (встроен) — страницы про анализы.
-   Подключается после chrome.css и article.css.
-
-   Главный элемент — шкала маркера. Она рисует две вещи разом: широкий
-   референс лаборатории и узкий коридор, на который смотрит нутрициолог.
-   Смысл в том, что значение может лежать внутри референса и при этом
-   далеко от коридора — именно так выглядит «анализы в норме, а сил нет».
-
-   Проценты считаются при вёрстке и лежат в style="--lab-a:…" и т. д.
-   Формула: (значение − начало оси) / (конец оси − начало оси) × 100. */
-
-.scale{
-  margin-top: 30px;
-  border-top: 1px solid var(--rule);
-  padding-top: 18px;
-}
-.scale + .scale{margin-top: 26px;}
-.scale-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
-.scale-name{font-size:18px;color:var(--ink);}
-.scale-unit{font-size:12px;letter-spacing:.1em;color:var(--sand-deep);white-space:nowrap;}
-
-/* Дорожка. Тонкая линия — референс, плотная заливка — коридор,
-   вертикальная риска — иллюстративное значение. */
-.scale-track{
-  position:relative;height: 46px;margin-top: 16px;
-}
-.scale-track::before{                      /* сама ось */
-  content:"";position:absolute;left:0;right:0;top: 21px;height:1px;
-  background: var(--rule);
-}
-.scale-lab{
-  position:absolute;top: 18px;height: 7px;
-  left: var(--lab-a);right: calc(100% - var(--lab-b));
-  border-left:1px solid var(--sand-deep);
-  border-right:1px solid var(--sand-deep);
-  border-top:1px solid var(--sand-deep);
-}
-.scale-opt{
-  position:absolute;top: 19px;height: 5px;
-  left: var(--opt-a);right: calc(100% - var(--opt-b));
-  background: var(--olive);
-}
-.scale-val{position:absolute;left: var(--val);top: 6px;}
-.scale-val::before{
-  content:"";position:absolute;left:-1px;top:0;width:2px;height: 33px;
-  background: var(--terra);
-}
-.scale-val span{
-  position:absolute;left: 7px;top:-2px;white-space:nowrap;
-  font-size:12px;letter-spacing:.04em;color: var(--terra);
-}
-/* У правого края подпись уезжает за рамку — разворачиваем влево. */
-.scale-val[data-side="left"] span{left:auto;right: 7px;}
-
-.scale-axis{
-  display:flex;justify-content:space-between;
-  font-size:11px;letter-spacing:.08em;color:var(--sand-deep);
-  margin-top: -6px;
-}
-.scale-legend{
-  margin-top: 12px;display:flex;flex-wrap:wrap;gap: 6px 20px;
-  font-size:12px;letter-spacing:.03em;color:var(--ink-soft);
-}
-.scale-legend b{font-weight:500;color:var(--ink);}
-.scale-legend i{
-  display:inline-block;width:14px;height:5px;vertical-align:1px;margin-right:6px;
-}
-.scale-legend .k-lab i{border:1px solid var(--sand-deep);border-bottom:0;height:6px;}
-.scale-legend .k-opt i{background:var(--olive);}
-.scale-legend .k-val i{width:2px;height:11px;background:var(--terra);vertical-align:-2px;}
-.scale-about{margin-top: 12px !important;font-size:15px !important;}
-.scale-felt{
-  margin-top: 8px !important;font-size:14px !important;
-  color: var(--ink-soft) !important;font-style: italic;
-}
-
-/* ───────────────────────── СОСТАВ ПАНЕЛИ ───────────────────────── */
-.panel{
-  margin-top: 30px;border:1px solid var(--rule);padding: 28px 30px;
-}
-.panel h3{margin-top:0 !important;font-size:22px;}
-.panel-list{margin: 18px 0 0 !important;padding:0 !important;list-style:none;}
-.panel-list li{
-  padding: 10px 0;border-top:1px solid var(--rule);
-  font-size:16px;color:var(--ink);
-}
-.panel-list li:first-child{border-top:0;padding-top:0;}
-.panel-prep{
-  margin-top: 20px;padding-top: 16px;border-top:1px solid var(--rule);
-  font-size:14px;line-height:1.6;color:var(--ink-soft);
-}
-.panel-prep b{
-  display:block;font-family:var(--body);font-weight:500;
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--olive);margin-bottom: 8px;
-}
-
-/* ───────────────────────── СЕТКА СЦЕНАРИЕВ ───────────────────────── */
-.cases{
-  margin-top: 34px;display:grid;grid-template-columns:repeat(2,1fr);
-  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
-}
-.cases a{
-  display:block;padding: 26px 28px;text-decoration:none !important;
-  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  transition: background .2s;
-}
-.cases a:hover{background: var(--cream-warm);}
-.cases h3{
-  margin:0 !important;font-size:22px;color:var(--forest);
-}
-.cases p{margin-top: 10px !important;font-size:15px !important;}
-.cases span{
-  display:block;margin-top: 14px;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);
-}
-
-/* Ссылка-действие в колонках блока заказа. */
-#order .art-split p a{
-  display:inline-block;margin-top: 4px;
-  font-size:15px;color:var(--forest);
-  text-decoration:none;border-bottom:1px solid var(--olive);
-  padding-bottom: 2px;transition: border-color .2s;
-}
-#order .art-split p a:hover{border-color:var(--forest);}
-#order .art-split ul{margin-top:0;}
-
-@media (max-width: 760px){
-  .cases{grid-template-columns:1fr;}
-  .panel{padding: 22px 20px;}
-  .scale-val span{font-size:11px;}
-}
-
-/* Ряд лабораторных сетей в блоке заказа.
-   Логотипы приведены к одной чернильной краске и заранее сбалансированы
-   по площади краски, а не по высоте: у «Гемотеста» вытянутая надпись,
-   у «Ситилаба» квадрат, и при равной высоте ряд перекашивало.
-   Поэтому в CSS их нельзя ограничивать поштучно — только общий
-   множитель --k, иначе баланс, заложенный в файлы, развалится. */
-.labs-row{
-  --k: .34;
-  margin-top: 26px;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 26px 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px 32px;
-}
-.labs-row img{
-  flex: 0 0 auto;
-  width: calc(var(--w) * var(--k) * 1px);
-  height: auto;
-  opacity: .62;
-}
-.labs-note{
-  margin-top: 14px !important;
-  font-size: 14px !important;
-  color: var(--ink-soft);
-}
-@media (max-width: 560px){
-  .labs-row{--k: .26;gap: 18px 24px;padding: 22px 0;justify-content: flex-start;}
-}
-
 /* nav-mobile.css (встроен) — меню на узком экране.
 
    Подключается ПОСЛЕДНИМ на каждой странице, после landing.css, shop.css
@@ -947,134 +781,30 @@ p{margin:0;text-wrap:pretty;}
 </script>
 
 <main id="content">
-
-<section class="art-head">
-  <div class="wrap">
-    <span class="eyebrow">Услуга</span>
-    <h1>Сопровождение нутрициолога: <em>питание и привычки за 2–3 месяца</em></h1>
-    <p class="art-lede">Индивидуальное сопровождение по питанию с Алиной Сингизовой: план под ваш распорядок и бюджет, еженедельные созвоны, корректировки и чат на весь период. Подходит, если нужно постепенно внедрить изменения и регулярно обсуждать возникающие трудности.</p>
-    <div class="art-meta">
-      <span><b>Формат</b> сопровождение 2–3 месяца</span>
-      <span><b>Стоимость</b> от 50 000 ₽</span>
-      <span><b>Где</b> онлайн, в Уфе по договорённости</span>
-    </div>
-
-    <div class="art-gist">
-      <h2>Кому это подходит</h2>
-      <ul>
-        <li><b>Проблем несколько, и они связаны.</b> Усталость, вздутие, вес, цикл — всё разом и давно.</li>
-        <li><b>Пробовали сами, но не получилось.</b> Начинали и бросали, или делали, но без результата.</li>
-        <li><b>Нужен кто-то рядом.</b> Чтобы было у кого спросить в момент, когда что-то пошло не так.</li>
-        <li><b>Готовы к постепенным изменениям.</b> Не к рывку на две недели, а к работе на пару месяцев.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="art-body">
-  <div class="wrap">
-
-    <section id="what">
-      <h2><span class="num">Состав</span>Что входит</h2>
-      <p>Главное отличие от разовой консультации — время. За два-три месяца можно увидеть, как тело отвечает на изменения, и поправить курс, а не гадать по одному разговору.</p>
-      <div class="panel">
-        <h3>Ведение здоровья</h3>
-        <ul class="panel-list">
-          <li>Глубокая первичная консультация с разбором анамнеза</li>
-          <li>Индивидуальный план питания под вашу жизнь и бюджет</li>
-          <li>Протокол добавок и нутрицевтиков — после анализов, не вслепую</li>
-          <li>Еженедельные созвоны и корректировки</li>
-          <li>Чат поддержки на всё время работы</li>
-          <li>Работа со сном, стрессом, ЖКТ и циклом</li>
-          <li>Разбор анализов в динамике</li>
-        </ul>
-        <div class="panel-prep">
-          <b>Стоимость</b>
-          От 50 000 ₽ за программу. Зависит от длительности и сложности: два месяца при одной задаче и три при нескольких хронических состояниях — разный объём. Возможна оплата помесячно.
-        </div>
-      </div>
-    </section>
-
-    <section id="how">
-      <h2><span class="num">Порядок</span>Как всё проходит</h2>
-      <ol>
-        <li><strong>Бесплатный разговор.</strong> Пятнадцать минут, чтобы понять, туда ли вы пришли.</li>
-        <li><strong>Анкета и анализы.</strong> Подробная анкета, при необходимости — список анализов. Если свежие уже есть, сдавать заново не нужно.</li>
-        <li><strong>Первичная консультация.</strong> Долгая встреча: разбираем всю картину и договариваемся о плане на весь период.</li>
-        <li><strong>Первый месяц — база.</strong> Питание, режим, ЖКТ. Восполнение дефицитов начинаем только после анализов.</li>
-        <li><strong>Дальше — по шагам.</strong> Еженедельные созвоны, корректировки по самочувствию. То, что не пошло, меняем, а не терпим.</li>
-        <li><strong>Финал.</strong> Пересдаём ключевые показатели, смотрим динамику, собираем план на дальше — чтобы вы могли без меня.</li>
-      </ol>
-      <p>Порядок не случайный. Сначала база, потом добавки: если кишечник не работает, дорогие нутрицевтики просто не усвоятся, и деньги уйдут в никуда.</p>
-    </section>
-
-    <section id="result">
-      <h2><span class="num">Результат</span>Что вы получите</h2>
-      <ul>
-            <li>План питания, который встраивается в вашу жизнь</li>
-            <li>Протокол добавок под ваши анализы</li>
-            <li>Понимание, что и почему вы делаете</li>
-            <li>Навык, который останется после окончания</li>
-          </ul>
-      <p>Честно про сроки: первые изменения в самочувствии обычно видны через три-четыре недели, а показатели вроде ферритина поднимаются три месяца и быстрее не умеют. Поэтому формат и рассчитан не на месяц.</p>
-    </section>
-
-<section id="specialist">
-      <h2><span class="num">Специалист</span>Кто проводит консультации</h2>
-      <p>Со мной работаете лично — я Алина Сингизова, нутрициолог. У меня среднее медицинское образование и дополнительное обучение нутрициологии. <a href="/about.html#education">Образование и опубликованные документы</a> можно посмотреть до записи.</p>
-      <p>Опыт клиентов собран на странице <a href="/otzyvy.html">отзывов о консультациях и сопровождении</a>.</p>
-    </section>
-
-    <section id="faq">
-      <h2><span class="num">Вопросы</span>Частые вопросы</h2>
-      <div class="art-faq">
-        <details>
-          <summary>Почему два-три месяца, а не месяц?</summary>
-          <p>Потому что физиология не торопится. Ферритин поднимается за три-четыре месяца, витамин D примерно за три, микрофлора перестраивается недели. За месяц можно наладить режим и увидеть первые изменения в самочувствии, но закрепить их не получится.</p>
-        </details>
-        <details>
-          <summary>Обязательно ли сдавать анализы?</summary>
-          <p>Для добавок — да. Назначать железо или витамин D без цифр я не буду: избыток железа токсичен, а доза витамина D подбирается по результату. Работать над питанием и режимом можно и без анализов, но тогда протокола добавок в программе не будет.</p>
-        </details>
-        <details>
-          <summary>Сколько это стоит вместе с анализами и добавками?</summary>
-          <p>Анализы и добавки оплачиваются отдельно и не входят в стоимость. Ориентир по анализам есть на странице про <a href='/analizy.html'>подбор анализов</a>. По добавкам сумма зависит от того, что покажут цифры, — я стараюсь обходиться минимумом и не назначаю по десять баночек.</p>
-        </details>
-        <details>
-          <summary>Что если я сорвусь?</summary>
-          <p>Это часть процесса, а не провал. Именно для этого в формате есть еженедельные созвоны: разберём, что произошло, и поправим план, чтобы срыв не повторился. Ругать не буду — это не работает.</p>
-        </details>
-        <details>
-          <summary>Можно оплатить частями?</summary>
-          <p>Да, помесячно. Обсудим на бесплатном разговоре.</p>
-        </details>
-      </div>
-    </section>
-
-    <div class="art-cta">
-      <h2>Посмотрим, ваш ли это формат</h2>
-      <p>На бесплатном разговоре я честно скажу, нужно ли вам сопровождение или хватит одной консультации. Продавать более дорогой формат ради формата — не мой метод.</p>
-      <div class="row">
-        <a href="/#cta" class="btn btn-cream">Записаться на разговор <span class="arrow">→</span></a>
-        <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener" class="btn btn-line">Написать в Telegram</a>
-      </div>
-    </div>
-
-<p>До встречи можно прочитать материалы о <a href="/zhkt/">питании и ЖКТ</a> и подготовить короткий дневник привычного рациона.</p>
-    <div class="art-next">
-      <a href="/consultation.html">Разовая консультация</a>
-      <span>·</span>
-      <a href="/pregnancy.html">Ведение беременности</a>
-      <span>·</span>
-      <a href="/about.html">Обо мне</a>
-      <span>·</span>
-      <a href="/">На главную</a>
-    </div>
-
-  </div>
-</section>
-
-</main>
+<section class="art-head"><div class="wrap">
+<p><a href="/zhkt/">Питание и ЖКТ</a></p>
+<h1>Питание при запоре у взрослых: клетчатка, вода и примеры блюд</h1><p class="art-lede">При запоре легко сосредоточиться на одном «правильном» продукте. Полезнее посмотреть на питание за весь день, количество жидкости, движение и привычный режим. Ниже — с чего начать разбор рациона взрослого человека.</p>
+<div class="art-meta"><span><b>Автор</b> <a href="/about.html">Алина Сингизова, нутрициолог</a></span><span><b>Обновлено</b> 8 октября 2026</span></div>
+<nav class="art-toc" aria-label="Содержание"><h2>Что внутри</h2><ol><li><a href="#signs">Что считать запором</a></li><li><a href="#fiber">Как добавить клетчатку постепенно</a></li><li><a href="#meals">Примеры, как собрать приём пищи</a></li><li><a href="#water">Жидкость и повседневный режим</a></li><li><a href="#review">Что записать перед консультацией</a></li><li><a href="#help">Когда нужна медицинская оценка</a></li><li><a href="#faq">Частые вопросы</a></li></ol></nav>
+</div></section>
+<section class="art-body"><div class="wrap">
+<section id="signs"><h2>Что считать запором</h2><p>Ориентир — не только число походов в туалет. Твёрдый стул, болезненное или затруднённое опорожнение, чувство неполного опорожнения тоже имеют значение. Среди признаков запора — стул реже трёх раз в неделю. <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes" target="_blank" rel="noopener">Симптомы и возможные причины — NIDDK</a>.</p>
+<p>Запишите, что именно изменилось и когда. Новые лекарства и добавки, поездка или перемены в режиме тоже важны для разбора ситуации.</p></section>
+<section id="fiber"><h2>Как добавить клетчатку постепенно</h2><p>Источники клетчатки — цельнозерновые продукты, овощи, фрукты, бобовые и орехи. В <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/eating-diet-nutrition" target="_blank" rel="noopener">материале NIDDK</a> указан ориентир для взрослых 22–34 г в день в зависимости от возраста и пола. Повышать количество стоит постепенно.</p>
+<p>Начните с одной привычной еды: например, добавьте овощи к обеду или выберите овсяную кашу на завтрак. Если раньше клетчатки было мало, резкий переход на большие порции отрубей и бобовых может оказаться некомфортным. При выраженном вздутии пригодится <a href="/zhkt/vzdutie-posle-edy.html">дневник питания и симптомов</a>.</p></section>
+<section id="meals"><h2>Примеры, как собрать приём пищи</h2><p>Это варианты сочетаний, а не обязательное меню или лечебный рацион. Выбирайте знакомые продукты с учётом переносимости и ваших обычных порций.</p>
+<div class="art-table"><table><thead><tr><th scope="col">Приём пищи</th><th scope="col">Идея сочетания</th></tr></thead><tbody><tr><td>Завтрак</td><td>Овсяная каша, ягоды; яйцо или другой привычный источник белка</td></tr><tr><td>Обед</td><td>Гречка, рыба или птица, порция овощей</td></tr><tr><td>Ужин</td><td>Овощное блюдо с чечевицей, если она хорошо переносится</td></tr><tr><td>Перекус при необходимости</td><td>Фрукт или небольшая порция орехов</td></tr></tbody></table></div>
+<p>Планируя покупки, удобнее выбрать несколько доступных продуктов на ближайшие дни, чем полностью менять меню за один вечер. Отметьте, какие овощи, крупы и фрукты вы уже едите и что можно добавить без сложной готовки.</p></section>
+<section id="water"><h2>Жидкость и повседневный режим</h2><p>Достаточное питьё помогает клетчатке выполнять свою роль. Потребность в жидкости зависит от здоровья, активности и условий жизни; при назначенном ограничении жидкости ориентируйтесь на рекомендации врача. <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/eating-diet-nutrition" target="_blank" rel="noopener">Пояснение NIDDK о питании и жидкости</a>.</p>
+<p>Регулярное движение и возможность спокойно сходить в туалет дополняют работу с питанием. Не откладывайте позыв. В <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/treatment" target="_blank" rel="noopener">рекомендациях NIDDK</a> также описана привычка выделять время для туалета после завтрака. Подберите удобное время без спешки.</p></section>
+<section id="review"><h2>Что записать перед консультацией</h2><ul><li>Как давно появился запор и что изменилось по сравнению с вашим обычным состоянием.</li><li>Пример питания и напитков за обычный день.</li><li>Есть ли боль, вздутие или другие симптомы.</li><li>Какие лекарства и добавки принимаете; когда начали их принимать.</li><li>Что уже пробовали и как менялось самочувствие.</li></ul>
+<p>Если запор появился после назначения железа, сообщите об этом назначившему его врачу. Подбор формы или схемы препарата обсуждают с ним. О показателе запасов железа — <a href="/analizy/ferritin.html">в разборе ферритина</a>.</p></section>
+<section id="help"><h2>Когда нужна медицинская оценка</h2><p>Кровь в стуле, постоянная боль в животе, рвота, температура, невозможность отхождения газов или необъяснимое снижение веса требуют обращения к врачу без промедления. При сохраняющемся запоре тоже стоит обсудить причины, даже если вы уже меняли питание. <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes" target="_blank" rel="noopener">Перечень тревожных симптомов — NIDDK</a>.</p></section>
+<section id="faq"><h2>Частые вопросы</h2><div class="art-faq"><details><summary>Нужно ли пить ровно два литра воды?</summary><p>Единого объёма для всех нет. Учитываются здоровье, активность, климат и назначения врача. Если жидкость ограничена по медицинским причинам, самостоятельно увеличивать её не стоит.</p></details><details><summary>Можно ли сразу добавить много отрубей?</summary><p>Клетчатку лучше увеличивать постепенно. Резкое изменение рациона может сопровождаться вздутием; начните с переносимых продуктов и наблюдайте за самочувствием.</p></details><details><summary>Запор бывает из-за железа?</summary><p>Некоторые препараты железа могут усиливать запор. Если симптомы начались после назначения, сообщите врачу, чтобы обсудить дальнейшую схему.</p></details></div></section>
+<section id="sources"><h2>Источники</h2><ul><li><a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/eating-diet-nutrition" target="_blank" rel="noopener">NIDDK: питание при запоре</a></li><li><a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/treatment" target="_blank" rel="noopener">NIDDK: подходы к помощи при запоре</a></li><li><a href="https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes" target="_blank" rel="noopener">NIDDK: симптомы и причины запора</a></li></ul></section>
+<div class="art-cta"><h2>Разберём ваш привычный рацион</h2><p>На консультации обсудим питание, распорядок и изменения, которые удобно внедрить в повседневную жизнь. Посмотрите состав работы и подготовку к встрече.</p><div class="row"><a href="/consultation.html" class="btn btn-cream">О консультации <span class="arrow">→</span></a><a href="/health.html" class="btn btn-line">Сопровождение по питанию</a></div></div>
+<div class="art-next"><a href="/zhkt/">Питание и ЖКТ</a><span>·</span><a href="/about.html#education">Образование автора</a><span>·</span><a href="/otzyvy.html">Отзывы</a></div>
+</div></section></main>
 
 <!-- ============================== FOOTER ============================== -->
 <footer class="foot">
@@ -1143,89 +873,58 @@ p{margin:0;text-wrap:pretty;}
   </div>
 </footer>
 
-<!-- Разметка страницы услуги. Вопросы и ответы обязаны дословно совпадать
-     с тем, что видно на странице. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Service",
-      "@id": "https://alinaecosin.ru/health.html#service",
-      "name": "Сопровождение нутрициолога: питание и привычки за 2–3 месяца",
-      "description": "Онлайн-сопровождение нутрициолога Алины Сингизовой на 2–3 месяца: индивидуальный план питания, еженедельные созвоны и чат. Программа от 50 000 ₽.",
-      "serviceType": "Консультация нутрициолога",
-      "url": "https://alinaecosin.ru/health.html",
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Уфа"
-        },
-        {
-          "@type": "Country",
-          "name": "Россия"
-        }
-      ],
-      "availableChannel": {
-        "@type": "ServiceChannel",
-        "serviceUrl": "https://alinaecosin.ru/health.html",
-        "availableLanguage": {
-          "@type": "Language",
-          "name": "Русский"
-        }
-      },
-      "provider": {
+      "@type": "Article",
+      "@id": "https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html#article",
+      "headline": "Питание при запоре у взрослых: клетчатка, вода и примеры блюд",
+      "description": "Как постепенно изменить питание при запоре: источники клетчатки, жидкость, примеры сочетаний продуктов и дневник. Когда изменения рациона стоит обсудить с врачом.",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-10-08",
+      "dateModified": "2026-10-08",
+      "mainEntityOfPage": "https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html",
+      "image": "https://alinaecosin.ru/og-image.jpg",
+      "author": {
         "@type": "Person",
+        "@id": "https://alinaecosin.ru/#person",
         "name": "Алина Сингизова",
-        "jobTitle": "Нутрициолог",
-        "url": "https://alinaecosin.ru/about.html",
-        "sameAs": [
-          "https://t.me/alina_ecosin"
-        ]
-      }
+        "url": "https://alinaecosin.ru/about.html"
+      },
+      "citation": [
+        "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/eating-diet-nutrition",
+        "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/treatment",
+        "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes"
+      ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://alinaecosin.ru/health.html#faq",
+      "@id": "https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html#faq",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Почему два-три месяца, а не месяц?",
+          "name": "Нужно ли пить ровно два литра воды?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Потому что физиология не торопится. Ферритин поднимается за три-четыре месяца, витамин D примерно за три, микрофлора перестраивается недели. За месяц можно наладить режим и увидеть первые изменения в самочувствии, но закрепить их не получится."
+            "text": "Единого объёма для всех нет. Учитываются здоровье, активность, климат и назначения врача. Если жидкость ограничена по медицинским причинам, самостоятельно увеличивать её не стоит."
           }
         },
         {
           "@type": "Question",
-          "name": "Обязательно ли сдавать анализы?",
+          "name": "Можно ли сразу добавить много отрубей?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Для добавок — да. Назначать железо или витамин D без цифр я не буду: избыток железа токсичен, а доза витамина D подбирается по результату. Работать над питанием и режимом можно и без анализов, но тогда протокола добавок в программе не будет."
+            "text": "Клетчатку лучше увеличивать постепенно. Резкое изменение рациона может сопровождаться вздутием; начните с переносимых продуктов и наблюдайте за самочувствием."
           }
         },
         {
           "@type": "Question",
-          "name": "Сколько это стоит вместе с анализами и добавками?",
+          "name": "Запор бывает из-за железа?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Анализы и добавки оплачиваются отдельно и не входят в стоимость. Ориентир по анализам есть на странице про подбор анализов. По добавкам сумма зависит от того, что покажут цифры, — я стараюсь обходиться минимумом и не назначаю по десять баночек."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Что если я сорвусь?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Это часть процесса, а не провал. Именно для этого в формате есть еженедельные созвоны: разберём, что произошло, и поправим план, чтобы срыв не повторился. Ругать не буду — это не работает."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Можно оплатить частями?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да, помесячно. Обсудим на бесплатном разговоре."
+            "text": "Некоторые препараты железа могут усиливать запор. Если симптомы начались после назначения, сообщите врачу, чтобы обсудить дальнейшую схему."
           }
         }
       ]
@@ -1242,8 +941,14 @@ p{margin:0;text-wrap:pretty;}
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Ведение здоровья",
-          "item": "https://alinaecosin.ru/health.html"
+          "name": "Питание и ЖКТ",
+          "item": "https://alinaecosin.ru/zhkt/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Питание при запоре у взрослых: клетчатка, вода и примеры блюд",
+          "item": "https://alinaecosin.ru/zhkt/pitanie-pri-zapore.html"
         }
       ]
     }
