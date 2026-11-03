@@ -214,8 +214,7 @@
       return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload })
         .then(function (r) { return r.json().catch(function () { return { ok: false }; }); });
     }
-    send('https://api.alinaecosin.ru/shop-api/checkup')
-      .catch(function () { return send('https://alinaecosin.store/shop-api/checkup'); })
+    send('https://alinaecosin.store/shop-api/checkup')
       .then(function (res) {
         if (res && res.ok) {
           button.textContent = 'Отправлено Алине';

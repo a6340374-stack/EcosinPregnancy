@@ -33,8 +33,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build
 
-API = "https://api.alinaecosin.ru"
-PRODUCTS_URL = f"{API}/shop-api/products"
+STORE = "https://alinaecosin.store"
+PRODUCTS_URL = f"{STORE}/shop-api/products"
 SITE = "https://alinaecosin.ru"
 SHOP_URL = f"{SITE}/shop.html"
 
@@ -82,7 +82,7 @@ def image_url(product):
     if not images:
         return None
     src = images[0]
-    return src if src.startswith("http") else API + src
+    return src if src.startswith("http") else STORE + src
 
 
 def sku(product):
