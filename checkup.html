@@ -853,6 +853,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
 .chk-report__send{margin-top:28px;padding:22px 24px;border:1px solid #c9decf;border-radius:12px;background:#f0f8f1;}
 .chk-report__send h3{font-size:18px;font-weight:600;}
 .chk-report__send p{margin-top:6px;font-size:13px;color:#516056;}
+.chk-report__send a{display:inline-block;margin-top:12px;padding:11px 18px;border-radius:8px;background:#3f8350;color:#fff;font-size:14px;font-weight:600;text-decoration:none;}
 .chk-report__send-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}
 .chk-report__send-fields label{font-size:12px;font-weight:600;color:#3d5942;}
 .chk-report__send-fields input{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b6cdbb;border-radius:7px;background:#fff;color:#2c2c2c;font:inherit;font-size:14px;}
@@ -1089,7 +1090,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
     <div class="art-meta">
       <span><b>595 вопросов</b> в 22 разделах</span>
       <span><b>Около часа</b>, можно в несколько заходов</span>
-      <span><b>Ответы</b> отправляются только по вашей кнопке</span>
+      <span><b>Ответы</b> остаются в вашем браузере</span>
     </div>
 
     <div class="art-gist">
@@ -1097,7 +1098,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
       <ul>
         <li><b>Это не диагностика.</b> Анкета не определяет заболевания и не заменяет врача. Она собирает в одну картину то, что вы и так о себе знаете, и показывает, где сигналов больше всего.</li>
         <li><b>Отвечайте про последние три месяца,</b> а не про разовый плохой день и не про то, что было когда-то давно.</li>
-        <li><b>Вы решаете, отправлять ли результат.</b> Подсчёт идёт прямо в браузере. После заполнения можно одним нажатием отправить отчёт мне в Telegram или сохранить файл себе.</li>
+        <li><b>Ответы остаются у вас.</b> Подсчёт идёт прямо в браузере. После заполнения скачайте отчёт; если хотите, отправьте его Алине сами в Telegram.</li>
         <li><b>Не обязательно за один раз.</b> Прогресс сохраняется — можно закрыть вкладку, вернуться завтра и продолжить с того же места.</li>
         <li><b>Отвечайте честно.</b> Приукрасить можно, но тогда и разбор будет про кого-то другого.</li>
       </ul>
@@ -1138,12 +1139,6 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
             <label class="chk-field">
               <span>Дата рождения <i>— по желанию</i></span>
               <input type="date" id="chk-born" class="ym-disable-keys ym-hide-content" />
-            </label>
-
-            <label class="chk-field">
-              <span>Telegram или телефон <i>— для отправки результата</i></span>
-              <input type="text" id="chk-contact" autocomplete="off" placeholder="Чтобы Алина могла вам ответить"
-                     class="ym-disable-keys ym-hide-content" />
             </label>
 
             <div class="chk-field">
@@ -1269,8 +1264,8 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
 
 <!-- ===== Функциональная анкета =====
 
-     595 вопросов, 22 раздела. Всё считается в браузере. Готовый отчёт
-     отправляется Алине только по отдельному нажатию пользователя.
+     595 вопросов, 22 раздела. Всё считается в браузере. Отчёт сохраняется
+     на устройство; если нужно, пользователь отправляет его сам через Telegram.
 
      Почему не перерисовываем страницу целиком на каждый клик: 595 вопросов
      по четыре кнопки — 2380 узлов. Открыт всегда один раздел, в разметке
@@ -1305,7 +1300,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
   var DRAFT_VERSION = 1;
 
   var state = {
-    name: "", born: "", contact: "", gender: "",
+    name: "", born: "", gender: "",
     answers: {},   // "секция-подраздел-вопрос" → 0|1|4|8
     open: null,    // индекс открытого раздела
     started: false,
@@ -1430,11 +1425,9 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
     var hint = $("[data-start-hint]");
     var nameInput = $("#chk-name");
     var bornInput = $("#chk-born");
-    var contactInput = $("#chk-contact");
 
     nameInput.value = state.name || "";
     bornInput.value = state.born || "";
-    contactInput.value = state.contact || "";
 
     function syncGender() {
       var btns = genderBox.querySelectorAll("button");
@@ -1442,7 +1435,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Результат отправится Алине только после вашего нажатия на кнопку в конце анкеты.";
+        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить и отправить Алине самостоятельно.";
       }
     }
 
@@ -1456,7 +1449,6 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
 
     nameInput.addEventListener("input", function () { state.name = nameInput.value; save(); });
     bornInput.addEventListener("input", function () { state.born = bornInput.value; save(); });
-    contactInput.addEventListener("input", function () { state.contact = contactInput.value; save(); });
 
     startBtn.addEventListener("click", function () {
       if (!state.gender) return;
@@ -1677,7 +1669,6 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
   function bindStartValues() {
     $("#chk-name").value = state.name || "";
     $("#chk-born").value = state.born || "";
-    $("#chk-contact").value = state.contact || "";
     var btns = $("[data-gender]").querySelectorAll("button");
     for (var i = 0; i < btns.length; i++)
       btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
@@ -1705,7 +1696,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
   // ───────────────────────────── результат ──────────────────────────
 
   // Подробный отчёт: отправка возможна только по нажатию пользователя.
-  var REPORT_CSS = "/* Отчёт анкеты. Этот же файл встраивается в скачиваемый HTML. */\nbody.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}\n.chk-report{max-width:900px;margin:0 auto;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.05);font-family:Onest,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Arial,sans-serif;color:#2c2c2c;line-height:1.6;}\n.chk-report *{box-sizing:border-box;}\n.chk-report h2,.chk-report h3,.chk-report p{margin:0;}\n.chk-report__brand{text-align:center;font-size:30px;font-weight:300;letter-spacing:.12em;color:#4a4a4a;}\n.chk-report__eyebrow{text-align:center;color:#707070;font-size:15px;margin:4px 0 24px!important;}\n.chk-report__intro{padding:24px 28px;border:1px solid #f4a261;border-radius:12px;background:linear-gradient(135deg,#fff5e6,#ffe4cc);}\n.chk-report__intro h2{font-family:inherit;font-size:20px;font-weight:600;color:#4a4a4a;}\n.chk-report__intro p{margin-top:8px;color:#666;font-size:14px;}\n.chk-report__benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px;}\n.chk-report__benefit{padding:12px 14px;border:1px solid #e0d5cc;border-radius:10px;background:#fff;font-size:13px;line-height:1.35;}\n.chk-report__benefit b{display:block;font-size:14px;}\n.chk-report__meta{margin-top:24px;padding:16px 20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__meta-name{font-size:17px;font-weight:600;}\n.chk-report__meta-detail{font-size:13px;color:#707070;}\n.chk-report__heading{text-align:center;font-family:inherit!important;font-size:22px!important;font-weight:600!important;color:#4a4a4a;margin:28px 0 18px!important;padding:0!important;border:0!important;}\n.chk-report__summary{padding:20px 24px;border:2px solid #e0d5cc;border-radius:14px;}\n.chk-report__summary h3{font-family:inherit;font-size:17px;font-weight:600;color:#4a4a4a;}\n.chk-report__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;}\n.chk-report__stat{padding:12px 8px;border:1px solid #f0e8dd;border-radius:10px;background:#fafafa;text-align:center;}\n.chk-report__stat b{display:block;font-size:24px;line-height:1.2;color:var(--report-color);}\n.chk-report__stat span{font-size:11px;color:#707070;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__priority{margin-top:16px;padding:12px 16px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__priority b{color:#c8662b;}\n.chk-report__toolbar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 20px;}\n.chk-report__tool{padding:8px 16px;border:1px solid #e0d5cc;border-radius:8px;background:#f5f1ed;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__tool:hover{background:#e9dfd5;}\n.chk-report__section{margin-bottom:12px;border:1px solid #e0d5cc;border-radius:10px;overflow:hidden;background:#fff;}\n.chk-report__section summary{display:flex;align-items:center;gap:12px;padding:14px 18px;list-style:none;cursor:pointer;}\n.chk-report__section summary::-webkit-details-marker{display:none;}\n.chk-report__section summary:hover{background:#fafafa;}\n.chk-report__section-name{flex:1;min-width:0;color:#e87a47;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__section-score{flex:none;padding:4px 12px;border-radius:16px;background:var(--report-color);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;}\n.chk-report__chevron{flex:none;color:#707070;font-size:13px;transition:transform .2s;}\n.chk-report__section[open] .chk-report__chevron{transform:rotate(180deg);}\n.chk-report__body{padding:0 18px 18px;border-top:1px solid #f0e8dd;}\n.chk-report__subsection{margin-top:18px;padding-top:14px;border-top:1px dashed #e0d5cc;}\n.chk-report__subsection:first-child{border-top:0;padding-top:6px;}\n.chk-report__subhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;}\n.chk-report__subscore{display:flex;align-items:center;justify-content:center;flex:none;width:50px;height:50px;border-radius:8px;background:var(--report-color);color:#fff;font-size:18px;font-weight:700;}\n.chk-report__subname{font-size:14px;font-weight:600;line-height:1.3;}\n.chk-report__submeta{margin-top:3px;font-size:13px;color:#707070;}\n.chk-report__subnote,.chk-report__partial{margin:10px 0!important;padding:9px 12px;border-radius:7px;background:#fff5e6;color:#65594e;font-size:12px;}\n.chk-report__status{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:12px;background:var(--report-tint);color:var(--report-ink);font-size:12px;font-weight:600;}\n.chk-report__q{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px;padding:8px 10px;border-radius:6px;background:#fafafa;}\n.chk-report__qnum{min-width:22px;padding-top:2px;color:#707070;font-size:12px;font-weight:600;}\n.chk-report__qtext{flex:1;min-width:0;font-size:13px;line-height:1.4;}\n.chk-report__answer{display:inline-flex;align-items:center;gap:6px;flex:none;padding:3px 10px;border-radius:12px;background:var(--report-color);color:#fff;font-size:12px;font-weight:600;white-space:nowrap;}\n.chk-report__answer::before{content:\"\";width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;}\n.chk-report [data-level=\"0\"]{--report-color:#6baa75;--report-ink:#43864c;--report-tint:#eaf5ec;}\n.chk-report [data-level=\"1\"]{--report-color:#f4a261;--report-ink:#a6591b;--report-tint:#fff0e2;}\n.chk-report [data-level=\"2\"]{--report-color:#e87a47;--report-ink:#a8441d;--report-tint:#ffebdf;}\n.chk-report [data-level=\"3\"]{--report-color:#d9534f;--report-ink:#a32c28;--report-tint:#fde9e8;}\n.chk-report [data-level=\"none\"]{--report-color:#bfbfbf;--report-ink:#666;--report-tint:#f2f2f2;}\n.chk-report__legend{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px;margin-top:24px;padding:14px 18px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__legend span{display:inline-flex;align-items:center;gap:7px;}\n.chk-report__legend i{width:14px;height:14px;border-radius:3px;background:var(--report-color);}\n.chk-report__note{margin-top:12px;color:#707070;font-size:12px;}\n.chk-report__empty{padding:20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__next{display:grid;gap:14px;margin-top:32px;}\n.chk-report__offer{display:flex;align-items:center;gap:20px;padding:22px 24px;border:2px solid;border-radius:14px;}\n.chk-report__offer--consult{border-color:#e87a47;background:linear-gradient(135deg,#ffe4cc,#fff5e6);}\n.chk-report__offer--analizy{border-color:#5ba8c7;background:linear-gradient(135deg,#e8f4f8,#f0f8fb);}\n.chk-report__offer-text{flex:1;min-width:0;}\n.chk-report__offer h3{font-family:inherit;font-size:17px;font-weight:600;}\n.chk-report__offer p{margin-top:6px;color:#606060;font-size:14px;}\n.chk-report__offer a{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:12px 18px;border-radius:10px;background:#0088cc;color:#fff!important;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;}\n.chk-report__offer--analizy a{background:#4a95b5;}\n.chk-report__send{margin-top:28px;padding:22px 24px;border:1px solid #c9decf;border-radius:12px;background:#f0f8f1;}\n.chk-report__send h3{font-size:18px;font-weight:600;}\n.chk-report__send p{margin-top:6px;font-size:13px;color:#516056;}\n.chk-report__send-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}\n.chk-report__send-fields label{font-size:12px;font-weight:600;color:#3d5942;}\n.chk-report__send-fields input{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b6cdbb;border-radius:7px;background:#fff;color:#2c2c2c;font:inherit;font-size:14px;}\n.chk-report__send button{padding:11px 18px;border:0;border-radius:8px;background:#3f8350;color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;}\n.chk-report__send button:disabled{opacity:.65;cursor:default;}\n.chk-report__send-status{min-height:20px;}\n.chk-report__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}\n.chk-report__actions button{padding:10px 16px;border:1px solid #d8c6a3;border-radius:8px;background:#fff;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__footer{margin-top:30px;padding-top:18px;border-top:1px solid #e0d5cc;color:#707070;font-size:13px;text-align:center;}\n@media(max-width:700px){.chk-report__benefits{grid-template-columns:1fr}.chk-report__offer{flex-direction:column;text-align:center}.chk-report__offer a{width:100%}}\n@media(max-width:600px){body.chk-report-file{padding:16px 8px}.chk-report{padding:20px 14px}.chk-report__stats,.chk-report__send-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.chk-report__q{flex-wrap:wrap}.chk-report__answer{width:100%;justify-content:center}.chk-report__section summary{gap:8px;padding:12px}.chk-report__section-name{font-size:12px}.chk-report__section-score{font-size:11px;padding:4px 8px}}\n@media(max-width:420px){.chk-report__send-fields{grid-template-columns:1fr}}\n@media print{body.chk-report-file{padding:0;background:#fff}body:not(.chk-report-file) *{visibility:hidden!important}body:not(.chk-report-file) .chk-report,body:not(.chk-report-file) .chk-report *{visibility:visible!important}body:not(.chk-report-file) .chk-report{position:absolute;top:0;left:0;width:100%}.chk-report{max-width:none;padding:20px;box-shadow:none}.chk-report__toolbar,.chk-report__actions,.chk-report__send{display:none}.chk-report__section{break-inside:avoid}.chk-report__section .chk-report__body{display:block!important}.chk-report__section-score,.chk-report__subscore,.chk-report__answer,.chk-report__legend i{-webkit-print-color-adjust:exact;print-color-adjust:exact}}\n";
+  var REPORT_CSS = "/* Отчёт анкеты. Этот же файл встраивается в скачиваемый HTML. */\nbody.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}\n.chk-report{max-width:900px;margin:0 auto;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.05);font-family:Onest,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Arial,sans-serif;color:#2c2c2c;line-height:1.6;}\n.chk-report *{box-sizing:border-box;}\n.chk-report h2,.chk-report h3,.chk-report p{margin:0;}\n.chk-report__brand{text-align:center;font-size:30px;font-weight:300;letter-spacing:.12em;color:#4a4a4a;}\n.chk-report__eyebrow{text-align:center;color:#707070;font-size:15px;margin:4px 0 24px!important;}\n.chk-report__intro{padding:24px 28px;border:1px solid #f4a261;border-radius:12px;background:linear-gradient(135deg,#fff5e6,#ffe4cc);}\n.chk-report__intro h2{font-family:inherit;font-size:20px;font-weight:600;color:#4a4a4a;}\n.chk-report__intro p{margin-top:8px;color:#666;font-size:14px;}\n.chk-report__benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px;}\n.chk-report__benefit{padding:12px 14px;border:1px solid #e0d5cc;border-radius:10px;background:#fff;font-size:13px;line-height:1.35;}\n.chk-report__benefit b{display:block;font-size:14px;}\n.chk-report__meta{margin-top:24px;padding:16px 20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__meta-name{font-size:17px;font-weight:600;}\n.chk-report__meta-detail{font-size:13px;color:#707070;}\n.chk-report__heading{text-align:center;font-family:inherit!important;font-size:22px!important;font-weight:600!important;color:#4a4a4a;margin:28px 0 18px!important;padding:0!important;border:0!important;}\n.chk-report__summary{padding:20px 24px;border:2px solid #e0d5cc;border-radius:14px;}\n.chk-report__summary h3{font-family:inherit;font-size:17px;font-weight:600;color:#4a4a4a;}\n.chk-report__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;}\n.chk-report__stat{padding:12px 8px;border:1px solid #f0e8dd;border-radius:10px;background:#fafafa;text-align:center;}\n.chk-report__stat b{display:block;font-size:24px;line-height:1.2;color:var(--report-color);}\n.chk-report__stat span{font-size:11px;color:#707070;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__priority{margin-top:16px;padding:12px 16px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__priority b{color:#c8662b;}\n.chk-report__toolbar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 20px;}\n.chk-report__tool{padding:8px 16px;border:1px solid #e0d5cc;border-radius:8px;background:#f5f1ed;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__tool:hover{background:#e9dfd5;}\n.chk-report__section{margin-bottom:12px;border:1px solid #e0d5cc;border-radius:10px;overflow:hidden;background:#fff;}\n.chk-report__section summary{display:flex;align-items:center;gap:12px;padding:14px 18px;list-style:none;cursor:pointer;}\n.chk-report__section summary::-webkit-details-marker{display:none;}\n.chk-report__section summary:hover{background:#fafafa;}\n.chk-report__section-name{flex:1;min-width:0;color:#e87a47;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}\n.chk-report__section-score{flex:none;padding:4px 12px;border-radius:16px;background:var(--report-color);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;}\n.chk-report__chevron{flex:none;color:#707070;font-size:13px;transition:transform .2s;}\n.chk-report__section[open] .chk-report__chevron{transform:rotate(180deg);}\n.chk-report__body{padding:0 18px 18px;border-top:1px solid #f0e8dd;}\n.chk-report__subsection{margin-top:18px;padding-top:14px;border-top:1px dashed #e0d5cc;}\n.chk-report__subsection:first-child{border-top:0;padding-top:6px;}\n.chk-report__subhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;}\n.chk-report__subscore{display:flex;align-items:center;justify-content:center;flex:none;width:50px;height:50px;border-radius:8px;background:var(--report-color);color:#fff;font-size:18px;font-weight:700;}\n.chk-report__subname{font-size:14px;font-weight:600;line-height:1.3;}\n.chk-report__submeta{margin-top:3px;font-size:13px;color:#707070;}\n.chk-report__subnote,.chk-report__partial{margin:10px 0!important;padding:9px 12px;border-radius:7px;background:#fff5e6;color:#65594e;font-size:12px;}\n.chk-report__status{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:12px;background:var(--report-tint);color:var(--report-ink);font-size:12px;font-weight:600;}\n.chk-report__q{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px;padding:8px 10px;border-radius:6px;background:#fafafa;}\n.chk-report__qnum{min-width:22px;padding-top:2px;color:#707070;font-size:12px;font-weight:600;}\n.chk-report__qtext{flex:1;min-width:0;font-size:13px;line-height:1.4;}\n.chk-report__answer{display:inline-flex;align-items:center;gap:6px;flex:none;padding:3px 10px;border-radius:12px;background:var(--report-color);color:#fff;font-size:12px;font-weight:600;white-space:nowrap;}\n.chk-report__answer::before{content:\"\";width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;}\n.chk-report [data-level=\"0\"]{--report-color:#6baa75;--report-ink:#43864c;--report-tint:#eaf5ec;}\n.chk-report [data-level=\"1\"]{--report-color:#f4a261;--report-ink:#a6591b;--report-tint:#fff0e2;}\n.chk-report [data-level=\"2\"]{--report-color:#e87a47;--report-ink:#a8441d;--report-tint:#ffebdf;}\n.chk-report [data-level=\"3\"]{--report-color:#d9534f;--report-ink:#a32c28;--report-tint:#fde9e8;}\n.chk-report [data-level=\"none\"]{--report-color:#bfbfbf;--report-ink:#666;--report-tint:#f2f2f2;}\n.chk-report__legend{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px;margin-top:24px;padding:14px 18px;border-radius:10px;background:#fff5e6;font-size:13px;}\n.chk-report__legend span{display:inline-flex;align-items:center;gap:7px;}\n.chk-report__legend i{width:14px;height:14px;border-radius:3px;background:var(--report-color);}\n.chk-report__note{margin-top:12px;color:#707070;font-size:12px;}\n.chk-report__empty{padding:20px;border-radius:10px;background:#f5f1ed;text-align:center;}\n.chk-report__next{display:grid;gap:14px;margin-top:32px;}\n.chk-report__offer{display:flex;align-items:center;gap:20px;padding:22px 24px;border:2px solid;border-radius:14px;}\n.chk-report__offer--consult{border-color:#e87a47;background:linear-gradient(135deg,#ffe4cc,#fff5e6);}\n.chk-report__offer--analizy{border-color:#5ba8c7;background:linear-gradient(135deg,#e8f4f8,#f0f8fb);}\n.chk-report__offer-text{flex:1;min-width:0;}\n.chk-report__offer h3{font-family:inherit;font-size:17px;font-weight:600;}\n.chk-report__offer p{margin-top:6px;color:#606060;font-size:14px;}\n.chk-report__offer a{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:12px 18px;border-radius:10px;background:#0088cc;color:#fff!important;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;}\n.chk-report__offer--analizy a{background:#4a95b5;}\n.chk-report__send{margin-top:28px;padding:22px 24px;border:1px solid #c9decf;border-radius:12px;background:#f0f8f1;}\n.chk-report__send h3{font-size:18px;font-weight:600;}\n.chk-report__send p{margin-top:6px;font-size:13px;color:#516056;}\n.chk-report__send a{display:inline-block;margin-top:12px;padding:11px 18px;border-radius:8px;background:#3f8350;color:#fff;font-size:14px;font-weight:600;text-decoration:none;}\n.chk-report__send-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}\n.chk-report__send-fields label{font-size:12px;font-weight:600;color:#3d5942;}\n.chk-report__send-fields input{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b6cdbb;border-radius:7px;background:#fff;color:#2c2c2c;font:inherit;font-size:14px;}\n.chk-report__send button{padding:11px 18px;border:0;border-radius:8px;background:#3f8350;color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;}\n.chk-report__send button:disabled{opacity:.65;cursor:default;}\n.chk-report__send-status{min-height:20px;}\n.chk-report__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}\n.chk-report__actions button{padding:10px 16px;border:1px solid #d8c6a3;border-radius:8px;background:#fff;color:#2c2c2c;font:inherit;font-size:13px;cursor:pointer;}\n.chk-report__footer{margin-top:30px;padding-top:18px;border-top:1px solid #e0d5cc;color:#707070;font-size:13px;text-align:center;}\n@media(max-width:700px){.chk-report__benefits{grid-template-columns:1fr}.chk-report__offer{flex-direction:column;text-align:center}.chk-report__offer a{width:100%}}\n@media(max-width:600px){body.chk-report-file{padding:16px 8px}.chk-report{padding:20px 14px}.chk-report__stats,.chk-report__send-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.chk-report__q{flex-wrap:wrap}.chk-report__answer{width:100%;justify-content:center}.chk-report__section summary{gap:8px;padding:12px}.chk-report__section-name{font-size:12px}.chk-report__section-score{font-size:11px;padding:4px 8px}}\n@media(max-width:420px){.chk-report__send-fields{grid-template-columns:1fr}}\n@media print{body.chk-report-file{padding:0;background:#fff}body:not(.chk-report-file) *{visibility:hidden!important}body:not(.chk-report-file) .chk-report,body:not(.chk-report-file) .chk-report *{visibility:visible!important}body:not(.chk-report-file) .chk-report{position:absolute;top:0;left:0;width:100%}.chk-report{max-width:none;padding:20px;box-shadow:none}.chk-report__toolbar,.chk-report__actions,.chk-report__send{display:none}.chk-report__section{break-inside:avoid}.chk-report__section .chk-report__body{display:block!important}.chk-report__section-score,.chk-report__subscore,.chk-report__answer,.chk-report__legend i{-webkit-print-color-adjust:exact;print-color-adjust:exact}}\n";
   var REPORT_LEVELS = ["Низкий уровень", "Умеренный уровень", "Повышенный уровень", "Высокий уровень"];
 
   function reportSections() {
@@ -1835,13 +1826,9 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
     html += '<a href="https://alinaecosin.ru/analizy.html" target="_blank" rel="noopener">К анализам →</a></div>';
     html += '</div>';
     if (!forFile) {
-      html += '<div class="chk-report__send"><h3>Отправить результат Алине</h3>';
-      html += '<p>После нажатия полный отчёт уйдёт в личный Telegram Алины. Укажите контакт, чтобы она могла вам ответить.</p>';
-      html += '<div class="chk-report__send-fields">';
-      html += '<label>Ваше имя<input type="text" data-send-name class="ym-disable-keys ym-hide-content" value="' + esc(state.name || '') + '" autocomplete="name"></label>';
-      html += '<label>Telegram или телефон<input type="text" data-send-contact class="ym-disable-keys ym-hide-content" value="' + esc(state.contact || '') + '" autocomplete="off"></label>';
-      html += '</div><button type="button" data-send>Отправить результат Алине</button>';
-      html += '<p class="chk-report__send-status" data-send-status role="status" aria-live="polite"></p></div>';
+      html += '<div class="chk-report__send"><h3>Передать результат Алине</h3>';
+      html += '<p>Скачайте отчёт и отправьте файл в Telegram самостоятельно. Сайт не передаёт ответы анкеты.</p>';
+      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram Алины →</a></div>';
       html += '<div class="chk-report__actions">';
       html += '<button type="button" data-download>Скачать полный отчёт</button>';
       html += '<button type="button" data-back>Вернуться к анкете</button></div>';
@@ -1864,8 +1851,6 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
         window.print();
       } else if (button.hasAttribute('data-download')) {
         downloadResult();
-      } else if (button.hasAttribute('data-send')) {
-        sendResult(box, button);
       } else if (button.hasAttribute('data-back')) {
         state.done = false; save(); showForm(false);
         window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
@@ -1901,42 +1886,6 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
 
   function downloadResult() {
     downloadFile(reportDocument(), fileName('Анкета', 'html'), 'text/html');
-  }
-
-  function sendResult(box, button) {
-    var status = box.querySelector('[data-send-status]');
-    var name = box.querySelector('[data-send-name]').value.trim();
-    var contact = box.querySelector('[data-send-contact]').value.trim();
-    if (!name || !contact) {
-      status.textContent = 'Укажите имя и Telegram или телефон для связи.';
-      return;
-    }
-    state.name = name; state.contact = contact; save();
-    button.disabled = true;
-    button.textContent = 'Отправляю…';
-    status.textContent = 'Отправляю полный отчёт Алине…';
-    var payload = JSON.stringify({ name: name, contact: contact, html: reportDocument() });
-    function send(url) {
-      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload })
-        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); });
-    }
-    send('https://alinaecosin.store/shop-api/checkup')
-      .then(function (res) {
-        if (res && res.ok) {
-          button.textContent = 'Отправлено Алине';
-          status.textContent = 'Готово: полный отчёт доставлен Алине в Telegram.';
-          if (typeof window.ecosinGoal === 'function') window.ecosinGoal('checkup_sent');
-        } else {
-          button.disabled = false;
-          button.textContent = 'Отправить результат Алине';
-          status.textContent = 'Не удалось отправить отчёт. Сохраните файл и пришлите его Алине в Telegram.';
-        }
-      })
-      .catch(function () {
-        button.disabled = false;
-        button.textContent = 'Отправить результат Алине';
-        status.textContent = 'Нет связи с сервером. Сохраните файл и пришлите его Алине в Telegram.';
-      });
   }
 
   // ───────────────────────── черновик файлом ────────────────────────

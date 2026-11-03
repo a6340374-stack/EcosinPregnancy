@@ -76,8 +76,8 @@ data_js = data_js.replace("</", "<\\/")
 APP = r"""
 <!-- ===== Функциональная анкета =====
 
-     595 вопросов, 22 раздела. Всё считается в браузере. Готовый отчёт
-     отправляется Алине только по отдельному нажатию пользователя.
+     595 вопросов, 22 раздела. Всё считается в браузере. Отчёт сохраняется
+     на устройство; если нужно, пользователь отправляет его сам через Telegram.
 
      Почему не перерисовываем страницу целиком на каждый клик: 595 вопросов
      по четыре кнопки — 2380 узлов. Открыт всегда один раздел, в разметке
@@ -112,7 +112,7 @@ APP = r"""
   var DRAFT_VERSION = 1;
 
   var state = {
-    name: "", born: "", contact: "", gender: "",
+    name: "", born: "", gender: "",
     answers: {},   // "секция-подраздел-вопрос" → 0|1|4|8
     open: null,    // индекс открытого раздела
     started: false,
@@ -237,11 +237,9 @@ APP = r"""
     var hint = $("[data-start-hint]");
     var nameInput = $("#chk-name");
     var bornInput = $("#chk-born");
-    var contactInput = $("#chk-contact");
 
     nameInput.value = state.name || "";
     bornInput.value = state.born || "";
-    contactInput.value = state.contact || "";
 
     function syncGender() {
       var btns = genderBox.querySelectorAll("button");
@@ -249,7 +247,7 @@ APP = r"""
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Результат отправится Алине только после вашего нажатия на кнопку в конце анкеты.";
+        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить и отправить Алине самостоятельно.";
       }
     }
 
@@ -263,7 +261,6 @@ APP = r"""
 
     nameInput.addEventListener("input", function () { state.name = nameInput.value; save(); });
     bornInput.addEventListener("input", function () { state.born = bornInput.value; save(); });
-    contactInput.addEventListener("input", function () { state.contact = contactInput.value; save(); });
 
     startBtn.addEventListener("click", function () {
       if (!state.gender) return;
@@ -484,7 +481,6 @@ APP = r"""
   function bindStartValues() {
     $("#chk-name").value = state.name || "";
     $("#chk-born").value = state.born || "";
-    $("#chk-contact").value = state.contact || "";
     var btns = $("[data-gender]").querySelectorAll("button");
     for (var i = 0; i < btns.length; i++)
       btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));

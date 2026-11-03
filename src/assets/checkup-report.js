@@ -129,13 +129,9 @@
     html += '<a href="https://alinaecosin.ru/analizy.html" target="_blank" rel="noopener">К анализам →</a></div>';
     html += '</div>';
     if (!forFile) {
-      html += '<div class="chk-report__send"><h3>Отправить результат Алине</h3>';
-      html += '<p>После нажатия полный отчёт уйдёт в личный Telegram Алины. Укажите контакт, чтобы она могла вам ответить.</p>';
-      html += '<div class="chk-report__send-fields">';
-      html += '<label>Ваше имя<input type="text" data-send-name class="ym-disable-keys ym-hide-content" value="' + esc(state.name || '') + '" autocomplete="name"></label>';
-      html += '<label>Telegram или телефон<input type="text" data-send-contact class="ym-disable-keys ym-hide-content" value="' + esc(state.contact || '') + '" autocomplete="off"></label>';
-      html += '</div><button type="button" data-send>Отправить результат Алине</button>';
-      html += '<p class="chk-report__send-status" data-send-status role="status" aria-live="polite"></p></div>';
+      html += '<div class="chk-report__send"><h3>Передать результат Алине</h3>';
+      html += '<p>Скачайте отчёт и отправьте файл в Telegram самостоятельно. Сайт не передаёт ответы анкеты.</p>';
+      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram Алины →</a></div>';
       html += '<div class="chk-report__actions">';
       html += '<button type="button" data-download>Скачать полный отчёт</button>';
       html += '<button type="button" data-back>Вернуться к анкете</button></div>';
@@ -158,8 +154,6 @@
         window.print();
       } else if (button.hasAttribute('data-download')) {
         downloadResult();
-      } else if (button.hasAttribute('data-send')) {
-        sendResult(box, button);
       } else if (button.hasAttribute('data-back')) {
         state.done = false; save(); showForm(false);
         window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
@@ -195,40 +189,4 @@
 
   function downloadResult() {
     downloadFile(reportDocument(), fileName('Анкета', 'html'), 'text/html');
-  }
-
-  function sendResult(box, button) {
-    var status = box.querySelector('[data-send-status]');
-    var name = box.querySelector('[data-send-name]').value.trim();
-    var contact = box.querySelector('[data-send-contact]').value.trim();
-    if (!name || !contact) {
-      status.textContent = 'Укажите имя и Telegram или телефон для связи.';
-      return;
-    }
-    state.name = name; state.contact = contact; save();
-    button.disabled = true;
-    button.textContent = 'Отправляю…';
-    status.textContent = 'Отправляю полный отчёт Алине…';
-    var payload = JSON.stringify({ name: name, contact: contact, html: reportDocument() });
-    function send(url) {
-      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload })
-        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); });
-    }
-    send('https://alinaecosin.store/shop-api/checkup')
-      .then(function (res) {
-        if (res && res.ok) {
-          button.textContent = 'Отправлено Алине';
-          status.textContent = 'Готово: полный отчёт доставлен Алине в Telegram.';
-          if (typeof window.ecosinGoal === 'function') window.ecosinGoal('checkup_sent');
-        } else {
-          button.disabled = false;
-          button.textContent = 'Отправить результат Алине';
-          status.textContent = 'Не удалось отправить отчёт. Сохраните файл и пришлите его Алине в Telegram.';
-        }
-      })
-      .catch(function () {
-        button.disabled = false;
-        button.textContent = 'Отправить результат Алине';
-        status.textContent = 'Нет связи с сервером. Сохраните файл и пришлите его Алине в Telegram.';
-      });
   }

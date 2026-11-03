@@ -70,6 +70,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
 .chk-report__send{margin-top:28px;padding:22px 24px;border:1px solid #c9decf;border-radius:12px;background:#f0f8f1;}
 .chk-report__send h3{font-size:18px;font-weight:600;}
 .chk-report__send p{margin-top:6px;font-size:13px;color:#516056;}
+.chk-report__send a{display:inline-block;margin-top:12px;padding:11px 18px;border-radius:8px;background:#3f8350;color:#fff;font-size:14px;font-weight:600;text-decoration:none;}
 .chk-report__send-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}
 .chk-report__send-fields label{font-size:12px;font-weight:600;color:#3d5942;}
 .chk-report__send-fields input{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b6cdbb;border-radius:7px;background:#fff;color:#2c2c2c;font:inherit;font-size:14px;}

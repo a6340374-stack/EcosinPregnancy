@@ -1,9 +1,4 @@
-<!-- Лид-магнит. Поля помечены ym-disable-keys и ym-hide-content:
-     без этого Вебвизор пишет введённые имя и контакт в запись сеанса.
-     Сборщик вставляет блок в тело страницы на место слота
-     с именем magnet. Значения приходят из шапки страницы: поля magnet_*
-     без приставки. Скрипт подключается автоматически, звать не надо.
-     Внимание: сам слот здесь писать нельзя — подстановщик его увидит. -->
+<!-- Лид-магнит выдаётся напрямую, без сбора контактов и сетевой отправки. -->
 <div class="magnet" data-magnet
      data-file="{{ file }}"
      data-goal="{{ goal }}"
@@ -17,37 +12,7 @@
   </div>
 
   <div class="magnet-side">
-    <form class="magnet-form" data-magnet-form novalidate>
-      <div class="magnet-field">
-        <label for="{{ id }}-name">Как вас зовут</label>
-        <input id="{{ id }}-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required
-               class="ym-disable-keys ym-hide-content" />
-      </div>
-      <div class="magnet-field">
-        <label for="{{ id }}-contact">Telegram или телефон</label>
-        <input id="{{ id }}-contact" name="contact" type="text" placeholder="@username или +7 …" required
-               class="ym-disable-keys ym-hide-content" />
-      </div>
-
-      <!-- Ловушка для спам-ботов. Людям не показываем.
-           ИМЯ ПОЛЯ НЕЙТРАЛЬНОЕ НАМЕРЕННО. Когда оно называлось «company»
-           с подписью «Компания», автозаполнение Яндекс.Браузера вписывало
-           туда название организации ЖИВОМУ человеку — и заявка не
-           отправлялась вовсе (23.09.2026). Бота имя поля не смущает: он
-           заполняет всё подряд. -->
-      <div class="magnet-hp" aria-hidden="true">
-        <label for="{{ id }}-note2">Не заполняйте это поле</label>
-        <input id="{{ id }}-note2" name="note2" type="text" tabindex="-1" autocomplete="off" />
-      </div>
-
-      <button type="submit" class="btn btn-primary" data-magnet-submit>{{ button }} <span class="arrow">→</span></button>
-      <small class="magnet-note" data-magnet-status>Нажимая кнопку, вы соглашаетесь с <a href="/legal/privacy.html">обработкой персональных данных</a>. Рассылок не будет.</small>
-    </form>
-
-    <div class="magnet-done" data-magnet-done hidden>
-      <p class="magnet-done-title" data-magnet-done-title>Готово. Файл ниже.</p>
-      <a class="btn btn-primary" data-magnet-link href="{{ file }}" download>Скачать PDF <span class="arrow">↓</span></a>
-      <small class="magnet-note" data-magnet-done-note>Ссылка останется рабочей — можно сохранить страницу и вернуться.</small>
-    </div>
+    <a class="btn btn-primary" href="{{ file }}" download>{{ button }} <span class="arrow">↓</span></a>
+    <small class="magnet-note">Файл скачивается сразу. Если хотите обсудить материал — напишите <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Алине в Telegram</a>.</small>
   </div>
 </div>

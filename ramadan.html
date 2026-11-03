@@ -916,12 +916,7 @@ p{margin:0;text-wrap:pretty;}
       </div>
     </section>
 
-<!-- Лид-магнит. Поля помечены ym-disable-keys и ym-hide-content:
-     без этого Вебвизор пишет введённые имя и контакт в запись сеанса.
-     Сборщик вставляет блок в тело страницы на место слота
-     с именем magnet. Значения приходят из шапки страницы: поля magnet_*
-     без приставки. Скрипт подключается автоматически, звать не надо.
-     Внимание: сам слот здесь писать нельзя — подстановщик его увидит. -->
+<!-- Лид-магнит выдаётся напрямую, без сбора контактов и сетевой отправки. -->
 <div class="magnet" data-magnet
      data-file="/files/menu-ramadan.pdf"
      data-goal="lead_magnet_menu"
@@ -935,38 +930,8 @@ p{margin:0;text-wrap:pretty;}
   </div>
 
   <div class="magnet-side">
-    <form class="magnet-form" data-magnet-form novalidate>
-      <div class="magnet-field">
-        <label for="menu-name">Как вас зовут</label>
-        <input id="menu-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" required
-               class="ym-disable-keys ym-hide-content" />
-      </div>
-      <div class="magnet-field">
-        <label for="menu-contact">Telegram или телефон</label>
-        <input id="menu-contact" name="contact" type="text" placeholder="@username или +7 …" required
-               class="ym-disable-keys ym-hide-content" />
-      </div>
-
-      <!-- Ловушка для спам-ботов. Людям не показываем.
-           ИМЯ ПОЛЯ НЕЙТРАЛЬНОЕ НАМЕРЕННО. Когда оно называлось «company»
-           с подписью «Компания», автозаполнение Яндекс.Браузера вписывало
-           туда название организации ЖИВОМУ человеку — и заявка не
-           отправлялась вовсе (23.09.2026). Бота имя поля не смущает: он
-           заполняет всё подряд. -->
-      <div class="magnet-hp" aria-hidden="true">
-        <label for="menu-note2">Не заполняйте это поле</label>
-        <input id="menu-note2" name="note2" type="text" tabindex="-1" autocomplete="off" />
-      </div>
-
-      <button type="submit" class="btn btn-primary" data-magnet-submit>Получить меню <span class="arrow">→</span></button>
-      <small class="magnet-note" data-magnet-status>Нажимая кнопку, вы соглашаетесь с <a href="/legal/privacy.html">обработкой персональных данных</a>. Рассылок не будет.</small>
-    </form>
-
-    <div class="magnet-done" data-magnet-done hidden>
-      <p class="magnet-done-title" data-magnet-done-title>Готово. Файл ниже.</p>
-      <a class="btn btn-primary" data-magnet-link href="/files/menu-ramadan.pdf" download>Скачать PDF <span class="arrow">↓</span></a>
-      <small class="magnet-note" data-magnet-done-note>Ссылка останется рабочей — можно сохранить страницу и вернуться.</small>
-    </div>
+    <a class="btn btn-primary" href="/files/menu-ramadan.pdf" download>Получить меню <span class="arrow">↓</span></a>
+    <small class="magnet-note">Файл скачивается сразу. Если хотите обсудить материал — напишите <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Алине в Telegram</a>.</small>
   </div>
 </div>
 
@@ -1297,131 +1262,7 @@ p{margin:0;text-wrap:pretty;}
 }
 </script>
 
-<!-- ===== Лид-магнит: отправка заявки и выдача файла ===== -->
-<script>
-(function () {
-  // Тот же приёмник, что у формы на главной: заявки с магнитов падают
-  // в «Диспетчерскую» вместе с остальными, отличаясь только темой.
-  // Единственный активный адрес приёмника.
-  // АДРЕС НЕЙТРАЛЬНЫЙ НАМЕРЕННО. Прежний «site-lead» режут блокировщики:
-  // слово «lead» в списках фильтров помечает сбор лидов, и запрос не
-  // выходит из браузера. Так терялись заявки из Яндекс.Браузера — в логе
-  // сервера пусто, у человека «заявка не дошла» (23.09.2026).
-  var LEAD_ENDPOINT = "https://alinaecosin.store/shop-api/consult";
-  var TG_LINK = "https://t.me/alina_ecosin";
-
-  var blocks = document.querySelectorAll("[data-magnet]");
-  if (!blocks.length) return;
-
-  Array.prototype.forEach.call(blocks, function (box) {
-    var form   = box.querySelector("[data-magnet-form]");
-    var done   = box.querySelector("[data-magnet-done]");
-    var status = box.querySelector("[data-magnet-status]");
-    var btn    = box.querySelector("[data-magnet-submit]");
-    var link   = box.querySelector("[data-magnet-link]");
-    var title  = box.querySelector("[data-magnet-done-title]");
-    var note   = box.querySelector("[data-magnet-done-note]");
-    if (!form || !done || !link) return;
-
-    var file  = box.getAttribute("data-file") || "";
-    var goal  = box.getAttribute("data-goal") || "";
-    var topic = box.getAttribute("data-topic") || "Запрос материала с сайта";
-
-    function val(name) {
-      var el = form.querySelector('[name="' + name + '"]');
-      return el ? (el.value || "").trim() : "";
-    }
-
-    // Показать файл. Причина нужна, чтобы человек понимал, что произошло:
-    // заявка дошла — или не дошла, но материал он всё равно получает.
-    function give(reason) {
-      link.setAttribute("href", file);
-      if (reason === "offline") {
-        title.textContent = "Файл ваш — забирайте.";
-        note.innerHTML = "Заявка до меня не дошла: что-то с сервером. " +
-          'Если хотите разбор — напишите в <a href="' + TG_LINK +
-          '" target="_blank" rel="noopener">Telegram</a>, отвечу лично.';
-      } else if (reason === "nocontact") {
-        title.textContent = "Файл ваш — забирайте.";
-        note.innerHTML = "Ваш контакт я могла не получить. " +
-          'Если хотите разбор — напишите в <a href="' + TG_LINK +
-          '" target="_blank" rel="noopener">Telegram</a>, отвечу лично.';
-      }
-      form.hidden = true;
-      done.hidden = false;
-      done.setAttribute("tabindex", "-1");
-      done.focus({ preventScroll: true });
-    }
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      var data = {
-        name:    val("name"),
-        contact: val("contact"),
-        // Приписка со страницей — чтобы источник был виден в карточке
-        // заявки уже сейчас, пока приёмник не читает source_*.
-        topic:   topic + (window.ecosinTopicSuffix ? window.ecosinTopicSuffix() : ""),
-        hp:      val("note2")
-      };
-      if (window.ecosinSource) {
-        var s = window.ecosinSource("magnet", goal);
-        for (var k in s) if (s.hasOwnProperty(k)) data[k] = s[k];
-      }
-
-      if (!data.name || !data.contact) {
-        status.textContent = "Заполните имя и контакт — без них я не смогу ответить.";
-        return;
-      }
-      // Ловушка сработала — почти наверняка бот, заявку не шлём. Файл
-      // всё равно отдаём: если это редкий случай автозаполнения у живого
-      // человека, он хотя бы получит материал и увидит, как со мной
-      // связаться. Раньше здесь говорилось «что-то с сервером» — неправда,
-      // из-за которой поломку искали в сети, а не в форме.
-      if (data.hp) {
-        give("nocontact");
-        return;
-      }
-
-      // Надпись меняем НА САМОЙ КНОПКЕ, а не только в строке под ней:
-      // туда человек не смотрит, он смотрит туда, куда нажал.
-      var btnWas = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = "Отправляю…";
-      status.textContent = "Отправляю…";
-
-      function send(url) {
-        return fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        }).then(function (r) { return r.json(); });
-      }
-
-      send(LEAD_ENDPOINT)
-        .then(function (res) {
-          if (res && res.ok) {
-            if (window.ecosinGoal) {
-              window.ecosinGoal("lead_magnet");
-              if (goal) window.ecosinGoal(goal);
-            }
-            give("ok");
-          } else {
-            if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-            give("offline");
-          }
-        })
-        .catch(function () {
-          btn.disabled = false;
-          btn.innerHTML = btnWas;
-          if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-          give("offline");
-        });
-    });
-  });
-})();
-</script>
-<!-- /Лид-магнит -->
+<!-- Сбор заявок для материалов отключён; файлы выдаются прямой ссылкой. -->
 
 </body>
 </html>

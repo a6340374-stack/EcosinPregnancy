@@ -1539,8 +1539,8 @@ p{margin:0;text-wrap:pretty;}
           </select>
         </div>
         <div class="hp-field" aria-hidden="true"><label for="note2">Не заполняйте это поле</label><input id="note2" name="note2" type="text" tabindex="-1" autocomplete="off" /></div>
-        <button type="submit" id="cta-submit">Записаться на созвон →</button>
-        <small id="cta-status">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Я отвечаю в течение 24 часов.</small>
+        <button type="submit" id="cta-submit">Продолжить в мессенджер →</button>
+        <small id="cta-status">Сайт не отправляет данные. После нажатия выберите Telegram или WhatsApp и отправьте сообщение там.</small>
       </form>
     </div>
   </div>
@@ -1819,15 +1819,8 @@ p{margin:0;text-wrap:pretty;}
 <!-- ===== Отправка заявки ===== -->
 <script>
 (function () {
-  // Приёмник заявок на стороне сервера. Секретов в браузере нет: токен бота
-  // живёт в .env «Диспетчерской», а не в этом файле.
-  // Пока адрес пуст — форма доводит человека до мессенджера с готовым текстом.
-  // Заявки идут на основной домен сервиса.
-  // АДРЕС НЕЙТРАЛЬНЫЙ НАМЕРЕННО. Прежний «site-lead» режут блокировщики:
-  // слово «lead» в списках фильтров помечает сбор лидов, и запрос не
-  // выходит из браузера. Так терялись заявки из Яндекс.Браузера — в логе
-  // сервера пусто, у человека «заявка не дошла» (23.09.2026).
-  var LEAD_ENDPOINT = "https://alinaecosin.store/shop-api/consult";
+  // Данные остаются в браузере, пока посетитель сам не отправит сообщение
+  // через выбранный мессенджер.
   var TG_LINK  = "https://t.me/alina_ecosin";
   var WA_PHONE = "79373614477";
 
@@ -1876,61 +1869,13 @@ p{margin:0;text-wrap:pretty;}
       topic:   field("topic"),
       hp:      field("note2")
     };
-    // Откуда пришла заявка. Помощник объявлен рядом со счётчиком Метрики,
-    // он есть на каждой странице.
-    if (window.ecosinSource) {
-      var s = window.ecosinSource("form", "");
-      for (var k in s) if (s.hasOwnProperty(k)) d[k] = s[k];
-    }
-
     if (!d.name || !d.contact) {
       status.textContent = "Пожалуйста, заполните имя и контакт.";
       return;
     }
     if (d.hp) return; // молча игнорируем бота
-
-    if (!LEAD_ENDPOINT) {
-      offerMessengers(d);
-      if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-      return;
-    }
-
-    // Надпись на самой кнопке: строку под ней человек не читает.
-    var btnWas = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = "Отправляю…";
-    status.textContent = "Отправляю…";
-
-    function send(url) {
-      return fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(d)
-      }).then(function (r) { return r.json(); });
-    }
-
-    send(LEAD_ENDPOINT)
-      .then(function (res) {
-        if (res && res.ok) {
-          form.reset();
-          // Кнопку оставляем выключенной: форма пуста, повторно слать
-          // нечего, а надпись подтверждает, что всё случилось.
-          btn.innerHTML = "Отправлено";
-          if (window.ecosinGoal) window.ecosinGoal("lead_form");
-          status.textContent = "\u2705 Спасибо! Заявка отправлена. Отвечу в течение 24 часов.";
-        } else {
-          btn.disabled = false;
-          btn.innerHTML = btnWas;
-          offerMessengers(d);
-          if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-        }
-      })
-      .catch(function () {
-        btn.disabled = false;
-        btn.innerHTML = btnWas;
-        offerMessengers(d);
-        if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-      });
+    offerMessengers(d);
+    if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
   });
 })();
 </script>
