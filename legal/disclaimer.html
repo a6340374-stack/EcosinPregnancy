@@ -381,74 +381,6 @@ p{margin:0;text-wrap:pretty;}
 }
 </style>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112475745', 'ym');
-
-    ym(112475745, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/112475745" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
-     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
-<script>
-(function () {
-  function goal(name) {
-    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
-  }
-  window.ecosinGoal = goal;
-
-  document.addEventListener("click", function (e) {
-    var el = e.target;
-    if (!el || typeof el.closest !== "function") return;
-    var a = el.closest("a[href]");
-    if (!a) return;
-    var href = a.getAttribute("href") || "";
-    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
-    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
-    else if (href.indexOf("tel:") === 0)   goal("phone_click");
-    else if (href.indexOf("shop.html") > -1) goal("shop_open");
-  }, true);
-
-  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
-  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
-  // страница и какой магнит реально приводят людей.
-  //
-  // Приёмник читает поля по одному через body.get(), лишние ключи молча
-  // игнорирует. Поэтому сайт может слать источник до того, как на той
-  // стороне появится место под него: ничего не сломается, данные начнут
-  // сохраняться, как только приёмник их прочитает.
-  function utm() {
-    try {
-      var q = new URLSearchParams(location.search);
-      return q.get("utm_campaign") || q.get("utm_source") || "";
-    } catch (e) { return ""; }
-  }
-
-  window.ecosinSource = function (kind, id) {
-    return {
-      source_page: location.pathname,          // /ramadan/menu.html
-      source_kind: kind || "form",             // form | magnet
-      source_id: id || "",                     // lead_magnet_menu
-      source_title: (document.title || "").slice(0, 120),
-      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
-    };
-  };
-
-  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
-  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
-  // эту приписку можно убрать, структурные поля её заменят.
-  window.ecosinTopicSuffix = function () {
-    return location.pathname === "/" ? "" : " · " + location.pathname;
-  };
-})();
-</script>
 </head>
 <body>
 
@@ -729,6 +661,115 @@ p{margin:0;text-wrap:pretty;}
     </div>
   </div>
 </footer>
+
+<div class="wrap" style="padding-block:12px">
+  <button type="button" id="analytics-settings" hidden>Настройки аналитики</button>
+</div>
+<section id="analytics-choice" aria-labelledby="analytics-title" hidden style="position:fixed;bottom:0;left:0;right:0;z-index:1000;background:#fff;color:#202920;padding:16px max(16px,4vw);box-shadow:0 -2px 16px #0002">
+  <strong id="analytics-title">Разрешить Яндекс.Метрику?</strong>
+  <p>Статистика посещений помогает улучшать сайт. <a href="/legal/privacy.html">Как используются данные</a></p>
+  <button type="button" id="analytics-no">Только необходимые</button>
+  <button type="button" id="analytics-yes">Разрешить аналитику</button>
+</section>
+<script>
+(function () {
+  var key = 'ecosin-analytics-v1';
+  var panel = document.getElementById('analytics-choice');
+  var settings = document.getElementById('analytics-settings');
+  var reject = document.getElementById('analytics-no');
+  var accept = document.getElementById('analytics-yes');
+  var choice;
+  var started = false;
+  try { choice = localStorage.getItem(key); } catch (e) {}
+
+  function start() {
+    if (started) return;
+    started = true;
+    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://mc.yandex.ru/metrika/tag.js?id=112475745';
+    document.head.appendChild(script);
+    window.ym(112475745, 'init', {webvisor:false, trackLinks:false, accurateTrackBounce:true});
+  }
+
+  function save(value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+    panel.hidden = true;
+    settings.focus();
+    if (value === 'allow') start();
+    else if (started) location.reload();
+  }
+
+  settings.hidden = false;
+  settings.onclick = function () { panel.hidden = false; reject.focus(); };
+  accept.onclick = function () { save('allow'); };
+  reject.onclick = function () { save('deny'); };
+  if (choice === 'allow') start();
+  else if (choice !== 'deny') panel.hidden = false;
+  window.addEventListener('storage', function (event) {
+    if (event.key === key || event.key === null) location.reload();
+  });
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) location.reload();
+  });
+})();
+</script>
+<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
+     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
+<script>
+(function () {
+  function goal(name) {
+    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
+  }
+  window.ecosinGoal = goal;
+
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    if (!el || typeof el.closest !== "function") return;
+    var a = el.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
+    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
+    else if (href.indexOf("tel:") === 0)   goal("phone_click");
+    else if (href.indexOf("shop.html") > -1) goal("shop_open");
+  }, true);
+
+  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
+  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
+  // страница и какой магнит реально приводят людей.
+  //
+  // Приёмник читает поля по одному через body.get(), лишние ключи молча
+  // игнорирует. Поэтому сайт может слать источник до того, как на той
+  // стороне появится место под него: ничего не сломается, данные начнут
+  // сохраняться, как только приёмник их прочитает.
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return q.get("utm_campaign") || q.get("utm_source") || "";
+    } catch (e) { return ""; }
+  }
+
+  window.ecosinSource = function (kind, id) {
+    return {
+      source_page: location.pathname,          // /ramadan/menu.html
+      source_kind: kind || "form",             // form | magnet
+      source_id: id || "",                     // lead_magnet_menu
+      source_title: (document.title || "").slice(0, 120),
+      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
+    };
+  };
+
+  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
+  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
+  // эту приписку можно убрать, структурные поля её заменят.
+  window.ecosinTopicSuffix = function () {
+    return location.pathname === "/" ? "" : " · " + location.pathname;
+  };
+})();
+</script>
 
 </body>
 </html>

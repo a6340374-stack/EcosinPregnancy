@@ -763,38 +763,8 @@ p{margin:0;text-wrap:pretty;}
   max-width: 40ch;
   margin-top: 20px;
 }
-.cta-form{
-  background: rgba(245,237,224,0.06);
-  padding: 28px;
-  border-radius: 4px;
-  border:1px solid rgba(245,237,224,0.16);
-  display:flex;flex-direction:column;gap:14px;
-}
-.cta-form > div{display:flex;flex-direction:column;gap:8px;}
-.cta-form label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,237,224,0.6);}
-.cta-form input, .cta-form select{
-  background: rgba(245,237,224,0.04);
-  border: 1px solid rgba(245,237,224,0.18);
-  color: var(--cream);
-  padding: 14px 16px;
-  border-radius: 3px;
-  font-family: var(--body);
-  font-size: 15px;
-  width: 100%;
-}
-.cta-form input::placeholder{color: rgba(245,237,224,0.4);}
-.cta-form button{
-  background: var(--cream);
-  color: var(--forest);
-  padding: 14px 20px;
-  border-radius: 999px;
-  font-family: var(--body);
-  font-weight: 500;
-  margin-top: 4px;
-  transition: background .25s;
-}
-.cta-form button:hover{background: var(--paper);}
-.cta-form small{font-size:11px;color:rgba(245,237,224,0.5);letter-spacing:.05em;line-height:1.5;}
+.cta-call{justify-self:start;background:var(--cream);color:var(--forest);text-align:center;}
+.cta-call:hover{background:var(--paper);}
 
 /* ───────────────────────── BLOG ───────────────────────── */
 .blog-grid{display:grid;grid-template-columns: 1fr 1fr 1fr;gap: 24px;}

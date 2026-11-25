@@ -168,7 +168,7 @@ def render(meta, body, partials, where):
         "robots": meta.get("robots", "index, follow, max-image-preview:large, max-snippet:-1"),
         "head_extra": optional_block(meta, "head_extra"),
         "css": css,
-        "metrika": partials["metrika"],
+        "metrika": "" if meta["url"] in ("/screening.html", "/checkup.html") else partials["metrika"],
         "nav": mark_current(partials["nav"], meta["url"]),
         "footer": partials["footer"],
         "content": body.rstrip("\n"),

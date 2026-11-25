@@ -833,38 +833,8 @@ p{margin:0;text-wrap:pretty;}
   max-width: 40ch;
   margin-top: 20px;
 }
-.cta-form{
-  background: rgba(245,237,224,0.06);
-  padding: 28px;
-  border-radius: 4px;
-  border:1px solid rgba(245,237,224,0.16);
-  display:flex;flex-direction:column;gap:14px;
-}
-.cta-form > div{display:flex;flex-direction:column;gap:8px;}
-.cta-form label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,237,224,0.6);}
-.cta-form input, .cta-form select{
-  background: rgba(245,237,224,0.04);
-  border: 1px solid rgba(245,237,224,0.18);
-  color: var(--cream);
-  padding: 14px 16px;
-  border-radius: 3px;
-  font-family: var(--body);
-  font-size: 15px;
-  width: 100%;
-}
-.cta-form input::placeholder{color: rgba(245,237,224,0.4);}
-.cta-form button{
-  background: var(--cream);
-  color: var(--forest);
-  padding: 14px 20px;
-  border-radius: 999px;
-  font-family: var(--body);
-  font-weight: 500;
-  margin-top: 4px;
-  transition: background .25s;
-}
-.cta-form button:hover{background: var(--paper);}
-.cta-form small{font-size:11px;color:rgba(245,237,224,0.5);letter-spacing:.05em;line-height:1.5;}
+.cta-call{justify-self:start;background:var(--cream);color:var(--forest);text-align:center;}
+.cta-call:hover{background:var(--paper);}
 
 /* ───────────────────────── BLOG ───────────────────────── */
 .blog-grid{display:grid;grid-template-columns: 1fr 1fr 1fr;gap: 24px;}
@@ -1047,74 +1017,6 @@ p{margin:0;text-wrap:pretty;}
 }
 </style>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112475745', 'ym');
-
-    ym(112475745, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/112475745" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
-     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
-<script>
-(function () {
-  function goal(name) {
-    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
-  }
-  window.ecosinGoal = goal;
-
-  document.addEventListener("click", function (e) {
-    var el = e.target;
-    if (!el || typeof el.closest !== "function") return;
-    var a = el.closest("a[href]");
-    if (!a) return;
-    var href = a.getAttribute("href") || "";
-    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
-    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
-    else if (href.indexOf("tel:") === 0)   goal("phone_click");
-    else if (href.indexOf("shop.html") > -1) goal("shop_open");
-  }, true);
-
-  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
-  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
-  // страница и какой магнит реально приводят людей.
-  //
-  // Приёмник читает поля по одному через body.get(), лишние ключи молча
-  // игнорирует. Поэтому сайт может слать источник до того, как на той
-  // стороне появится место под него: ничего не сломается, данные начнут
-  // сохраняться, как только приёмник их прочитает.
-  function utm() {
-    try {
-      var q = new URLSearchParams(location.search);
-      return q.get("utm_campaign") || q.get("utm_source") || "";
-    } catch (e) { return ""; }
-  }
-
-  window.ecosinSource = function (kind, id) {
-    return {
-      source_page: location.pathname,          // /ramadan/menu.html
-      source_kind: kind || "form",             // form | magnet
-      source_id: id || "",                     // lead_magnet_menu
-      source_title: (document.title || "").slice(0, 120),
-      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
-    };
-  };
-
-  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
-  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
-  // эту приписку можно убрать, структурные поля её заменят.
-  window.ecosinTopicSuffix = function () {
-    return location.pathname === "/" ? "" : " · " + location.pathname;
-  };
-})();
-</script>
 </head>
 <body>
 
@@ -1525,26 +1427,8 @@ p{margin:0;text-wrap:pretty;}
         <div class="eyebrow" style="color:var(--olive-soft);">Бесплатный созвон · 15 минут</div>
         <h2 style="margin-top:18px;">Давайте познакомимся <em>и решим</em>, нужны ли мы друг другу.</h2>
         <p>Расскажу о формате, отвечу на вопросы, помогу понять — мой подход вам подходит или нет. Без обязательств, без продажи. Если не моё — порекомендую коллегу.</p>
-        <p style="margin-top:24px;font-size:14px;letter-spacing:.04em;"><strong style="color:var(--cream);">Telegram</strong> <a href="https://t.me/alina_ecosin" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;">@alina_ecosin</a> &nbsp;·&nbsp; <strong style="color:var(--cream);">WhatsApp</strong> <a href="https://wa.me/79373614477" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;">+7 937 361 44 77</a></p>
       </div>
-      <form class="cta-form" id="cta-form">
-        <div><label for="name">Как вас зовут</label><input id="name" name="name" type="text" placeholder="Имя" required class="ym-disable-keys ym-hide-content" /></div>
-        <div><label for="tg">Telegram или телефон</label><input id="tg" name="tg" type="text" placeholder="@username или +7 …" required class="ym-disable-keys ym-hide-content" /></div>
-        <div><label for="topic">С чем хотите разобраться</label>
-          <select id="topic" name="topic">
-            <option>Усталость и упадок сил</option>
-            <option>Тяга к сладкому, переедание</option>
-            <option>Гормоны, цикл, ПМС</option>
-            <option>ЖКТ, кожа, иммунитет</option>
-            <option>Подготовка к беременности</option>
-            <option>Здоровье ребёнка</option>
-            <option>Просто хочу спросить</option>
-          </select>
-        </div>
-        <div class="hp-field" aria-hidden="true"><label for="note2">Не заполняйте это поле</label><input id="note2" name="note2" type="text" tabindex="-1" autocomplete="off" /></div>
-        <button type="submit" id="cta-submit">Продолжить в мессенджер →</button>
-        <small id="cta-status">Сайт не отправляет данные. После нажатия выберите Telegram или WhatsApp и отправьте сообщение там.</small>
-      </form>
+      <a class="btn cta-call" href="tel:+79373614477">Позвонить · +7 937 361 44 77</a>
     </div>
   </div>
 </section>
@@ -1648,6 +1532,115 @@ p{margin:0;text-wrap:pretty;}
     </div>
   </div>
 </footer>
+
+<div class="wrap" style="padding-block:12px">
+  <button type="button" id="analytics-settings" hidden>Настройки аналитики</button>
+</div>
+<section id="analytics-choice" aria-labelledby="analytics-title" hidden style="position:fixed;bottom:0;left:0;right:0;z-index:1000;background:#fff;color:#202920;padding:16px max(16px,4vw);box-shadow:0 -2px 16px #0002">
+  <strong id="analytics-title">Разрешить Яндекс.Метрику?</strong>
+  <p>Статистика посещений помогает улучшать сайт. <a href="/legal/privacy.html">Как используются данные</a></p>
+  <button type="button" id="analytics-no">Только необходимые</button>
+  <button type="button" id="analytics-yes">Разрешить аналитику</button>
+</section>
+<script>
+(function () {
+  var key = 'ecosin-analytics-v1';
+  var panel = document.getElementById('analytics-choice');
+  var settings = document.getElementById('analytics-settings');
+  var reject = document.getElementById('analytics-no');
+  var accept = document.getElementById('analytics-yes');
+  var choice;
+  var started = false;
+  try { choice = localStorage.getItem(key); } catch (e) {}
+
+  function start() {
+    if (started) return;
+    started = true;
+    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://mc.yandex.ru/metrika/tag.js?id=112475745';
+    document.head.appendChild(script);
+    window.ym(112475745, 'init', {webvisor:false, trackLinks:false, accurateTrackBounce:true});
+  }
+
+  function save(value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+    panel.hidden = true;
+    settings.focus();
+    if (value === 'allow') start();
+    else if (started) location.reload();
+  }
+
+  settings.hidden = false;
+  settings.onclick = function () { panel.hidden = false; reject.focus(); };
+  accept.onclick = function () { save('allow'); };
+  reject.onclick = function () { save('deny'); };
+  if (choice === 'allow') start();
+  else if (choice !== 'deny') panel.hidden = false;
+  window.addEventListener('storage', function (event) {
+    if (event.key === key || event.key === null) location.reload();
+  });
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) location.reload();
+  });
+})();
+</script>
+<!-- Цели Метрики. Одноимённые цели типа «JavaScript-событие» должны быть
+     заведены в интерфейсе Метрики, иначе события просто никуда не попадут. -->
+<script>
+(function () {
+  function goal(name) {
+    if (typeof window.ym === "function") window.ym(112475745, "reachGoal", name);
+  }
+  window.ecosinGoal = goal;
+
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    if (!el || typeof el.closest !== "function") return;
+    var a = el.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("t.me/") > -1)        goal("telegram_click");
+    else if (href.indexOf("wa.me/") > -1)  goal("whatsapp_click");
+    else if (href.indexOf("tel:") === 0)   goal("phone_click");
+    else if (href.indexOf("shop.html") > -1) goal("shop_open");
+  }, true);
+
+  // Источник заявки. Обе формы сайта — и общая, и та, что отдаёт магнит, —
+  // кладут это в запрос к «Диспетчерской». Нужно, чтобы было видно, какая
+  // страница и какой магнит реально приводят людей.
+  //
+  // Приёмник читает поля по одному через body.get(), лишние ключи молча
+  // игнорирует. Поэтому сайт может слать источник до того, как на той
+  // стороне появится место под него: ничего не сломается, данные начнут
+  // сохраняться, как только приёмник их прочитает.
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return q.get("utm_campaign") || q.get("utm_source") || "";
+    } catch (e) { return ""; }
+  }
+
+  window.ecosinSource = function (kind, id) {
+    return {
+      source_page: location.pathname,          // /ramadan/menu.html
+      source_kind: kind || "form",             // form | magnet
+      source_id: id || "",                     // lead_magnet_menu
+      source_title: (document.title || "").slice(0, 120),
+      source_campaign: utm().slice(0, 80)      // пригодится под Telegram Ads
+    };
+  };
+
+  // Человекочитаемая пометка к теме — чтобы источник был виден в карточке
+  // заявки уже сегодня, пока приёмник не читает source_*. Когда начнёт —
+  // эту приписку можно убрать, структурные поля её заменят.
+  window.ecosinTopicSuffix = function () {
+    return location.pathname === "/" ? "" : " · " + location.pathname;
+  };
+})();
+</script>
 
 <script type="application/ld+json">
 {
@@ -1818,71 +1811,6 @@ p{margin:0;text-wrap:pretty;}
   ]
 }
 </script>
-
-<!-- ===== Отправка заявки ===== -->
-<script>
-(function () {
-  // Данные остаются в браузере, пока посетитель сам не отправит сообщение
-  // через выбранный мессенджер.
-  var TG_LINK  = "https://t.me/alina_ecosin";
-  var WA_PHONE = "79373614477";
-
-  var form   = document.getElementById("cta-form");
-  var status = document.getElementById("cta-status");
-  var btn    = document.getElementById("cta-submit");
-  if (!form) return;
-
-  function field(id) {
-    var el = document.getElementById(id);
-    return el ? (el.value || "").trim() : "";
-  }
-
-  function letterText(d) {
-    return "Здравствуйте! Заявка с сайта.\n\n" +
-           "Имя: " + d.name + "\n" +
-           "Контакт: " + d.contact + "\n" +
-           "Тема: " + d.topic;
-  }
-
-  // Запасной путь: открыть мессенджер с уже написанным сообщением.
-  function offerMessengers(d) {
-    var text = encodeURIComponent(letterText(d));
-    var st = ' style="color:var(--cream);text-decoration:underline;"';
-    status.innerHTML =
-      "Остался один шаг — отправьте заявку в мессенджер: " +
-      '<a href="https://wa.me/' + WA_PHONE + "?text=" + text + '" target="_blank" rel="noopener"' + st + ">WhatsApp</a>" +
-      " · " +
-      '<a href="' + TG_LINK + '" target="_blank" rel="noopener" id="cta-tg"' + st + ">Telegram</a>";
-
-    // Для Telegram текст заранее не подставить — кладём его в буфер обмена.
-    var tg = document.getElementById("cta-tg");
-    if (tg && navigator.clipboard) {
-      tg.addEventListener("click", function () {
-        navigator.clipboard.writeText(letterText(d)).catch(function () {});
-      });
-    }
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    var d = {
-      name:    field("name"),
-      contact: field("tg"),
-      topic:   field("topic"),
-      hp:      field("note2")
-    };
-    if (!d.name || !d.contact) {
-      status.textContent = "Пожалуйста, заполните имя и контакт.";
-      return;
-    }
-    if (d.hp) return; // молча игнорируем бота
-    offerMessengers(d);
-    if (window.ecosinGoal) window.ecosinGoal("lead_messenger");
-  });
-})();
-</script>
-<!-- /Отправка формы в Telegram -->
 
 </body>
 </html>
