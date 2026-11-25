@@ -1030,7 +1030,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
       <ul>
         <li><b>Это не диагностика.</b> Анкета не определяет заболевания и не заменяет врача. Она собирает в одну картину то, что вы и так о себе знаете, и показывает, где сигналов больше всего.</li>
         <li><b>Отвечайте про последние три месяца,</b> а не про разовый плохой день и не про то, что было когда-то давно.</li>
-        <li><b>Ответы остаются у вас.</b> Подсчёт идёт прямо в браузере. После заполнения скачайте отчёт; если хотите, отправьте его Алине сами в Telegram.</li>
+        <li><b>Ответы остаются у вас.</b> Подсчёт идёт прямо в браузере. Можно скачать отчёт для себя. Если вы проходите анкету для консультации, сначала согласуйте с Алиной подписание отдельного согласия на обработку сведений о здоровье.</li>
         <li><b>Не обязательно за один раз.</b> Прогресс сохраняется — можно закрыть вкладку, вернуться завтра и продолжить с того же места.</li>
         <li><b>Отвечайте честно.</b> Приукрасить можно, но тогда и разбор будет про кого-то другого.</li>
       </ul>
@@ -1046,7 +1046,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
       <noscript>
         <div class="art-note art-note--warn">
           <b>Нужен JavaScript</b>
-          <p>Анкета считает ответы прямо в браузере, поэтому без JavaScript она не работает. Включите его или напишите мне в Telegram — соберём анамнез вживую.</p>
+          <p>Анкета считает ответы прямо в браузере, поэтому без JavaScript она не работает. Включите его или позвоните Алине, чтобы обсудить формат консультации.</p>
         </div>
       </noscript>
 
@@ -1174,7 +1174,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
       <div>
         <h4>Документы</h4>
         <ul>
-          <li><a href="/legal/privacy.html">Согласие на обработку данных</a></li>
+          <li><a href="/legal/privacy.html">Политика обработки персональных данных</a></li>
           <li><a href="/legal/offer.html">Публичная оферта</a></li>
           <li><a href="/legal/disclaimer.html">Дисклеймер</a></li>
         </ul>
@@ -1367,7 +1367,7 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить и отправить Алине самостоятельно.";
+        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить на своём устройстве.";
       }
     }
 
@@ -1759,12 +1759,12 @@ body.chk-report-file{margin:0;padding:30px 20px;background:#f5f1ed;}
     html += '</div>';
     if (!forFile) {
       html += '<div class="chk-report__send"><h3>Передать результат Алине</h3>';
-      html += '<p>Скачайте отчёт и отправьте файл в Telegram самостоятельно. Сайт не передаёт ответы анкеты.</p>';
-      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram Алины →</a></div>';
+      html += '<p>Сохраните отчёт для себя. Перед передачей файла Алине подпишите отдельное согласие на обработку сведений о здоровье. Сайт не передаёт ответы анкеты.</p>';
+      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Связаться с Алиной →</a></div>';
       html += '<div class="chk-report__actions">';
       html += '<button type="button" data-download>Скачать полный отчёт</button>';
       html += '<button type="button" data-back>Вернуться к анкете</button></div>';
-      html += '<p class="chk-report__note">Если отправка недоступна, сохраните файл и пришлите его Алине самостоятельно.</p>';
+      html += '<p class="chk-report__note">Передавайте отчёт Алине только после подписания согласия.</p>';
     }
     html += '<div class="chk-report__footer">Ecosin · Алина Сингизова</div></div>';
     return html;

@@ -247,7 +247,7 @@ APP = r"""
         btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-val") === state.gender));
       startBtn.disabled = !state.gender;
       if (state.gender) {
-        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить и отправить Алине самостоятельно.";
+        hint.innerHTML = "<b>Можно начинать.</b> Ответы обрабатываются только в браузере. Отчёт можно сохранить на своём устройстве.";
       }
     }
 

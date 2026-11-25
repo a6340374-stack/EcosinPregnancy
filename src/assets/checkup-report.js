@@ -130,12 +130,12 @@
     html += '</div>';
     if (!forFile) {
       html += '<div class="chk-report__send"><h3>Передать результат Алине</h3>';
-      html += '<p>Скачайте отчёт и отправьте файл в Telegram самостоятельно. Сайт не передаёт ответы анкеты.</p>';
-      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Открыть Telegram Алины →</a></div>';
+      html += '<p>Сохраните отчёт для себя. Перед передачей файла Алине подпишите отдельное согласие на обработку сведений о здоровье. Сайт не передаёт ответы анкеты.</p>';
+      html += '<a href="https://t.me/alina_ecosin" target="_blank" rel="noopener">Связаться с Алиной →</a></div>';
       html += '<div class="chk-report__actions">';
       html += '<button type="button" data-download>Скачать полный отчёт</button>';
       html += '<button type="button" data-back>Вернуться к анкете</button></div>';
-      html += '<p class="chk-report__note">Если отправка недоступна, сохраните файл и пришлите его Алине самостоятельно.</p>';
+      html += '<p class="chk-report__note">Передавайте отчёт Алине только после подписания согласия.</p>';
     }
     html += '<div class="chk-report__footer">Ecosin · Алина Сингизова</div></div>';
     return html;
