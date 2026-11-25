@@ -118,6 +118,7 @@ p{margin:0;text-wrap:pretty;}
 }
 .hero-byline{grid-area:byline;align-self:end;color:var(--ink-soft);}
 .hero-byline strong{color:var(--forest);font-weight:600;}
+.hero-experience{display:block;margin-top:4px;font-size:14px;line-height:1.4;text-wrap:pretty;}
 .hero-copy{grid-area:copy;align-self:start;}
 .hero-h{font-size:clamp(42px,5vw,72px);line-height:1.04;color:var(--forest-deep);}
 .hero-lede{max-width:42ch;margin-top:18px;font-size:18px;color:var(--ink-soft);}
