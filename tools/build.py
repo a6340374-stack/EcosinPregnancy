@@ -169,7 +169,10 @@ def render(meta, body, partials, where):
         "head_extra": optional_block(meta, "head_extra"),
         "css": css,
         "metrika": "" if meta["url"] == "/screening.html" else partials["metrika"],
-        "nav": mark_current(partials["nav"], meta["url"]),
+        "nav": mark_current(fill(partials["nav"], {
+            "nav_contact_url": meta.get("nav_contact_url", "/#cta"),
+            "nav_contact_label": meta.get("nav_contact_label", "Записаться"),
+        }, where), meta["url"]),
         "footer": partials["footer"],
         "content": body.rstrip("\n"),
         "tail": tail,
