@@ -763,6 +763,7 @@ p{margin:0;text-wrap:pretty;}
   max-width: 40ch;
   margin-top: 20px;
 }
+.contact-options{display:grid;gap:12px;align-content:center;}
 .cta-call{justify-self:start;background:var(--cream);color:var(--forest);text-align:center;}
 .cta-call:hover{background:var(--paper);}
 
