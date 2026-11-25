@@ -157,26 +157,21 @@
 <script>
 (() => {
   const button = document.getElementById('flight-control');
-  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const key = 'ecosin-butterflies';
   let choice = new URLSearchParams(location.search).get('butterflies');
   if (choice !== 'on' && choice !== 'off') {
     try { choice = localStorage.getItem(key); } catch { choice = null; }
   }
-  function isFlying() {
-    return choice === 'on' || (choice !== 'off' && !preference.matches);
-  }
   function update() {
     if (choice === 'on' || choice === 'off') document.documentElement.dataset.butterflies = choice;
     else delete document.documentElement.dataset.butterflies;
-    button.textContent = isFlying() ? 'Остановить бабочек' : 'Включить полёт бабочек';
+    button.textContent = choice !== 'off' ? 'Остановить бабочек' : 'Включить полёт бабочек';
   }
   button.addEventListener('click', () => {
-    choice = isFlying() ? 'off' : 'on';
+    choice = choice !== 'off' ? 'off' : 'on';
     try { localStorage.setItem(key, choice); } catch {}
     update();
   });
-  preference.addEventListener('change', update);
   update();
   button.hidden = false;
 })();

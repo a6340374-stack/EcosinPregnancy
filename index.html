@@ -205,7 +205,6 @@ p{margin:0;text-wrap:pretty;}
 .butterfly-flight.sage{top:32%;color:#809b58;}
 .butterfly-flight.apricot{top:58%;color:#db945c;--delay:-30s;}
 .butterfly-flight svg{display:block;width:100%;height:auto;}
-/* Follow the device preference until the visitor chooses a mode. */
 .butterfly-flight{animation:cross-page var(--duration) linear var(--delay) infinite;}
 .butterfly-flight.apricot{animation-name:cross-page-back;}
 .butterfly-flight svg{animation:flight-arc 8s ease-in-out infinite alternate;}
@@ -213,8 +212,10 @@ p{margin:0;text-wrap:pretty;}
 .wing-fold{transform-origin:0 0;animation:wingbeat 1.1s ease-in-out infinite alternate;}
 .apricot .wing-fold{animation-duration:1.25s;}
 @media (prefers-reduced-motion:reduce){
-  html:not([data-butterflies="on"]) .butterfly-trail *{animation:none;}
-  html:not([data-butterflies="on"]) .butterfly-flight.sage{top:90px;left:auto;right:6px;width:52px;opacity:1;}
+  .butterfly-flight{--duration:48s;--delay:-16s;}
+  .butterfly-flight.apricot{--delay:-40s;}
+  .butterfly-flight svg{animation:none;}
+  .butterfly-flight .wing-fold{animation-duration:2s;}
 }
 html[data-butterflies="off"] .butterfly-trail{display:none;}
 .flight-control{display:block;margin-top:12px;color:var(--ink-soft);font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:6px 0;}
@@ -1610,26 +1611,21 @@ html[data-butterflies="off"] .butterfly-trail{display:none;}
 <script>
 (() => {
   const button = document.getElementById('flight-control');
-  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const key = 'ecosin-butterflies';
   let choice = new URLSearchParams(location.search).get('butterflies');
   if (choice !== 'on' && choice !== 'off') {
     try { choice = localStorage.getItem(key); } catch { choice = null; }
   }
-  function isFlying() {
-    return choice === 'on' || (choice !== 'off' && !preference.matches);
-  }
   function update() {
     if (choice === 'on' || choice === 'off') document.documentElement.dataset.butterflies = choice;
     else delete document.documentElement.dataset.butterflies;
-    button.textContent = isFlying() ? 'Остановить бабочек' : 'Включить полёт бабочек';
+    button.textContent = choice !== 'off' ? 'Остановить бабочек' : 'Включить полёт бабочек';
   }
   button.addEventListener('click', () => {
-    choice = isFlying() ? 'off' : 'on';
+    choice = choice !== 'off' ? 'off' : 'on';
     try { localStorage.setItem(key, choice); } catch {}
     update();
   });
-  preference.addEventListener('change', update);
   update();
   button.hidden = false;
 })();
